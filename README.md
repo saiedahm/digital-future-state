@@ -36,3 +36,14 @@ This is a **front-end prototype**, not a production identity or subscription ser
 - `robots.txt` and `sitemap.xml` — basic crawl discovery files.
 
 The passport preview consistently reads **DIGITAL FUTURE STATE** at the top, uses the shared platform emblem in the center/header area, and displays **PASSPORT** with a biometric emblem at the bottom. This is a design motif for a platform profile, not an official travel or government identity document.
+
+
+## Pre-deployment quality gate
+The repository includes automated syntax and static asset checks. A passing workflow is not a full browser, payment, authentication, or security penetration test. The current contact form prepares a `mailto:` message; no server receives it. The cookie notice stores only its dismissed state in local browser storage; this prototype does not run analytics or advertising scripts.
+
+## Deployment checklist
+- Preview the branch deployment and test desktop/mobile layouts and all navigation paths.
+- Confirm the operator's legal details and obtain review of all legal pages.
+- Configure a real, secure backend for accounts, requests, membership entitlements, and audit/security controls.
+- Configure and test subscription checkout and cancellation with a payment provider; do not collect card details directly.
+- Confirm domain DNS, TLS, redirects, and rollback plan before changing production traffic.
