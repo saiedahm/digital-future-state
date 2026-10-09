@@ -184,3 +184,27 @@
  .uploaded-promo-banner{object-fit:contain!important}
  .plans-copy{padding:28px 20px 38px!important}
 }
+
+
+/* Full-bleed passport artwork and interactive six-pass selection */
+.hero{width:100%!important;max-width:none!important;margin:0!important;padding:0!important;overflow:hidden!important}
+.hero-image-link,.promo-image-link{position:absolute;inset:0;display:block;width:100%;height:100%;cursor:pointer;overflow:hidden}
+.hero-image-link:focus-visible,.promo-image-link:focus-visible{outline:3px solid var(--gold2);outline-offset:-5px}
+.uploaded-passport-hero,.uploaded-promo-banner{transition:transform .45s cubic-bezier(.2,.8,.2,1),filter .35s ease}
+.hero-image-link:hover .uploaded-passport-hero,.hero-image-link:focus-visible .uploaded-passport-hero,.promo-image-link:hover .uploaded-promo-banner,.promo-image-link:focus-visible .uploaded-promo-banner{transform:scale(1.025);filter:brightness(1.06)}
+.hero-tap-hint{position:absolute;left:50%;bottom:clamp(18px,4vh,42px);transform:translateX(-50%);z-index:2;padding:10px 16px;border:1px solid rgba(217,182,107,.75);border-radius:999px;background:rgba(4,14,28,.8);color:#f1d99b;font-size:clamp(9px,1.2vw,12px);font-weight:800;letter-spacing:.13em;white-space:nowrap;box-shadow:0 8px 26px #0005;pointer-events:none}
+.plans-visual{position:relative!important}
+.promo-image-link{position:absolute!important;inset:0!important}
+.passport-choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:28px 0}
+.passport-choice{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:7px;min-height:205px;padding:22px;text-align:left;color:var(--text);background:linear-gradient(145deg,#102741,#08172a);border:1px solid rgba(217,182,107,.32);border-radius:14px;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;overflow:hidden}
+.passport-choice::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 10%,rgba(217,182,107,.12),transparent 48%);pointer-events:none}
+.passport-choice:hover,.passport-choice:focus-visible{transform:translateY(-5px) scale(1.015);border-color:var(--gold2);box-shadow:0 0 0 2px rgba(217,182,107,.12),0 15px 36px #0005;outline:none}
+.passport-choice:active{animation:passport-tap .32s ease}
+.passport-choice .choice-number{font-size:10px;letter-spacing:.18em;color:var(--gold)}
+.passport-choice .choice-symbol{font-size:30px;line-height:1.1;color:var(--gold2)}
+.passport-choice b{font:800 18px Manrope,sans-serif}
+.passport-choice small{font-size:12px;color:var(--muted)}
+.passport-choice .choice-cta{margin-top:auto;padding-top:10px;font-size:11px;font-weight:800;color:var(--gold2)}
+@keyframes passport-tap{0%,100%{transform:translateY(0) scale(1)}35%{transform:translateY(-3px) rotate(-1deg) scale(1.025)}70%{transform:translateY(1px) rotate(1deg) scale(.99)}}
+@media(max-width:800px){.hero{height:calc(100svh - 70px)!important}.plans-visual{height:calc(100svh - 70px)!important}.passport-choice-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.passport-choice{min-height:185px;padding:16px}.hero-tap-hint{bottom:14px}}
+@media(max-width:420px){.passport-choice-grid{grid-template-columns:1fr}.passport-choice{min-height:150px}}
