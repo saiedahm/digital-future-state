@@ -1,0 +1,662 @@
+[
+  {
+    "number": "062",
+    "name": "Xiaomi",
+    "officialUrl": "https://www.mi.com/",
+    "category": "Mobile Devices & Technology",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "063",
+    "name": "Lenovo",
+    "officialUrl": "https://www.lenovo.com/",
+    "category": "Computers & Devices",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "064",
+    "name": "Dell",
+    "officialUrl": "https://www.dell.com/",
+    "category": "Computers & Technology",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "065",
+    "name": "HP",
+    "officialUrl": "https://www.hp.com/",
+    "category": "Computers & Printing",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "066",
+    "name": "Siemens",
+    "officialUrl": "https://www.siemens.com/",
+    "category": "Industrial Technology",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "067",
+    "name": "Bosch",
+    "officialUrl": "https://www.bosch.com/",
+    "category": "Engineering & Technology",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "068",
+    "name": "Philips",
+    "officialUrl": "https://www.philips.com/",
+    "category": "Health Technology & Electronics",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "069",
+    "name": "Sony",
+    "officialUrl": "https://www.sony.com/",
+    "category": "Electronics & Entertainment",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "070",
+    "name": "Panasonic",
+    "officialUrl": "https://www.panasonic.com/",
+    "category": "Electronics",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "071",
+    "name": "Canon",
+    "officialUrl": "https://global.canon/",
+    "category": "Imaging & Electronics",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "072",
+    "name": "Nintendo",
+    "officialUrl": "https://www.nintendo.com/",
+    "category": "Gaming",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "073",
+    "name": "PlayStation",
+    "officialUrl": "https://www.playstation.com/",
+    "category": "Gaming",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "074",
+    "name": "Xbox",
+    "officialUrl": "https://www.xbox.com/",
+    "category": "Gaming",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "075",
+    "name": "LEGO",
+    "officialUrl": "https://www.lego.com/",
+    "category": "Toys",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "076",
+    "name": "Disney",
+    "officialUrl": "https://thewaltdisneycompany.com/",
+    "category": "Entertainment",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "077",
+    "name": "Warner Bros.",
+    "officialUrl": "https://www.warnerbros.com/",
+    "category": "Entertainment",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "078",
+    "name": "Universal",
+    "officialUrl": "https://www.nbcuniversal.com/",
+    "category": "Entertainment",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "079",
+    "name": "HBO",
+    "officialUrl": "https://www.hbo.com/",
+    "category": "Entertainment & Streaming",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "080",
+    "name": "ESPN",
+    "officialUrl": "https://www.espn.com/",
+    "category": "Sports Media",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "081",
+    "name": "CNN",
+    "officialUrl": "https://www.cnn.com/",
+    "category": "News Media",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "082",
+    "name": "BBC",
+    "officialUrl": "https://www.bbc.com/",
+    "category": "News & Media",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "083",
+    "name": "Reuters",
+    "officialUrl": "https://www.reuters.com/",
+    "category": "News & Media",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "084",
+    "name": "Bloomberg",
+    "officialUrl": "https://www.bloomberg.com/",
+    "category": "Business & Financial News",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "085",
+    "name": "Forbes",
+    "officialUrl": "https://www.forbes.com/",
+    "category": "Business Media",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "086",
+    "name": "The New York Times",
+    "officialUrl": "https://www.nytimes.com/",
+    "category": "News Media",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "087",
+    "name": "Paramount",
+    "officialUrl": "https://www.paramount.com/",
+    "category": "Entertainment",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "088",
+    "name": "KFC",
+    "officialUrl": "https://global.kfc.com/",
+    "category": "Food & Restaurants",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "089",
+    "name": "Burger King",
+    "officialUrl": "https://www.bk.com/",
+    "category": "Food & Restaurants",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "090",
+    "name": "Subway",
+    "officialUrl": "https://www.subway.com/",
+    "category": "Food & Restaurants",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "091",
+    "name": "Domino's",
+    "officialUrl": "https://www.dominos.com/",
+    "category": "Food & Restaurants",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "092",
+    "name": "Pizza Hut",
+    "officialUrl": "https://www.pizzahut.com/",
+    "category": "Food & Restaurants",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "093",
+    "name": "Red Bull",
+    "officialUrl": "https://www.redbull.com/",
+    "category": "Beverages & Media",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "094",
+    "name": "Heineken",
+    "officialUrl": "https://www.theheinekencompany.com/",
+    "category": "Beverages",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "095",
+    "name": "Budweiser",
+    "officialUrl": "https://www.budweiser.com/",
+    "category": "Beverages",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "096",
+    "name": "Nestlé",
+    "officialUrl": "https://www.nestle.com/",
+    "category": "Food & Beverages",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "097",
+    "name": "Nespresso",
+    "officialUrl": "https://www.nespresso.com/",
+    "category": "Coffee",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "098",
+    "name": "Danone",
+    "officialUrl": "https://www.danone.com/",
+    "category": "Food & Beverages",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "099",
+    "name": "L'Oréal",
+    "officialUrl": "https://www.loreal.com/",
+    "category": "Beauty & Personal Care",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "100",
+    "name": "Estée Lauder",
+    "officialUrl": "https://www.elcompanies.com/",
+    "category": "Beauty & Personal Care",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "101",
+    "name": "Nivea",
+    "officialUrl": "https://www.nivea.com/",
+    "category": "Skin Care",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "102",
+    "name": "Dove",
+    "officialUrl": "https://www.dove.com/",
+    "category": "Personal Care",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "103",
+    "name": "Colgate",
+    "officialUrl": "https://www.colgate.com/",
+    "category": "Oral Care",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "104",
+    "name": "Gillette",
+    "officialUrl": "https://gillette.com/",
+    "category": "Personal Care",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "105",
+    "name": "Unilever",
+    "officialUrl": "https://www.unilever.com/",
+    "category": "Consumer Goods",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "106",
+    "name": "Procter & Gamble",
+    "officialUrl": "https://us.pg.com/",
+    "category": "Consumer Goods",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "107",
+    "name": "Johnson & Johnson",
+    "officialUrl": "https://www.jnj.com/",
+    "category": "Healthcare",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "108",
+    "name": "Pfizer",
+    "officialUrl": "https://www.pfizer.com/",
+    "category": "Pharmaceuticals",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "109",
+    "name": "Novartis",
+    "officialUrl": "https://www.novartis.com/",
+    "category": "Pharmaceuticals",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "110",
+    "name": "Roche",
+    "officialUrl": "https://www.roche.com/",
+    "category": "Healthcare & Pharmaceuticals",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "111",
+    "name": "Audi",
+    "officialUrl": "https://www.audi.com/",
+    "category": "Automotive",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "112",
+    "name": "Volkswagen",
+    "officialUrl": "https://www.volkswagen.com/",
+    "category": "Automotive",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "113",
+    "name": "Porsche",
+    "officialUrl": "https://www.porsche.com/",
+    "category": "Automotive",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "114",
+    "name": "Ferrari",
+    "officialUrl": "https://www.ferrari.com/",
+    "category": "Automotive",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "115",
+    "name": "Honda",
+    "officialUrl": "https://global.honda/",
+    "category": "Automotive & Mobility",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "116",
+    "name": "Nissan",
+    "officialUrl": "https://www.nissan-global.com/",
+    "category": "Automotive",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "117",
+    "name": "Hyundai",
+    "officialUrl": "https://www.hyundai.com/",
+    "category": "Automotive",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "118",
+    "name": "Kia",
+    "officialUrl": "https://www.kia.com/",
+    "category": "Automotive",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "119",
+    "name": "Volvo",
+    "officialUrl": "https://www.volvocars.com/",
+    "category": "Automotive",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "120",
+    "name": "Lexus",
+    "officialUrl": "https://www.lexus.com/",
+    "category": "Automotive",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "121",
+    "name": "Ford",
+    "officialUrl": "https://www.ford.com/",
+    "category": "Automotive",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  }
+]
