@@ -13,7 +13,7 @@
 <header class="site-header">
   <a class="brand" href="#home" aria-label="Digital Future State home"><span class="brand-mark"><img src="/dfs-gold-emblem.svg.png" alt="" width="39" height="39"></span><span class="brand-copy"><b>DIGITAL FUTURE</b><small>STATE · GLOBAL IDENTITY</small></span></a>
   <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
-  <nav id="mainNav"><label class="language-control" aria-label="Choose interface language"><span>◎</span><select id="languageSelect" aria-label="Interface language"><option value="en">English</option><option value="de">Deutsch</option><option value="ar">العربية</option><option value="fr">Français</option><option value="es">Español</option><option value="tr">Türkçe</option><option value="it">Italiano</option><option value="pt">Português</option><option value="ru">Русский</option><option value="zh">中文</option></select></label><a href="#passport"><span data-i18n="navPassport">Digital passport</span></a><a href="#ecosystem"><span data-i18n="navPortal">Global portal</span></a><a href="#security"><span data-i18n="navSecurity">Security</span></a><a href="#contact"><span data-i18n="navContact">Contact</span></a><button class="btn btn-small btn-outline" data-scroll="#passport">Get started <span>↗</span></button></nav>
+  <nav id="mainNav"><label class="language-control" aria-label="Choose interface language"><span>◎</span><select id="languageSelect" aria-label="Interface language"><option value="en">English</option><option value="de">Deutsch</option><option value="ar">العربية</option><option value="fr">Français</option><option value="es">Español</option><option value="tr">Türkçe</option><option value="it">Italiano</option><option value="pt">Português</option><option value="ru">Русский</option><option value="zh">中文</option></select></label><a href="#plans"><span data-i18n="navPassport">Digital passport</span></a><a href="#citizen">Citizen file</a><a href="#ecosystem"><span data-i18n="navPortal">Global portal</span></a><a href="#security"><span data-i18n="navSecurity">Security</span></a><a href="#contact"><span data-i18n="navContact">Contact</span></a><button class="btn btn-small btn-outline" data-scroll="#plans">Get started <span>↗</span></button></nav>
 </header>
 <main>
 <section class="hero section-wrap" id="home">
@@ -42,8 +42,20 @@
   <div class="section-heading"><div><div class="eyebrow"><span data-i18n="howEyebrow">SIMPLE BY DESIGN</span></div><h2 data-i18n-html="howTitle">Your digital journey,<br><span>in a few clear steps.</span></h2></div><p class="muted" data-i18n="howBody">Start with your profile. Review your digital passport preview. Then choose whether to activate your membership.</p></div>
   <div class="steps-grid"><article class="step-card"><span class="step-number">01</span><div class="step-icon">◉</div><h3><span data-i18n="step1Title">Choose your pass</span></h3><p>Select a profile style that suits your personal or professional goals.</p></article><article class="step-card"><span class="step-number">02</span><div class="step-icon">▤</div><h3><span data-i18n="step2Title" data-i18n="step2Title">Build your profile</span></h3><p>Add your details and an optional photo. Review everything before saving.</p></article><article class="step-card"><span class="step-number">03</span><div class="step-icon">✧</div><h3><span data-i18n="step3Title" data-i18n="step3Title">Preview your passport</span></h3><p>See a passport-style digital identity card before moving forward.</p></article><article class="step-card"><span class="step-number">04</span><div class="step-icon">↗</div><h3><span data-i18n="step4Title" data-i18n="step4Title">Explore the portal</span></h3><p>Membership is intended to unlock the global directory and future supported features.</p></article></div>
 </section>
-<section class="section-wrap section-block passport-section" id="passport">
-  <div class="section-heading"><div><div class="eyebrow"><span data-i18n="passportEyebrow">YOUR PROFILE STARTS HERE</span></div><h2 data-i18n-html="passportTitle">Choose your <span>digital pass.</span></h2></div><p class="muted">These are platform profile styles, not government documents, visas, citizenship, or travel authorization.</p></div>
+<section class="plans-screen" id="plans">
+  <div class="plans-visual">
+    <img class="uploaded-promo-banner" src="/assetspromo-banner.png" alt="DIGITAL FUTURE STATE passport plans and packages" loading="eager">
+  </div>
+  <div class="plans-copy">
+    <div class="eyebrow">DIGITAL PASSPORT · MEMBERSHIP</div>
+    <h2>Choose your <span>digital passport.</span></h2>
+    <p>Review the passport styles and membership information, then continue to your citizen file to create your profile and passport preview.</p>
+    <div class="plans-mini"><span>01 · Global Pass</span><span>02 · Professional Pass</span><span>03 · Organization Pass</span></div>
+    <button class="btn btn-gold" data-scroll="#citizen">Open citizen file <span>↗</span></button>
+  </div>
+</section><section class="section-wrap section-block passport-section citizen-screen" id="citizen">
+  <div class="section-heading"><div><div class="eyebrow">CITIZEN FILE</div><h2>Create your <span>digital profile.</span></h2></div><p class="muted">Choose a digital pass, enter your profile details and preview your passport-style profile. This is not an official government document.</p></div>
+  <div class="citizen-menu"><a href="#home">Home</a><a href="#plans">Passport & packages</a><a href="#ecosystem">Global portal</a><a href="#directory">Directory</a><a href="#security">Privacy & security</a><a href="#contact">Request / complaint</a></div>
   <div class="pass-options">
     <button class="pass-option selected" data-pass="Global Pass"><span class="pass-option-icon">◎</span><span><b>Global Pass</b><small>Personal digital identity profile</small></span><span class="radio-dot"></span></button>
     <button class="pass-option" data-pass="Professional Pass"><span class="pass-option-icon">◇</span><span><b>Professional Pass</b><small>Career and business profile</small></span><span class="radio-dot"></span></button>
@@ -71,7 +83,7 @@
       <button class="btn btn-outline btn-full" id="downloadPreview" type="button">Print / save preview <span>↗</span></button>
       <div class="subscription-note"><span class="price-icon">€</span><div><b>Planned membership: €4.99 / month</b><p>Subscription activation and secure account storage are not connected in this preview build. No payment will be taken here.</p></div></div>
     </div>
-  </div>
+
 </section>
 <section class="section-wrap section-block ecosystem-section" id="ecosystem">
  <div class="section-heading"><div><div class="eyebrow"><span data-i18n="globalEyebrow">THE GLOBAL PORTAL</span></div><h2 data-i18n-html="globalTitle">Explore a world of <span>possibilities.</span></h2></div><p class="muted">Discover external services by category. Listings are for discovery only and do not imply a partnership or shared sign-in.</p></div>
@@ -106,7 +118,7 @@
  <label class="check-line"><input type="checkbox" id="contactConsent" required><span data-i18n="contactConsentText">I agree that my message details may be used to respond to this request. Please see the Privacy Policy.</span></label>
  <button class="btn btn-gold btn-full" type="submit"><span data-i18n="prepareMessage">Prepare message</span> <span>↗</span></button><p id="contactFeedback" class="inline-message" aria-live="polite">This prototype prepares an email in your mail app; it does not send or store the request on a server.</p></form>
 </section>
-<section class="section-wrap uploaded-promo-section" aria-label="Digital Future State membership plans"><img class="uploaded-promo-banner" src="/assetspromo-banner.png" alt="DIGITAL FUTURE STATE membership plans and pricing" loading="lazy"></section>
+
 <section class="final-cta"><div class="cta-orb">✧</div><div><div class="eyebrow">YOUR DIGITAL FUTURE STARTS HERE</div><h2>One identity. More possibilities.</h2><p>Build your profile and explore the portal at your own pace.</p></div><button class="btn btn-gold" data-scroll="#passport">Create your digital ID ↗</button></section>
 </main>
 <footer class="site-footer"><div class="footer-top"><a class="brand" href="#home"><span class="brand-mark"><img src="/dfs-gold-emblem.svg.png" alt="" width="39" height="39"></span><span class="brand-copy"><b>DIGITAL FUTURE</b><small>STATE · GLOBAL IDENTITY</small></span></a><p>One ID · One Passport · Global Access</p></div><div class="footer-bottom"><nav class="legal-links" aria-label="Legal links"><a href="widerruf.html"><span data-i18n="legalWiderruf">Widerruf</span></a><a href="agb.html"><span data-i18n="legalAgb">AGB</span></a><a href="datenschutz.html"><span data-i18n="legalPrivacy">Datenschutz</span></a><a href="impressum.html"><span data-i18n="legalImpressum">Impressum</span></a><button type="button" id="cookieSettings"><span data-i18n="cookieSettings">Cookie-Einstellungen</span></button></nav><span><span data-i18n="copyright">© 2026 digital-future.ai</span></span></div><p class="footer-disclaimer">DIGITAL FUTURE STATE is a digital platform concept. Its passport-style profile is not an official government document and does not grant citizenship, visa rights, or travel authorization. External websites are independently operated.</p></footer>
