@@ -70,3 +70,43 @@
  .passport-section{min-height:auto;padding-top:55px;padding-bottom:28px}
  .passport-section .panel{height:auto}
 }
+
+
+/* Three-screen information architecture: landing, packages, citizen file */
+.hero{grid-template-columns:.78fr 1.22fr;min-height:calc(100svh - 82px);padding-top:22px;padding-bottom:46px;gap:18px}
+.hero-copy{padding-bottom:24px}
+.hero-copy .muted,.hero-proof{display:none}
+.hero h1{font-size:clamp(38px,4.5vw,62px);margin:16px 0}
+.hero-art{height:min(76svh,690px);min-height:440px}
+.uploaded-passport-hero{object-fit:contain;background:rgba(5,17,34,.2);opacity:1}
+.hero-art .passport-card{transform:rotate(-3deg) scale(.92)}
+.hero-art .orbit,.hero-art .glow,.hero-art .fingerprint{opacity:.4}
+.hero-art .tag-top{top:7%;left:0}
+.hero-art .tag-bottom{bottom:7%;right:0}
+.plans-screen{min-height:100svh;padding:clamp(24px,5vh,58px) clamp(18px,5vw,76px);display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:clamp(24px,4vw,58px);align-items:center;background:radial-gradient(ellipse at 20% 50%,rgba(28,81,122,.2),transparent 55%),#071426;border-block:1px solid var(--line)}
+.plans-visual{min-width:0;display:grid;place-items:center}
+.plans-visual .uploaded-promo-banner{display:block;width:100%;height:min(78svh,760px);object-fit:contain;border:1px solid rgba(217,182,107,.3);border-radius:18px;background:#091a30;box-shadow:0 24px 80px #0006}
+.plans-copy{max-width:510px}
+.plans-copy h2{font:800 clamp(34px,4vw,56px)/1.1 Manrope,sans-serif;letter-spacing:-1.8px;margin:18px 0}
+.plans-copy h2 span{color:var(--gold2)}
+.plans-copy p{font-size:14px;color:var(--muted);line-height:1.9}
+.plans-mini{display:grid;gap:10px;margin:26px 0;color:#e7d6ae;font-size:12px}
+.plans-mini span{padding:12px 14px;border:1px solid var(--line);border-radius:9px;background:#0b1e34}
+.citizen-screen{min-height:100svh;padding-top:clamp(38px,5vh,66px);padding-bottom:45px}
+.citizen-menu{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 22px}
+.citizen-menu a{font-size:11px;color:#e8d7ae;border:1px solid rgba(217,182,107,.32);border-radius:8px;padding:9px 13px;background:#0b1e34}
+.citizen-menu a:hover{border-color:var(--gold2);background:#102740}
+.citizen-screen .pass-options{margin-bottom:18px}
+.citizen-screen .builder-grid{align-items:start}
+.citizen-screen .panel{height:auto}
+.uploaded-promo-section{display:none!important}
+@media(max-width:800px){
+ .hero{grid-template-columns:1fr;min-height:auto;padding-top:36px;padding-bottom:25px}
+ .hero-copy{padding-bottom:0}
+ .hero-art{height:60svh;min-height:360px;max-height:520px}
+ .hero-art .passport-card{transform:rotate(-2deg) scale(.84)}
+ .plans-screen{grid-template-columns:1fr;min-height:auto;padding:32px 18px;gap:24px}
+ .plans-visual .uploaded-promo-banner{height:auto;max-height:54svh;min-height:220px}
+ .plans-copy{max-width:none}
+ .citizen-screen{min-height:auto}
+}
