@@ -1,0 +1,7 @@
+// Copy these values into your site's public configuration only after confirming
+// the dedicated DIGITAL FUTURE STATE Supabase project and applying the SQL migration.
+// Publishable keys are intended for browser use; never put secret/service-role keys here.
+window.DFS_SUPABASE_CONFIG = Object.freeze({
+  url: "https://czitsrevuwixcjorfwhq.supabase.co",
+  publishableKey: "REPLACE_WITH_THE_PROJECT_PUBLISHABLE_KEY"
+});
