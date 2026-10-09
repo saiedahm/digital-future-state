@@ -51,10 +51,13 @@
 </section><section class="section-wrap section-block passport-section citizen-screen" id="citizen">
   <div class="section-heading"><div><div class="eyebrow">CITIZEN FILE</div><h2>Create your <span>digital profile.</span></h2></div><p class="muted">Choose a digital pass, enter your profile details and preview your passport-style profile. This is not an official government document.</p></div>
   <div class="citizen-menu"><a href="#home">Home</a><a href="#plans">Passport & packages</a><a href="#ecosystem">Global portal</a><a href="#directory">Directory</a><a href="#security">Privacy & security</a><a href="#contact">Request / complaint</a></div>
-  <div class="pass-options">
-    <button class="pass-option selected" data-pass="Global Pass"><span class="pass-option-icon">◎</span><span><b>Global Pass</b><small>Personal digital identity profile</small></span><span class="radio-dot"></span></button>
-    <button class="pass-option" data-pass="Professional Pass"><span class="pass-option-icon">◇</span><span><b>Professional Pass</b><small>Career and business profile</small></span><span class="radio-dot"></span></button>
-    <button class="pass-option" data-pass="Organization Pass"><span class="pass-option-icon">▦</span><span><b>Organization Pass</b><small>For an organization profile</small></span><span class="radio-dot"></span></button>
+  <div class="pass-options" aria-label="Selected passport type">
+    <button class="pass-option selected" data-pass="Global Pass" type="button"><span class="pass-option-icon">◎</span><span><b>Global Pass</b><small>Personal profile</small></span><span class="radio-dot"></span></button>
+    <button class="pass-option" data-pass="Visitor Pass" type="button"><span class="pass-option-icon">✧</span><span><b>Visitor Pass</b><small>Visitor profile</small></span><span class="radio-dot"></span></button>
+    <button class="pass-option" data-pass="Premium Pass" type="button"><span class="pass-option-icon">◇</span><span><b>Premium Pass</b><small>Premium profile</small></span><span class="radio-dot"></span></button>
+    <button class="pass-option" data-pass="Professional Pass" type="button"><span class="pass-option-icon">▤</span><span><b>Professional Pass</b><small>Career profile</small></span><span class="radio-dot"></span></button>
+    <button class="pass-option" data-pass="Business Pass" type="button"><span class="pass-option-icon">▦</span><span><b>Business Pass</b><small>Business profile</small></span><span class="radio-dot"></span></button>
+    <button class="pass-option" data-pass="Organization Pass" type="button"><span class="pass-option-icon">⌘</span><span><b>Organization Pass</b><small>Organization profile</small></span><span class="radio-dot"></span></button>
   </div>
   <div class="builder-grid">
     <form id="profileForm" class="panel profile-form">
