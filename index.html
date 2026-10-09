@@ -96,14 +96,20 @@
 </section>
 <section class="section-wrap section-block directory-section" id="directory">
  <div class="directory-panel"><div><div class="eyebrow">A DIRECTORY THAT GROWS</div><h2>Find your next<br><span>destination.</span></h2><p class="muted">Search a sample directory or visit a public website directly. External services keep their own accounts, terms, and payment processes.</p></div>
- <div class="directory-search"><label class="searchbox"><span>⌕</span><input id="directorySearch" placeholder="Search companies or categories..." aria-label="Search directory"></label><div id="directoryResults" class="directory-results">
-  <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer" data-search="google technology search"><span class="site-avatar">G</span><span><b>Google</b><small>Technology · Search</small></span><i>↗</i></a>
-  <a href="https://www.microsoft.com/" target="_blank" rel="noopener noreferrer" data-search="microsoft technology software"><span class="site-avatar">M</span><span><b>Microsoft</b><small>Technology · Software</small></span><i>↗</i></a>
-  <a href="https://www.wikipedia.org/" target="_blank" rel="noopener noreferrer" data-search="wikipedia knowledge education"><span class="site-avatar">W</span><span><b>Wikipedia</b><small>Knowledge · Education</small></span><i>↗</i></a>
-  <a href="https://www.booking.com/" target="_blank" rel="noopener noreferrer" data-search="booking travel tourism"><span class="site-avatar">B</span><span><b>Booking.com</b><small>Travel · Tourism</small></span><i>↗</i></a>
-  <a href="https://www.alibaba.com/" target="_blank" rel="noopener noreferrer" data-search="alibaba shopping commerce marketplace"><span class="site-avatar">A</span><span><b>Alibaba</b><small>Commerce · Marketplace</small></span><i>↗</i></a>
- </div><p class="tiny-note">External links open their own websites. You may need to sign in separately unless a future official integration is supported.</p></div></div>
-</section>
+ <div class="directory-search">
+  <div class="directory-filters">
+   <label class="searchbox"><span>⌕</span><input id="directorySearch" placeholder="Search companies or services..." aria-label="Search directory"></label>
+   <label class="directory-filter-label">Category
+    <select id="directoryCategory" aria-label="Filter by category"><option value="">All categories</option></select>
+   </label>
+   <label class="directory-filter-label">Country / coverage
+    <select id="directoryCountry" aria-label="Filter by country"><option value="">All countries / international</option><option value="Germany">Germany</option><option value="Saudi Arabia">Saudi Arabia</option><option value="United Arab Emirates">United Arab Emirates</option><option value="Qatar">Qatar</option><option value="Kuwait">Kuwait</option><option value="Bahrain">Bahrain</option><option value="Oman">Oman</option><option value="International">International</option></select>
+   </label>
+  </div>
+  <p id="directoryStatus" class="tiny-note" role="status" aria-live="polite">Loading directory…</p>
+  <div id="directoryResults" class="directory-results" aria-live="polite"></div>
+  <p class="tiny-note">External links open the provider's own website. Listings do not imply partnership, shared sign-in, or guaranteed availability in your country.</p>
+ </div></div></section>
 <section class="section-wrap section-block security-section" id="security">
  <div class="security-symbol">⌑<span>✓</span></div><div class="security-copy"><div class="eyebrow">PRIVACY BY DESIGN</div><h2>Your identity.<br><span>Your choices.</span></h2><p class="muted">We intend to build around data minimization, clear permissions, and secure account access. This prototype does not yet include production authentication, encrypted profile storage, identity verification, or payment processing.</p><div class="security-list"><div><span>01</span><p><b>Share only what is needed</b><small>Future integrations should request limited, specific permissions.</small></p></div><div><span>02</span><p><b>No external passwords stored</b><small>We do not promise universal sign-in. Supported services must provide an official integration.</small></p></div><div><span>03</span><p><b>No shopping wallet</b><small>Pay external stores directly using their own checkout. The platform does not hold shopping balances.</small></p></div></div></div>
 </section>
