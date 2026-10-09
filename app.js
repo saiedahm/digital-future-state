@@ -25,7 +25,7 @@
     document.querySelectorAll('[data-i18n-html]').forEach(el=>{const key=el.dataset.i18nHtml;if(pack[key])el.innerHTML=pack[key];});
     const chooser=$('#languageSelect'); if(chooser) chooser.value=code;
     try{sessionStorage.setItem('dfs-language',code)}catch(_){}
-    const nm=$('#previewName'); if(nm && !name?.value?.trim())nm.textContent=pack.profileHolder||'YOUR NAME';
+    const nm=$('#previewName'); if(nm && !$('#fullName')?.value?.trim())nm.textContent=pack.profileHolder||'YOUR NAME';
     const feedback=$('#contactFeedback'); if(feedback && feedback.dataset.state==='prepared')feedback.textContent=pack.contactPrepared||languagePacks.en.contactPrepared;
     const empty=$('#noDirectoryResults'); if(empty)empty.textContent=pack.directoryEmpty||languagePacks.en.directoryEmpty;
   }
