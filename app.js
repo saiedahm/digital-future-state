@@ -2,6 +2,56 @@
   const $ = (s,root=document)=>root.querySelector(s);
   const $$ = (s,root=document)=>Array.from(root.querySelectorAll(s));
 
+  // Global directory: load the checked-in JSON pages and render searchable official links.
+  async function initGlobalDirectory(){
+    const root=$('#directoryResults');
+    if(!root) return;
+    const search=$('#directorySearch'), category=$('#directoryCategory'), country=$('#directoryCountry'), status=$('#directoryStatus');
+    let entries=[];
+    const paths=Array.from({length:30},(_,i)=>'/data/global-platforms-page-'+String(i+1).padStart(2,'0')+'.json');
+    const settled=await Promise.allSettled(paths.map(async path=>{
+      const response=await fetch(path,{headers:{Accept:'application/json'}});
+      if(!response.ok) throw new Error('missing');
+      const data=await response.json();
+      if(!Array.isArray(data)) throw new Error('invalid');
+      return data;
+    }));
+    settled.forEach(result=>{if(result.status==='fulfilled') entries.push(...result.value);});
+    // De-duplicate records by normalized official URL.
+    const seen=new Set();
+    entries=entries.filter(item=>{
+      if(!item||!item.name||!item.officialUrl) return false;
+      try{const u=new URL(item.officialUrl);if(!['https:','http:'].includes(u.protocol))return false;const key=u.hostname.toLowerCase()+u.pathname.replace(/\/$/,'');if(seen.has(key))return false;seen.add(key);return true;}catch{return false;}
+    });
+    const categories=[...new Set(entries.map(x=>String(x.category||'Other').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
+    if(category) categories.forEach(value=>{const o=document.createElement('option');o.value=value;o.textContent=value;category.appendChild(o);});
+    function render(){
+      const q=(search?.value||'').trim().toLocaleLowerCase();
+      const cat=category?.value||'', ctry=country?.value||'';
+      const list=entries.filter(item=>{
+        const text=[item.name,item.category,item.description,item.country,item.countries,item.region].flat().filter(Boolean).join(' ').toLocaleLowerCase();
+        const catOk=!cat||item.category===cat;
+        const coverage=[item.country,item.countries,item.region,item.coverage].flat().filter(Boolean).join(' ').toLocaleLowerCase();
+        const countryOk=!ctry||!coverage||coverage.includes(ctry.toLocaleLowerCase())||/international|global|worldwide|all countries/i.test(coverage);
+        return catOk&&countryOk&&(!q||text.includes(q));
+      }).slice(0,120);
+      root.replaceChildren();
+      if(!list.length){const p=document.createElement('p');p.className='muted';p.textContent='No matching listing found. Try another keyword or filter.';root.appendChild(p);}
+      list.forEach(item=>{
+        const a=document.createElement('a');a.href=item.officialUrl;a.target='_blank';a.rel='noopener noreferrer';
+        const avatar=document.createElement('span');avatar.className='site-avatar';avatar.textContent=String(item.name).trim().charAt(0).toUpperCase();
+        const body=document.createElement('span');const b=document.createElement('b');b.textContent=item.name;const small=document.createElement('small');small.textContent=[item.category,item.country||item.region].filter(Boolean).join(' · ')||'Official website';body.append(b,small);
+        const arrow=document.createElement('i');arrow.textContent='↗';a.append(avatar,body,arrow);root.appendChild(a);
+      });
+      if(status)status.textContent=entries.length+' verified-format listings loaded · showing '+list.length+'. Links are external; availability and partnership are not implied.';
+    }
+    [search,category,country].filter(Boolean).forEach(el=>el.addEventListener('input',render));
+    [category,country].filter(Boolean).forEach(el=>el.addEventListener('change',render));
+    if(!entries.length&&status)status.textContent='The directory data files could not be loaded. Check deployment paths and JSON files.';
+    render();
+  }
+  document.addEventListener('DOMContentLoaded',initGlobalDirectory);
+
   // Built-in interface language packs. These are authored platform translations, not Google Translate.
   const languagePacks = {
     en:{dir:'ltr',navPassport:'Digital passport',navPortal:'Global portal',navSecurity:'Security',navContact:'Contact',getStarted:'Get started',heroEyebrow:'A NEW WAY TO CONNECT DIGITALLY',heroTitle:'ONE ID.<br><span>ONE PASSPORT.</span><br>GLOBAL ACCESS.',heroLead:'Your digital identity for a more connected world.',createId:'Create your digital ID',discoverHow:'Discover how it works',scrollExplore:'SCROLL TO EXPLORE ↓',howEyebrow:'SIMPLE BY DESIGN',howTitle:'Your digital journey,<br><span>in a few clear steps.</span>',step1Title:'Choose your pass',step2Title:'Build your profile',step3Title:'Preview your passport',step4Title:'Explore the portal',passportEyebrow:'YOUR PROFILE STARTS HERE',passportTitle:'Choose your <span>digital pass.</span>',profileDetails:'Profile details',profileIntro:'Enter your details and an optional photo. Review everything before saving.',fullNameLabel:'Full name',birthDateLabel:'Date of birth',nationalityLabel:'Nationality / country',previewButton:'Preview my digital pass',livePreview:'LIVE PREVIEW',sampleDesign:'SAMPLE DESIGN',printPreview:'Print / save preview',globalEyebrow:'THE GLOBAL PORTAL',globalTitle:'Explore a world of <span>possibilities.</span>',contactEyebrow:'WE ARE LISTENING',contactTitle:'Citizen support<br><span>& feedback.</span>',contactTeam:'Contact the team',contactNameLabel:'Your name *',contactEmailLabel:'Email address *',contactTopicLabel:'What is this about? *',contactMessageLabel:'Your message *',prepareMessage:'Prepare message',legalWiderruf:'Widerruf',legalAgb:'AGB',legalPrivacy:'Datenschutz',legalImpressum:'Impressum',cookieSettings:'Cookie settings',copyright:'© 2026 digital-future.ai',topicChoose:'Choose a topic',topicComplaint:'Complaint',topicRequest:'Service request',topicTechnical:'Technical problem',topicPrivacy:'Privacy request',topicSuggestion:'Suggestion or feedback',topicOther:'Other question',howBody:"Start with your profile. Review your digital passport preview. Then choose whether to activate your membership.",step1Body:"Select the digital pass style that suits your needs.",step2Body:"Add only the details you choose to share.",step3Body:"Review the sample card before printing.",step4Body:"Browse public links to services around the world.",passGlobal:"Global Pass",passVisitor:"Visitor Pass",passPremium:"Premium Pass",passBusiness:"Business Pass",passDescription:"A profile card for use within this platform. It is not a government-issued document.",confirmData:"I confirm that the details above are correct.",profileHolder:"YOUR NAME",previewWarning:"Preview only — not an official identity document.",directoryTitle:"Browse the sample directory",directoryIntro:"Public links for discovery only. Listing does not mean partnership or shared sign-in.",directorySearch:"Search the directory",securityTitle:"Your identity. Your choices.",securityBody:"Share only what is needed. This sample card does not verify identity and is not accepted as a travel document.",contactIntro:"Have a complaint, service request, technical issue, privacy question, or suggestion? Prepare a message for our team.",contactConsentText:"I agree to use the contact details I provide to prepare this email.",cookieTitle:"Cookie settings",cookieBody:"This static prototype uses essential browser features. No advertising or analytics cookies are set by this prototype.",cookieAcceptText:"Understood",cookieCloseText:"Close",contactPrepared:"Your email application should open with the message prepared. Review it and press Send there. This website has not sent or stored your message.",directoryEmpty:"No sample listings match that search.",fullNamePlaceholder:"Enter your name",nationalityPlaceholder:"e.g. Germany",photoLabel:"Profile photo",photoOptional:"Optional · preview only",previewNote:"This demo preview stays in this browser session. It does not create a verified identity or save data to a secure account.",contactRequired:"Fields marked * are required.",contactNamePlaceholder:"Name",contactEmailPlaceholder:"you@example.com",contactMessagePlaceholder:"Tell us how we can help..."},
