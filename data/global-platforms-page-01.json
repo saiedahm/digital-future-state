@@ -1,0 +1,651 @@
+[
+  {
+    "number": "002",
+    "name": "Google",
+    "officialUrl": "https://www.google.com/",
+    "category": "Technology & Internet",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "003",
+    "name": "Apple",
+    "officialUrl": "https://www.apple.com/",
+    "category": "Technology & Devices",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "004",
+    "name": "Microsoft",
+    "officialUrl": "https://www.microsoft.com/",
+    "category": "Technology & Software",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "005",
+    "name": "Amazon",
+    "officialUrl": "https://www.amazon.com/",
+    "category": "Commerce & Cloud",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "006",
+    "name": "NVIDIA",
+    "officialUrl": "https://www.nvidia.com/",
+    "category": "AI & Semiconductors",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "007",
+    "name": "Facebook",
+    "officialUrl": "https://www.facebook.com/",
+    "category": "Social Media",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "008",
+    "name": "Instagram",
+    "officialUrl": "https://www.instagram.com/",
+    "category": "Social Media",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "009",
+    "name": "Tencent",
+    "officialUrl": "https://www.tencent.com/",
+    "category": "Technology & Internet",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "010",
+    "name": "Oracle",
+    "officialUrl": "https://www.oracle.com/",
+    "category": "Enterprise Software",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "011",
+    "name": "McDonald's",
+    "officialUrl": "https://www.mcdonalds.com/",
+    "category": "Food & Restaurants",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "012",
+    "name": "Visa",
+    "officialUrl": "https://www.visa.com/",
+    "category": "Payments",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "013",
+    "name": "Coca-Cola",
+    "officialUrl": "https://www.coca-colacompany.com/",
+    "category": "Food & Beverages",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "014",
+    "name": "Netflix",
+    "officialUrl": "https://www.netflix.com/",
+    "category": "Streaming & Entertainment",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "015",
+    "name": "YouTube",
+    "officialUrl": "https://www.youtube.com/",
+    "category": "Video & Media",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "016",
+    "name": "Samsung",
+    "officialUrl": "https://www.samsung.com/",
+    "category": "Technology & Devices",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "017",
+    "name": "Toyota",
+    "officialUrl": "https://www.toyota.com/",
+    "category": "Automotive",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "018",
+    "name": "Mercedes-Benz",
+    "officialUrl": "https://www.mercedes-benz.com/",
+    "category": "Automotive",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "019",
+    "name": "BMW",
+    "officialUrl": "https://www.bmw.com/",
+    "category": "Automotive",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "020",
+    "name": "Tesla",
+    "officialUrl": "https://www.tesla.com/",
+    "category": "Automotive & Energy",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "021",
+    "name": "Nike",
+    "officialUrl": "https://www.nike.com/",
+    "category": "Sportswear",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "022",
+    "name": "Adidas",
+    "officialUrl": "https://www.adidas.com/",
+    "category": "Sportswear",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "023",
+    "name": "Louis Vuitton",
+    "officialUrl": "https://www.louisvuitton.com/",
+    "category": "Luxury & Fashion",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "024",
+    "name": "Hermès",
+    "officialUrl": "https://www.hermes.com/",
+    "category": "Luxury & Fashion",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "025",
+    "name": "Chanel",
+    "officialUrl": "https://www.chanel.com/",
+    "category": "Luxury & Fashion",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "026",
+    "name": "Zara",
+    "officialUrl": "https://www.zara.com/",
+    "category": "Fashion & Retail",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "027",
+    "name": "Walmart",
+    "officialUrl": "https://www.walmart.com/",
+    "category": "Retail",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "028",
+    "name": "Alibaba",
+    "officialUrl": "https://www.alibaba.com/",
+    "category": "Commerce & Marketplace",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "029",
+    "name": "Home Depot",
+    "officialUrl": "https://www.homedepot.com/",
+    "category": "Home Improvement Retail",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "030",
+    "name": "Costco",
+    "officialUrl": "https://www.costco.com/",
+    "category": "Retail & Wholesale",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "031",
+    "name": "Starbucks",
+    "officialUrl": "https://www.starbucks.com/",
+    "category": "Food & Restaurants",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "032",
+    "name": "Pepsi",
+    "officialUrl": "https://www.pepsi.com/",
+    "category": "Food & Beverages",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "033",
+    "name": "Mastercard",
+    "officialUrl": "https://www.mastercard.com/",
+    "category": "Payments",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "034",
+    "name": "PayPal",
+    "officialUrl": "https://www.paypal.com/",
+    "category": "Payments",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "035",
+    "name": "JPMorgan Chase",
+    "officialUrl": "https://www.jpmorganchase.com/",
+    "category": "Financial Services",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "036",
+    "name": "American Express",
+    "officialUrl": "https://www.americanexpress.com/",
+    "category": "Financial Services & Payments",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "037",
+    "name": "HSBC",
+    "officialUrl": "https://www.hsbc.com/",
+    "category": "Banking",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "038",
+    "name": "Goldman Sachs",
+    "officialUrl": "https://www.goldmansachs.com/",
+    "category": "Financial Services",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "039",
+    "name": "Morgan Stanley",
+    "officialUrl": "https://www.morganstanley.com/",
+    "category": "Financial Services",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "040",
+    "name": "Bank of America",
+    "officialUrl": "https://www.bankofamerica.com/",
+    "category": "Banking",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "041",
+    "name": "ICBC",
+    "officialUrl": "https://www.icbc.com.cn/",
+    "category": "Banking",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "042",
+    "name": "TikTok",
+    "officialUrl": "https://www.tiktok.com/",
+    "category": "Social Media",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "043",
+    "name": "LinkedIn",
+    "officialUrl": "https://www.linkedin.com/",
+    "category": "Professional Network",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "044",
+    "name": "WhatsApp",
+    "officialUrl": "https://www.whatsapp.com/",
+    "category": "Messaging",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "045",
+    "name": "Spotify",
+    "officialUrl": "https://www.spotify.com/",
+    "category": "Music & Streaming",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "046",
+    "name": "Snapchat",
+    "officialUrl": "https://www.snapchat.com/",
+    "category": "Social Media",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "047",
+    "name": "Uber",
+    "officialUrl": "https://www.uber.com/",
+    "category": "Mobility & Delivery",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "048",
+    "name": "Airbnb",
+    "officialUrl": "https://www.airbnb.com/",
+    "category": "Travel & Accommodation",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "049",
+    "name": "Booking.com",
+    "officialUrl": "https://www.booking.com/",
+    "category": "Travel & Accommodation",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "050",
+    "name": "eBay",
+    "officialUrl": "https://www.ebay.com/",
+    "category": "Commerce & Marketplace",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "051",
+    "name": "Salesforce",
+    "officialUrl": "https://www.salesforce.com/",
+    "category": "Enterprise Software & CRM",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "052",
+    "name": "Adobe",
+    "officialUrl": "https://www.adobe.com/",
+    "category": "Creative Software",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "053",
+    "name": "IBM",
+    "officialUrl": "https://www.ibm.com/",
+    "category": "Enterprise Technology",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "054",
+    "name": "SAP",
+    "officialUrl": "https://www.sap.com/",
+    "category": "Enterprise Software",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "055",
+    "name": "Accenture",
+    "officialUrl": "https://www.accenture.com/",
+    "category": "Consulting & Technology",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "056",
+    "name": "Cisco",
+    "officialUrl": "https://www.cisco.com/",
+    "category": "Networking & Security",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "057",
+    "name": "Intel",
+    "officialUrl": "https://www.intel.com/",
+    "category": "Semiconductors",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "058",
+    "name": "AMD",
+    "officialUrl": "https://www.amd.com/",
+    "category": "Semiconductors",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "059",
+    "name": "Qualcomm",
+    "officialUrl": "https://www.qualcomm.com/",
+    "category": "Semiconductors & Wireless",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "060",
+    "name": "TSMC",
+    "officialUrl": "https://www.tsmc.com/",
+    "category": "Semiconductors",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  }
+]
