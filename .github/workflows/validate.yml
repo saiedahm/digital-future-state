@@ -21,23 +21,38 @@ jobs:
           node-version: 22
       - name: Check JavaScript syntax
         run: node --check app.js
-      - name: Validate required pages and legal links
+      - name: Validate pages, assets, links, and required interface
         run: |
           node --input-type=commonjs <<'NODE'
           const fs = require('node:fs');
+          const path = require('node:path');
           const html = fs.readFileSync('index.html', 'utf8');
           const js = fs.readFileSync('app.js', 'utf8');
-          const required = ['widerruf.html','agb.html','datenschutz.html','impressum.html'];
-          for (const file of required) {
-            if (!fs.existsSync(file)) throw new Error('Missing required legal page: ' + file);
+          const css = fs.readFileSync('styles.css', 'utf8');
+          const requiredPages = ['widerruf.html','agb.html','datenschutz.html','impressum.html','404.html'];
+          for (const file of requiredPages) {
+            if (!fs.existsSync(file)) throw new Error('Missing required page: ' + file);
+          }
+          for (const file of ['assets/dfs-emblem.svg','assets/favicon.svg','manifest.webmanifest','robots.txt','sitemap.xml','vercel.json']) {
+            if (!fs.existsSync(file)) throw new Error('Missing required asset/config: ' + file);
+          }
+          for (const file of ['widerruf.html','agb.html','datenschutz.html','impressum.html']) {
             if (!html.includes('href="' + file + '"')) throw new Error('Legal page not linked from homepage: ' + file);
           }
-          for (const id of ['languageSelect','profileForm','contactForm','cookieSettings','cookieBanner']) {
+          for (const id of ['languageSelect','profileForm','contactForm','cookieSettings','cookieBanner','contactConsent','contactTopic']) {
             if (!html.includes('id="' + id + '"')) throw new Error('Missing required UI element: ' + id);
           }
-          for (const token of ['function applyLanguage','languagePacks','document.documentElement.dir']) {
-            if (!js.includes(token)) throw new Error('Missing multilingual behavior: ' + token);
+          for (const token of ['function applyLanguage','languagePacks','document.documentElement.dir','localStorage']) {
+            if (!js.includes(token)) throw new Error('Missing expected client behavior: ' + token);
           }
+          for (const file of ['assets/dfs-emblem.svg','assets/favicon.svg']) {
+            if (!fs.readFileSync(file,'utf8').includes('<svg')) throw new Error('Invalid SVG asset: ' + file);
+          }
+          const manifest = JSON.parse(fs.readFileSync('manifest.webmanifest','utf8'));
+          if (!manifest.name || !Array.isArray(manifest.icons)) throw new Error('Manifest fields are incomplete');
+          const config = JSON.parse(fs.readFileSync('vercel.json','utf8'));
+          if (!Array.isArray(config.headers)) throw new Error('Vercel headers configuration missing');
           if (!html.includes('© 2026 digital-future.ai')) throw new Error('Required copyright notice is missing.');
-          console.log('Static checks passed: legal pages, language selector, profile form, contact form, cookie settings and copyright.');
+          if (!css.includes(':focus-visible')) throw new Error('Keyboard focus style missing.');
+          console.log('Static quality checks passed. This does not replace end-to-end browser/security testing.');
           NODE
