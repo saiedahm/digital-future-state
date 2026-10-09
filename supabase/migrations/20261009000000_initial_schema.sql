@@ -8,7 +8,7 @@ create table if not exists public.profiles (
   country text not null default '' check (char_length(country) <= 60),
   birth_date date,
   profile_type text not null default 'Global Pass'
-    check (profile_type in ('Global Pass','Professional Pass','Organization Pass')),
+    check (profile_type in ('Global Pass','Visitor Pass','Premium Pass','Professional Pass','Business Pass','Organization Pass')),
   photo_path text,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
