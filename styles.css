@@ -23,3 +23,10 @@
 :focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
 [hidden]{display:none!important}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+/* Gold emblem placement: small at passport header, larger center watermark, medium at passport footer */
+.mini-emblem{overflow:hidden;padding:5px}
+.mini-emblem img{display:block;width:24px;height:24px;object-fit:contain}
+.gold-seal{display:flex;align-items:center;justify-content:center;width:42px;height:42px;flex-shrink:0;overflow:hidden}
+.gold-seal img{display:block;width:40px;height:40px;object-fit:contain;filter:drop-shadow(0 0 5px rgba(217,182,107,.25))}
+.digital-pass::before{background-size:min(62%,245px);background-position:50% 53%;opacity:.13}
