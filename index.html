@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#071426">
-  <meta name="description" content="DIGITAL FUTURE STATE — one digital identity, one passport-style profile, access to a connected global directory.">
+  <meta name="description" content="DIGITAL FUTURE STATE — one digital identity profile and a connected global service directory."><meta name="color-scheme" content="dark">
   <title>DIGITAL FUTURE STATE | One ID. Global Access.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="manifest" href="/manifest.webmanifest"><link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header class="site-header">
-  <a class="brand" href="#home" aria-label="Digital Future State home"><span class="brand-mark">DF<span>·</span></span><span class="brand-copy"><b>DIGITAL FUTURE</b><small>STATE · GLOBAL IDENTITY</small></span></a>
+  <a class="brand" href="#home" aria-label="Digital Future State home"><span class="brand-mark"><img src="/assets/dfs-emblem.svg" alt="" width="39" height="39"></span><span class="brand-copy"><b>DIGITAL FUTURE</b><small>STATE · GLOBAL IDENTITY</small></span></a>
   <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
   <nav id="mainNav"><label class="language-control" aria-label="Choose interface language"><span>◎</span><select id="languageSelect" aria-label="Interface language"><option value="en">English</option><option value="de">Deutsch</option><option value="ar">العربية</option><option value="fr">Français</option><option value="es">Español</option><option value="tr">Türkçe</option><option value="it">Italiano</option><option value="pt">Português</option><option value="ru">Русский</option><option value="zh">中文</option></select></label><a href="#passport"><span data-i18n="navPassport">Digital passport</span></a><a href="#ecosystem"><span data-i18n="navPortal">Global portal</span></a><a href="#security"><span data-i18n="navSecurity">Security</span></a><a href="#contact"><span data-i18n="navContact">Contact</span></a><button class="btn btn-small btn-outline" data-scroll="#passport">Get started <span>↗</span></button></nav>
 </header>
@@ -63,9 +63,9 @@
     <div class="panel preview-panel">
       <div class="preview-head"><span><span data-i18n="livePreview">LIVE PREVIEW</span></span><span class="preview-status"><i></i> SAMPLE DESIGN</span></div>
       <div class="digital-pass" id="digitalPass">
-        <div class="digital-pass-head"><span class="seal">✧</span><span><b>DIGITAL FUTURE STATE</b><small>DIGITAL IDENTITY PROFILE</small></span></div>
+        <div class="digital-pass-head"><span class="seal"><img src="/assets/dfs-emblem.svg" alt="" width="34" height="34"></span><span><b>DIGITAL FUTURE STATE</b><small>BIOMETRIC DIGITAL IDENTITY</small></span></div>
         <div class="digital-pass-body"><div class="photo-placeholder" id="photoPreview"><span>✦</span><small>PROFILE PHOTO</small></div><div class="identity-data"><small>PROFILE HOLDER</small><b id="previewName" data-i18n="profileHolder">YOUR NAME</b><small>PROFILE TYPE</small><b id="previewType">GLOBAL PASS</b><small>COUNTRY</small><b id="previewCountry">NOT PROVIDED</b><small>DATE OF BIRTH</small><b id="previewBirth">NOT PROVIDED</b></div></div>
-        <div class="digital-pass-foot"><span class="qr-pattern" aria-hidden="true">▦ ▥<br>▥ ▦</span><span>ONE ID · GLOBAL ACCESS<small>NOT AN OFFICIAL DOCUMENT</small></span><span class="pass-star">✧</span></div>
+        <div class="digital-pass-foot"><span class="qr-pattern" aria-hidden="true">▦ ▥<br>▥ ▦</span><span class="pass-motto">ONE ID · GLOBAL ACCESS<small>NOT AN OFFICIAL DOCUMENT</small></span><span class="biometric-mark" aria-label="Biometric fingerprint"><img src="/assets/dfs-emblem.svg" alt="" width="34" height="34"><small>PASSPORT</small></span></div>
       </div>
       <div id="previewMessage" class="inline-message" aria-live="polite">Your passport-style preview will appear here as you fill in the form.</div>
       <button class="btn btn-outline btn-full" id="downloadPreview" type="button">Print / save preview <span>↗</span></button>
