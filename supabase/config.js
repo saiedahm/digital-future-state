@@ -3,5 +3,5 @@
 // Replace the placeholder with the publishable key from the dedicated DFS Supabase project.
 window.DFS_SUPABASE_CONFIG = Object.freeze({
   url: "https://czitsrevuwixcjorfwhq.supabase.co",
-  publishableKey: "REPLACE_WITH_THE_PROJECT_PUBLISHABLE_KEY"
+  publishableKey: "sb_publishable_tmatW_7TB4nH30zhHKbIrg_OFkvKALr"
 });
