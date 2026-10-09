@@ -149,3 +149,18 @@
  .hero-copy h1{font-size:clamp(32px,9vw,48px)}
  .uploaded-passport-hero{object-fit:cover!important;object-position:center!important}
 }
+
+
+/* User-requested hero image and persistent-profile clarity */
+.hero{width:100%;max-width:none;margin:0;min-height:calc(100svh - 82px);height:calc(100svh - 82px);padding:0 5vw;overflow:hidden}
+.hero-copy{max-width:620px;padding:24px 0 70px;background:transparent!important;box-shadow:none!important;border:0!important}
+.hero-art{background:var(--bg)}
+.uploaded-passport-hero{object-fit:contain!important;object-position:center center!important;background:var(--bg)}
+.hero-art::after{background:linear-gradient(90deg,rgba(4,14,28,.42),rgba(4,14,28,.08) 55%,transparent)!important}
+.hero-copy h1,.hero-copy .eyebrow,.hero-copy p,.hero-copy .hero-proof,.hero-copy .hero-actions{ text-shadow:0 2px 12px rgba(0,0,0,.8)}
+@media(max-width:800px){
+ .hero{width:100%;height:calc(100svh - 70px);min-height:600px;padding:0 16px}
+ .hero-copy{left:16px;right:16px;bottom:18px;padding:12px 0;background:transparent!important}
+ .uploaded-passport-hero{object-fit:contain!important;object-position:center top!important}
+ .hero-art::after{background:linear-gradient(0deg,rgba(4,14,28,.45),transparent 65%)!important}
+}
