@@ -31,8 +31,6 @@
   }
   // Translate the remaining page copy and controls, including dynamic status messages.
   const languageSelect=$('#languageSelect');
-  const originalText=new Map();
-  $('[data-i18n]').forEach(el=>originalText.set(el,el.textContent));
 
   if(languageSelect){
     let saved='en';try{saved=sessionStorage.getItem('dfs-language')||'en'}catch(_){}
