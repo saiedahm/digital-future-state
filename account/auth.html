@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071426">
+<title>Secure account access | DIGITAL FUTURE STATE</title>
+<style>
+:root{color-scheme:dark;--bg:#071426;--panel:#0c2038;--line:#29415c;--gold:#d8b56b;--muted:#aab9cb;--white:#f7f4eb}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at top,#102b49,var(--bg) 58%);font:16px/1.55 Arial,sans-serif;color:var(--white);display:grid;place-items:center;padding:20px}
+main{width:min(520px,100%);border:1px solid var(--line);background:#0b1c30;border-radius:18px;padding:clamp(20px,5vw,36px)}
+a{color:var(--gold)}.brand{font-weight:800;letter-spacing:.08em}.brand small{display:block;color:var(--gold);font-size:10px;letter-spacing:.18em}
+h1{font-size:clamp(28px,6vw,40px);line-height:1.1;margin:24px 0 8px}p,.hint{color:var(--muted)}form{display:grid;gap:14px;margin-top:22px}label{display:grid;gap:6px;color:var(--muted);font-size:14px}input{width:100%;padding:13px;border-radius:8px;border:1px solid var(--line);background:#061322;color:var(--white);font:inherit}
+button{padding:13px;border:1px solid var(--gold);border-radius:8px;background:var(--gold);color:#071426;font-weight:700;font:inherit;cursor:pointer}.secondary{background:transparent;color:var(--gold)}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.status{min-height:28px;font-size:14px;overflow-wrap:anywhere}.hint{font-size:12px}.hidden{display:none}@media(max-width:420px){.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main>
+<a class="brand" href="/">DIGITAL FUTURE STATE<small>ONE ID · GLOBAL ACCESS</small></a>
+<h1>Secure account access</h1>
+<p>Create an account or sign in to your DIGITAL FUTURE STATE workspace.</p>
+<p class="hint">Account access becomes active only after the Supabase public configuration is installed and email authentication is enabled for this project.</p>
+<form id="authForm">
+<label>Email address<input id="email" type="email" autocomplete="email" maxlength="254" required></label>
+<label>Password<input id="password" type="password" autocomplete="current-password" minlength="8" required></label>
+<div class="row"><button type="submit" id="signin">Sign in</button><button type="button" class="secondary" id="signup">Create account</button></div>
+<button type="button" class="secondary" id="reset">Send password reset link</button>
+</form>
+<p class="status" id="status" role="status" aria-live="polite"></p>
+<p class="hint">Use a unique password. Never send your password to support. <a href="/datenschutz.html">Privacy</a> · <a href="/">Home</a></p>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/supabase/config.js"></script><script src="/supabase/client.js"></script>
+<script>
+(function(){
+ const $=id=>document.getElementById(id), form=$("authForm");
+ const status=$("status");
+ function client(){if(!window.dfsSupabase){status.textContent="Secure sign-in is not connected yet. Configure the public Supabase project settings and enable email authentication first.";return null;}return window.dfsSupabase;}
+ function credentials(){return {email:$("email").value.trim(),password:$("password").value};}
+ form.addEventListener("submit",async e=>{e.preventDefault();const c=client();if(!c)return;const v=credentials();status.textContent="Signing in…";const {data,error}=await c.auth.signInWithPassword(v);if(error){status.textContent=error.message;return;}status.textContent="Signed in. Opening your account…";location.href="/account/";});
+ $("signup").addEventListener("click",async()=>{const c=client();if(!c)return;const v=credentials();if(!v.email||v.password.length<8){status.textContent="Enter a valid email and a password of at least 8 characters.";return;}status.textContent="Creating account…";const {data,error}=await c.auth.signUp({...v,options:{emailRedirectTo:location.origin+"/account/auth.html"}});if(error){status.textContent=error.message;return;}status.textContent=data.session?"Account created. You can now sign in.":"Check your email for the confirmation link before signing in.";});
+ $("reset").addEventListener("click",async()=>{const c=client();if(!c)return;const email=$("email").value.trim();if(!email){status.textContent="Enter your email address first.";return;}status.textContent="Sending reset link…";const {error}=await c.auth.resetPasswordForEmail(email,{redirectTo:location.origin+"/account/auth.html"});status.textContent=error?"Could not send reset link: "+error.message:"If this email is registered, a password reset link will arrive shortly.";});
+})();
+</script></body></html>
