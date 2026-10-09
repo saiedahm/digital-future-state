@@ -131,3 +131,21 @@
 .contact-consent small{font-size:12px;line-height:1.7;color:#c6d3e2;font-weight:400}
 .contact-feedback{margin:0;padding:14px 16px;border:1px solid rgba(105,205,226,.35);border-radius:9px;background:#0b1e34;color:#e4edf7;font-size:13px;line-height:1.75}
 @media(max-width:700px){.contact-form{padding:20px 16px}.contact-form textarea{min-height:175px}.contact-consent .consent-copy{font-size:14px}}
+
+
+/* Landing screen: remove the small blue card and let the existing passport artwork fill the viewport */
+.hero{position:relative;display:block!important;width:100%;min-height:calc(100svh - 82px);height:calc(100svh - 82px);padding:0!important;overflow:hidden;isolation:isolate}
+.hero-copy{position:absolute;z-index:3;left:clamp(22px,6vw,88px);top:50%;transform:translateY(-50%);max-width:min(410px,38vw);padding:24px;border:1px solid rgba(217,182,107,.3);border-radius:16px;background:rgba(5,17,34,.72);backdrop-filter:blur(7px)}
+.hero-copy .eyebrow{font-size:12px;letter-spacing:2px}
+.hero-copy h1{font-size:clamp(34px,4.5vw,62px);line-height:1.06;margin:14px 0}
+.hero-copy .hero-actions{display:flex;flex-wrap:wrap;gap:10px}
+.hero-art{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;border-radius:0!important;overflow:hidden;z-index:0}
+.uploaded-passport-hero{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;border-radius:0!important;opacity:1!important;z-index:-2}
+.hero-art .passport-card,.hero-art .tag-top,.hero-art .tag-bottom,.hero-art .orbit,.hero-art .glow,.hero-art .fingerprint{display:none!important}
+.hero-art::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(4,14,28,.72),rgba(4,14,28,.12) 68%,rgba(4,14,28,.05));pointer-events:none}
+@media(max-width:800px){
+ .hero{height:calc(100svh - 70px);min-height:540px}
+ .hero-copy{left:16px;right:16px;top:auto;bottom:22px;transform:none;max-width:none;padding:18px;background:rgba(5,17,34,.78)}
+ .hero-copy h1{font-size:clamp(32px,9vw,48px)}
+ .uploaded-passport-hero{object-fit:cover!important;object-position:center!important}
+}
