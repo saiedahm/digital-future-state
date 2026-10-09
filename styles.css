@@ -164,3 +164,23 @@
  .uploaded-passport-hero{object-fit:contain!important;object-position:center top!important}
  .hero-art::after{background:linear-gradient(0deg,rgba(4,14,28,.45),transparent 65%)!important}
 }
+
+
+/* Requested image-only first screen and full-screen second image */
+.hero{display:block!important;width:100%!important;max-width:none!important;height:calc(100svh - 82px)!important;min-height:0!important;padding:0!important;margin:0!important;position:relative!important;overflow:hidden!important}
+.hero-copy,.hero-foot{display:none!important}
+.hero-art{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;display:block!important;margin:0!important;padding:0!important;border-radius:0!important;overflow:hidden!important}
+.uploaded-passport-hero{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center!important;background:var(--bg)!important;border-radius:0!important;opacity:1!important;z-index:0!important}
+.hero-art::after{display:none!important}
+.plans-screen{display:flex!important;flex-direction:column!important;gap:0!important;min-height:calc(100svh - 82px)!important;padding:0!important;margin:0!important}
+.plans-visual{width:100%!important;height:calc(100svh - 82px)!important;min-height:0!important;flex:0 0 auto!important;display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;padding:0!important;margin:0!important}
+.uploaded-promo-banner{display:block!important;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;object-fit:contain!important;object-position:center!important;border-radius:0!important}
+.plans-copy{width:100%!important;max-width:none!important;padding:34px clamp(20px,5vw,78px) 48px!important;margin:0!important}
+@media(max-width:800px){
+ .hero{height:calc(100svh - 70px)!important}
+ .uploaded-passport-hero{object-fit:contain!important;object-position:center!important}
+ .plans-screen{min-height:0!important}
+ .plans-visual{height:calc(100svh - 70px)!important}
+ .uploaded-promo-banner{object-fit:contain!important}
+ .plans-copy{padding:28px 20px 38px!important}
+}
