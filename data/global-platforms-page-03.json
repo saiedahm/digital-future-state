@@ -1,0 +1,662 @@
+[
+  {
+    "number": "122",
+    "name": "Chevrolet",
+    "officialUrl": "https://www.chevrolet.com/",
+    "category": "Automotive",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "123",
+    "name": "Jeep",
+    "officialUrl": "https://www.jeep.com/",
+    "category": "Automotive",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "124",
+    "name": "Mazda",
+    "officialUrl": "https://www.mazda.com/",
+    "category": "Automotive",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "125",
+    "name": "Subaru",
+    "officialUrl": "https://www.subaru.com/",
+    "category": "Automotive",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "126",
+    "name": "Suzuki",
+    "officialUrl": "https://www.globalsuzuki.com/",
+    "category": "Automotive",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "127",
+    "name": "Shell",
+    "officialUrl": "https://www.shell.com/",
+    "category": "Energy",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "128",
+    "name": "ExxonMobil",
+    "officialUrl": "https://corporate.exxonmobil.com/",
+    "category": "Energy",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "129",
+    "name": "Chevron",
+    "officialUrl": "https://www.chevron.com/",
+    "category": "Energy",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "130",
+    "name": "BP",
+    "officialUrl": "https://www.bp.com/",
+    "category": "Energy",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "131",
+    "name": "TotalEnergies",
+    "officialUrl": "https://totalenergies.com/",
+    "category": "Energy",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "132",
+    "name": "Saudi Aramco",
+    "officialUrl": "https://www.aramco.com/",
+    "category": "Energy",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "133",
+    "name": "Boeing",
+    "officialUrl": "https://www.boeing.com/",
+    "category": "Aerospace",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "134",
+    "name": "Airbus",
+    "officialUrl": "https://www.airbus.com/",
+    "category": "Aerospace",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "135",
+    "name": "SpaceX",
+    "officialUrl": "https://www.spacex.com/",
+    "category": "Space Technology",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "136",
+    "name": "Caterpillar",
+    "officialUrl": "https://www.caterpillar.com/",
+    "category": "Industrial Equipment",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "137",
+    "name": "GE",
+    "officialUrl": "https://www.ge.com/",
+    "category": "Industrial Technology",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "138",
+    "name": "Honeywell",
+    "officialUrl": "https://www.honeywell.com/",
+    "category": "Industrial Technology",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "139",
+    "name": "DHL",
+    "officialUrl": "https://www.dhl.com/",
+    "category": "Logistics",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "140",
+    "name": "FedEx",
+    "officialUrl": "https://www.fedex.com/",
+    "category": "Logistics",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "141",
+    "name": "UPS",
+    "officialUrl": "https://www.ups.com/",
+    "category": "Logistics",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "142",
+    "name": "Emirates",
+    "officialUrl": "https://www.emirates.com/",
+    "category": "Airline",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "143",
+    "name": "Qatar Airways",
+    "officialUrl": "https://www.qatarairways.com/",
+    "category": "Airline",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "144",
+    "name": "Lufthansa",
+    "officialUrl": "https://www.lufthansa.com/",
+    "category": "Airline",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "145",
+    "name": "Rolex",
+    "officialUrl": "https://www.rolex.com/",
+    "category": "Luxury Watches",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "146",
+    "name": "Cartier",
+    "officialUrl": "https://www.cartier.com/",
+    "category": "Luxury & Jewelry",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "147",
+    "name": "Gucci",
+    "officialUrl": "https://www.gucci.com/",
+    "category": "Luxury Fashion",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "148",
+    "name": "Prada",
+    "officialUrl": "https://www.prada.com/",
+    "category": "Luxury Fashion",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "149",
+    "name": "Dior",
+    "officialUrl": "https://www.dior.com/",
+    "category": "Luxury Fashion",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "150",
+    "name": "Tiffany & Co.",
+    "officialUrl": "https://www.tiffany.com/",
+    "category": "Luxury Jewelry",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "151",
+    "name": "H&M",
+    "officialUrl": "https://www.hm.com/",
+    "category": "Fashion & Retail",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "152",
+    "name": "Uniqlo",
+    "officialUrl": "https://www.uniqlo.com/",
+    "category": "Fashion & Retail",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "153",
+    "name": "Puma",
+    "officialUrl": "https://about.puma.com/",
+    "category": "Sportswear",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "154",
+    "name": "Levi's",
+    "officialUrl": "https://www.levi.com/",
+    "category": "Fashion & Apparel",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "155",
+    "name": "Converse",
+    "officialUrl": "https://www.converse.com/",
+    "category": "Footwear",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "156",
+    "name": "Under Armour",
+    "officialUrl": "https://www.underarmour.com/",
+    "category": "Sportswear",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "157",
+    "name": "IKEA",
+    "officialUrl": "https://www.ikea.com/",
+    "category": "Home & Furniture",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "158",
+    "name": "Shopify",
+    "officialUrl": "https://www.shopify.com/",
+    "category": "E-commerce Software",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "159",
+    "name": "Stripe",
+    "officialUrl": "https://stripe.com/",
+    "category": "Payments Technology",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "160",
+    "name": "Coinbase",
+    "officialUrl": "https://www.coinbase.com/",
+    "category": "Financial Technology",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "161",
+    "name": "OpenAI",
+    "officialUrl": "https://openai.com/",
+    "category": "Artificial Intelligence",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "162",
+    "name": "Anthropic",
+    "officialUrl": "https://www.anthropic.com/",
+    "category": "Artificial Intelligence",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "163",
+    "name": "GitHub",
+    "officialUrl": "https://github.com/",
+    "category": "Developer Platform",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "164",
+    "name": "Cloudflare",
+    "officialUrl": "https://www.cloudflare.com/",
+    "category": "Internet Infrastructure & Security",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "165",
+    "name": "Vercel",
+    "officialUrl": "https://vercel.com/",
+    "category": "Developer Platform & Hosting",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "166",
+    "name": "Slack",
+    "officialUrl": "https://slack.com/",
+    "category": "Workplace Communication",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "167",
+    "name": "Zoom",
+    "officialUrl": "https://zoom.us/",
+    "category": "Video Communication",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "168",
+    "name": "Dropbox",
+    "officialUrl": "https://www.dropbox.com/",
+    "category": "Cloud Storage",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "169",
+    "name": "Atlassian",
+    "officialUrl": "https://www.atlassian.com/",
+    "category": "Collaboration Software",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "170",
+    "name": "Reddit",
+    "officialUrl": "https://www.reddit.com/",
+    "category": "Community Platform",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "171",
+    "name": "Pinterest",
+    "officialUrl": "https://www.pinterest.com/",
+    "category": "Discovery & Social Media",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "172",
+    "name": "X",
+    "officialUrl": "https://x.com/",
+    "category": "Social Media",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "173",
+    "name": "ByteDance",
+    "officialUrl": "https://www.bytedance.com/",
+    "category": "Technology & Media",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "174",
+    "name": "LG",
+    "officialUrl": "https://www.lg.com/",
+    "category": "Electronics",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "175",
+    "name": "ASUS",
+    "officialUrl": "https://www.asus.com/",
+    "category": "Computers & Electronics",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "176",
+    "name": "Acer",
+    "officialUrl": "https://www.acer.com/",
+    "category": "Computers & Electronics",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "177",
+    "name": "Citi",
+    "officialUrl": "https://www.citigroup.com/",
+    "category": "Financial Services",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "178",
+    "name": "Barclays",
+    "officialUrl": "https://home.barclays/",
+    "category": "Banking",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "179",
+    "name": "UBS",
+    "officialUrl": "https://www.ubs.com/",
+    "category": "Financial Services",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "180",
+    "name": "Allianz",
+    "officialUrl": "https://www.allianz.com/",
+    "category": "Insurance & Financial Services",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "181",
+    "name": "AXA",
+    "officialUrl": "https://www.axa.com/",
+    "category": "Insurance & Financial Services",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  }
+]
