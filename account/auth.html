@@ -23,6 +23,7 @@ button{padding:13px;border:1px solid var(--gold);border-radius:8px;background:va
 <label>Password<input id="password" type="password" autocomplete="current-password" minlength="8" required></label>
 <div class="row"><button type="submit" id="signin">Sign in</button><button type="button" class="secondary" id="signup">Create account</button></div>
 <button type="button" class="secondary" id="reset">Send password reset link</button>
+<button type="button" class="secondary" id="magic">Sign in with an email link (no password)</button>
 </form>
 <p class="status" id="status" role="status" aria-live="polite"></p>
 <p class="hint">Use a unique password. Never send your password to support. <a href="/datenschutz.html">Privacy</a> · <a href="/">Home</a></p>
@@ -37,6 +38,7 @@ button{padding:13px;border:1px solid var(--gold);border-radius:8px;background:va
  function credentials(){return {email:$("email").value.trim(),password:$("password").value};}
  form.addEventListener("submit",async e=>{e.preventDefault();const c=client();if(!c)return;const v=credentials();status.textContent="Signing in…";const {data,error}=await c.auth.signInWithPassword(v);if(error){status.textContent=error.message;return;}status.textContent="Signed in. Opening your account…";location.href="/account/";});
  $("signup").addEventListener("click",async()=>{const c=client();if(!c)return;const v=credentials();if(!v.email||v.password.length<8){status.textContent="Enter a valid email and a password of at least 8 characters.";return;}status.textContent="Creating account…";const {data,error}=await c.auth.signUp({...v,options:{emailRedirectTo:location.origin+"/account/auth.html"}});if(error){status.textContent=error.message;return;}status.textContent=data.session?"Account created. You can now sign in.":"Check your email for the confirmation link before signing in.";});
+ $("magic").addEventListener("click",async()=>{const c=client();if(!c)return;const email=$("email").value.trim();if(!email){status.textContent="Enter your email address first.";return;}status.textContent="Sending a secure sign-in link…";const {error}=await c.auth.signInWithOtp({email,options:{emailRedirectTo:location.origin+"/account/auth.html",shouldCreateUser:false}});status.textContent=error?"Could not send sign-in link: "+error.message:"If this address is registered and email sign-in is enabled, a secure sign-in link will arrive shortly.";});
  $("reset").addEventListener("click",async()=>{const c=client();if(!c)return;const email=$("email").value.trim();if(!email){status.textContent="Enter your email address first.";return;}status.textContent="Sending reset link…";const {error}=await c.auth.resetPasswordForEmail(email,{redirectTo:location.origin+"/account/auth.html"});status.textContent=error?"Could not send reset link: "+error.message:"If this email is registered, a password reset link will arrive shortly.";});
 })();
 </script></body></html>
