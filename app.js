@@ -20,8 +20,8 @@
     document.documentElement.lang=code;
     document.documentElement.dir=pack.dir||'ltr';
     document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.dataset.i18n;if(pack[key]){if(el.tagName==='OPTION')el.textContent=pack[key];else el.textContent=pack[key];}});
-    $('[data-i18n-placeholder]').forEach(el=>{const key=el.dataset.i18nPlaceholder;if(pack[key])el.placeholder=pack[key];});
-    $('[data-i18n-aria]').forEach(el=>{const key=el.dataset.i18nAria;if(pack[key])el.setAttribute('aria-label',pack[key]);});
+    $$('[data-i18n-placeholder]').forEach(el=>{const key=el.dataset.i18nPlaceholder;if(pack[key])el.placeholder=pack[key];});
+    $$('[data-i18n-aria]').forEach(el=>{const key=el.dataset.i18nAria;if(pack[key])el.setAttribute('aria-label',pack[key]);});
     document.querySelectorAll('[data-i18n-html]').forEach(el=>{const key=el.dataset.i18nHtml;if(pack[key])el.innerHTML=pack[key];});
     const chooser=$('#languageSelect'); if(chooser) chooser.value=code;
     try{sessionStorage.setItem('dfs-language',code)}catch(_){}
