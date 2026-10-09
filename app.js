@@ -42,6 +42,22 @@
   menu?.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close navigation':'Open navigation')});
   $$('#mainNav a, #mainNav button').forEach(el=>el.addEventListener('click',()=>{nav.classList.remove('open');menu?.setAttribute('aria-expanded','false')}));
   $$('[data-scroll]').forEach(el=>el.addEventListener('click',()=>$(el.dataset.scroll)?.scrollIntoView({behavior:'smooth',block:'start'})));
+  // Passport interaction: landing artwork opens the six choices; choosing a pass opens the profile builder.
+  const heroPassportLink=$('.hero-image-link');
+  heroPassportLink?.addEventListener('click',e=>{e.preventDefault();$('#plans')?.scrollIntoView({behavior:'smooth',block:'start'});});
+  const promoPassportLink=$('.promo-image-link');
+  promoPassportLink?.addEventListener('click',e=>{e.preventDefault();$('#passportChoices')?.scrollIntoView({behavior:'smooth',block:'center'});});
+  document.addEventListener('click',e=>{
+    const choice=e.target.closest('[data-passport]');
+    if(!choice)return;
+    const pass=choice.dataset.passport;
+    const target=$('#citizen');
+    if(!target)return;
+    target.dataset.requestedPass=pass;
+    target.scrollIntoView({behavior:'smooth',block:'start'});
+    window.setTimeout(()=>{const option=$('.pass-option').find(b=>b.dataset.pass===pass);if(option)option.click();else{const hidden=$('#passType');if(hidden)hidden.value=pass;const type=$('#previewType');if(type)type.textContent=pass.toUpperCase();}},250);
+  });
+
   let selectedPass='Global Pass';
   $$('.pass-option').forEach(button=>button.addEventListener('click',()=>{$$('.pass-option').forEach(x=>x.classList.remove('selected'));button.classList.add('selected');selectedPass=button.dataset.pass;$('#passType').value=selectedPass;$('#previewType').textContent=selectedPass.toUpperCase();}));
   const name=$('#fullName'),birth=$('#birthDate'),country=$('#nationality'),photo=$('#photoInput');
