@@ -1,0 +1,12 @@
+{
+  "name": "DIGITAL FUTURE STATE",
+  "short_name": "Digital Future",
+  "description": "A digital identity profile and global service directory.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#071426",
+  "theme_color": "#071426",
+  "icons": [
+    { "src": "/assets/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
