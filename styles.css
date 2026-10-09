@@ -110,3 +110,24 @@
  .plans-copy{max-width:none}
  .citizen-screen{min-height:auto}
 }
+
+
+/* Contact form readability and visible message-writing area */
+.contact-intro-text{font-size:16px;line-height:1.85;color:#d7e2ef;max-width:48ch;margin:18px 0 24px}
+.contact-safety-note{font-size:13px;line-height:1.7;color:#c7d5e5;border-left:3px solid var(--gold2);padding:10px 13px;margin-top:18px;background:rgba(217,182,107,.07);border-radius:0 8px 8px 0}
+.contact-form{padding:clamp(22px,3vw,34px);gap:18px}
+.contact-form label{display:flex;flex-direction:column;gap:9px;font-size:14px;font-weight:700;color:#f2f5fa}
+.contact-form input:not([type=checkbox]),.contact-form select,.contact-form textarea{width:100%;min-height:48px;padding:13px 14px;background:#f7f9fc;color:#15243a;border:1px solid #aebdd0;border-radius:9px;font:500 15px/1.5 'DM Sans',sans-serif}
+.contact-form textarea{min-height:190px;resize:vertical;line-height:1.7}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:#66758a;opacity:1}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{outline:3px solid rgba(105,205,226,.55);outline-offset:1px;border-color:#56bdd7}
+.contact-form .message-field{margin-top:3px}
+.field-help{font-size:12px;line-height:1.6;color:#c5d1e0;font-weight:400}
+.contact-consent{display:grid!important;grid-template-columns:22px minmax(0,1fr);align-items:start;gap:12px!important;padding:16px;background:#10253b;border:1px solid rgba(217,182,107,.45);border-radius:10px}
+.contact-consent>input[type=checkbox]{width:20px;height:20px;margin:2px 0 0;accent-color:#d9b66b}
+.contact-consent>span{display:flex;flex-direction:column;gap:7px}
+.contact-consent strong{font-size:14px;color:#f5d99b;line-height:1.5}
+.contact-consent .consent-copy{font-size:15px;line-height:1.7;color:#fff;font-weight:600}
+.contact-consent small{font-size:12px;line-height:1.7;color:#c6d3e2;font-weight:400}
+.contact-feedback{margin:0;padding:14px 16px;border:1px solid rgba(105,205,226,.35);border-radius:9px;background:#0b1e34;color:#e4edf7;font-size:13px;line-height:1.75}
+@media(max-width:700px){.contact-form{padding:20px 16px}.contact-form textarea{min-height:175px}.contact-consent .consent-copy{font-size:14px}}
