@@ -1,0 +1,211 @@
+[
+  {
+    "number": "182",
+    "name": "Sony Interactive Entertainment",
+    "officialUrl": "https://www.sie.com/",
+    "category": "Gaming & Interactive Entertainment",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "183",
+    "name": "Microsoft Azure",
+    "officialUrl": "https://azure.microsoft.com/",
+    "category": "Cloud Computing",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "184",
+    "name": "LinkedIn Learning",
+    "officialUrl": "https://www.linkedin.com/learning/",
+    "category": "Online Learning",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "185",
+    "name": "ZoomInfo",
+    "officialUrl": "https://www.zoominfo.com/",
+    "category": "Business Data & Intelligence",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "186",
+    "name": "PwC",
+    "officialUrl": "https://www.pwc.com/",
+    "category": "Professional Services",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "187",
+    "name": "Zurich",
+    "officialUrl": "https://www.zurich.com/",
+    "category": "Insurance",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "188",
+    "name": "Singapore Airlines",
+    "officialUrl": "https://www.singaporeair.com/",
+    "category": "Airline",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "189",
+    "name": "McKinsey & Company",
+    "officialUrl": "https://www.mckinsey.com/",
+    "category": "Management Consulting",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "190",
+    "name": "Deloitte",
+    "officialUrl": "https://www.deloitte.com/",
+    "category": "Professional Services",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "191",
+    "name": "KPMG",
+    "officialUrl": "https://kpmg.com/",
+    "category": "Professional Services",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "192",
+    "name": "Meta Quest",
+    "officialUrl": "https://www.meta.com/quest/",
+    "category": "Virtual Reality",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "193",
+    "name": "EY",
+    "officialUrl": "https://www.ey.com/",
+    "category": "Professional Services",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "194",
+    "name": "Accenture Federal Services",
+    "officialUrl": "https://www.accenture.com/us-en/industries/public-service/federal-government",
+    "category": "Government Technology & Consulting",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "195",
+    "name": "Salesforce Marketing Cloud",
+    "officialUrl": "https://www.salesforce.com/marketing/",
+    "category": "Marketing Software",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "196",
+    "name": "Toyota Lexus",
+    "officialUrl": "https://www.lexus.com/",
+    "category": "Automotive (Lexus)",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "197",
+    "name": "Adobe Creative Cloud",
+    "officialUrl": "https://www.adobe.com/creativecloud.html",
+    "category": "Creative Software",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "198",
+    "name": "Oracle Cloud",
+    "officialUrl": "https://www.oracle.com/cloud/",
+    "category": "Cloud Computing",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "199",
+    "name": "Google Cloud",
+    "officialUrl": "https://cloud.google.com/",
+    "category": "Cloud Computing",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  },
+  {
+    "number": "200",
+    "name": "Amazon Web Services",
+    "officialUrl": "https://aws.amazon.com/",
+    "category": "Cloud Computing",
+    "connection": {
+      "type": "official_website_link",
+      "status": "Website link only; API, OAuth, embed, or partnership availability must be verified individually"
+    },
+    "source": "user-provided list"
+  }
+]
