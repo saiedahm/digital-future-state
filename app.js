@@ -1,0 +1,21 @@
+(function(){
+  const $ = (s,root=document)=>root.querySelector(s);
+  const $$ = (s,root=document)=>Array.from(root.querySelectorAll(s));
+  const nav=$('#mainNav'), menu=$('#menuToggle');
+  menu?.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close navigation':'Open navigation')});
+  $$('#mainNav a, #mainNav button').forEach(el=>el.addEventListener('click',()=>{nav.classList.remove('open');menu?.setAttribute('aria-expanded','false')}));
+  $$('[data-scroll]').forEach(el=>el.addEventListener('click',()=>$(el.dataset.scroll)?.scrollIntoView({behavior:'smooth',block:'start'})));
+  let selectedPass='Global Pass';
+  $$('.pass-option').forEach(button=>button.addEventListener('click',()=>{$$('.pass-option').forEach(x=>x.classList.remove('selected'));button.classList.add('selected');selectedPass=button.dataset.pass;$('#passType').value=selectedPass;$('#previewType').textContent=selectedPass.toUpperCase();}));
+  const name=$('#fullName'),birth=$('#birthDate'),country=$('#nationality'),photo=$('#photoInput');
+  function updatePreview(){ $('#previewName').textContent=(name.value.trim()||'YOUR NAME').toUpperCase();$('#previewCountry').textContent=(country.value.trim()||'NOT PROVIDED').toUpperCase();$('#previewBirth').textContent=birth.value||'NOT PROVIDED';$('#previewType').textContent=selectedPass.toUpperCase(); }
+  [name,birth,country].forEach(el=>el?.addEventListener('input',updatePreview));
+  let photoUrl=null;
+  photo?.addEventListener('change',()=>{const file=photo.files&&photo.files[0];if(!file)return;if(!['image/jpeg','image/png','image/webp'].includes(file.type)){photo.value='';alert('Please choose a JPG, PNG or WebP image.');return;}if(file.size>5*1024*1024){photo.value='';alert('Please choose an image smaller than 5 MB.');return;}if(photoUrl)URL.revokeObjectURL(photoUrl);photoUrl=URL.createObjectURL(file);const box=$('#photoPreview');box.textContent='';const img=document.createElement('img');img.src=photoUrl;img.alt='Your selected profile photo';img.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:4px';box.appendChild(img);});
+  $('#profileForm')?.addEventListener('submit',e=>{e.preventDefault();if(!$('#confirmData').checked)return;updatePreview();$('#previewMessage').textContent='Preview updated. Please check each detail carefully. This profile is not an official identity document and has not been verified.';$('#digitalPass').scrollIntoView({behavior:'smooth',block:'center'});});
+  $('#downloadPreview')?.addEventListener('click',()=>{if(!name.value.trim()){ $('#previewMessage').textContent='Enter your name first, then select “Preview my digital pass”.';return;}window.print();});
+  $('#directorySearch')?.addEventListener('input',e=>{const q=e.target.value.toLowerCase().trim();let visible=0;$$('#directoryResults a').forEach(a=>{const show=(a.dataset.search+' '+a.innerText).toLowerCase().includes(q);a.hidden=!show;if(show)visible++;});let empty=$('#noDirectoryResults');if(!visible){if(!empty){empty=document.createElement('p');empty.id='noDirectoryResults';empty.className='inline-message';$('#directoryResults').appendChild(empty);}empty.textContent='No sample listings match that search.';}else empty?.remove();});
+  $('#contactForm')?.addEventListener('submit',e=>{e.preventDefault();const form=e.currentTarget;if(!form.reportValidity())return;const subject='Digital Future State — '+$('#contactTopic').value;const body='Name: '+$('#contactName').value+'\nEmail: '+$('#contactEmail').value+'\nTopic: '+$('#contactTopic').value+'\n\nMessage:\n'+$('#contactMessage').value;const mailto='mailto:contact@digital-future.ai?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);$('#contactFeedback').textContent='Your email app should open with the message prepared. Review it and press Send there. This website has not sent or stored your message.';window.location.href=mailto;});
+  const banner=$('#cookieBanner');$('#cookieSettings')?.addEventListener('click',()=>{banner.hidden=false;});$('#cookieAccept')?.addEventListener('click',()=>{banner.hidden=true;});$('#cookieClose')?.addEventListener('click',()=>{banner.hidden=true;});
+  updatePreview();
+})();
