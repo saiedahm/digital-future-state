@@ -1,0 +1,442 @@
+[
+  {
+    "number": "201",
+    "name": "Twilio",
+    "officialUrl": "https://www.twilio.com/",
+    "category": "Communications APIs",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "API; account and compliance review may be required"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "202",
+    "name": "Auth0",
+    "officialUrl": "https://auth0.com/",
+    "category": "Identity & Authentication",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "OAuth/OIDC identity integration; configuration and consent required"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "203",
+    "name": "Okta",
+    "officialUrl": "https://www.okta.com/",
+    "category": "Identity & Access Management",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Identity integration; customer plan and admin setup may be required"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "204",
+    "name": "Plaid",
+    "officialUrl": "https://plaid.com/",
+    "category": "Financial Data Connectivity",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Financial-data API; approval, user consent and regional availability required"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "205",
+    "name": "Adyen",
+    "officialUrl": "https://www.adyen.com/",
+    "category": "Payments",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Payment API; merchant onboarding and approval required"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "206",
+    "name": "Mollie",
+    "officialUrl": "https://www.mollie.com/",
+    "category": "Payments",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Payment API; merchant onboarding and regional eligibility required"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "207",
+    "name": "Wise",
+    "officialUrl": "https://wise.com/",
+    "category": "International Payments",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Partner/API access subject to eligibility and approval"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "208",
+    "name": "Revolut Business",
+    "officialUrl": "https://www.revolut.com/business/",
+    "category": "Business Banking & Payments",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Business API access subject to account permissions and approval"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "209",
+    "name": "Amadeus for Developers",
+    "officialUrl": "https://developers.amadeus.com/",
+    "category": "Travel APIs",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Developer API; quotas, credentials and commercial terms may apply"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "210",
+    "name": "Sabre",
+    "officialUrl": "https://developer.sabre.com/",
+    "category": "Travel & Booking APIs",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Developer API; some services require commercial agreements"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "211",
+    "name": "Expedia Group",
+    "officialUrl": "https://developers.expediagroup.com/",
+    "category": "Travel & Accommodation",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Partner APIs; access may require partner approval"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "212",
+    "name": "Skyscanner",
+    "officialUrl": "https://www.partners.skyscanner.net/",
+    "category": "Travel Search",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Partner integration; approval and product terms required"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "213",
+    "name": "Google Maps Platform",
+    "officialUrl": "https://developers.google.com/maps",
+    "category": "Maps & Location APIs",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "API key, billing, terms and usage restrictions apply"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "214",
+    "name": "HERE Technologies",
+    "officialUrl": "https://www.here.com/",
+    "category": "Maps & Location",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Developer APIs; plan and usage terms apply"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "215",
+    "name": "Mapbox",
+    "officialUrl": "https://www.mapbox.com/",
+    "category": "Maps & Location",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Developer APIs; token, billing and usage terms apply"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "216",
+    "name": "DocuSign",
+    "officialUrl": "https://developers.docusign.com/",
+    "category": "Electronic Signatures",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "API integration; account plan and production approval may apply"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "217",
+    "name": "Dropbox Sign",
+    "officialUrl": "https://sign.dropbox.com/developers",
+    "category": "Electronic Signatures",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "API access subject to plan and terms"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "218",
+    "name": "Calendly",
+    "officialUrl": "https://developer.calendly.com/",
+    "category": "Scheduling",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Developer API/webhooks; account and plan limits may apply"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "219",
+    "name": "Intercom",
+    "officialUrl": "https://developers.intercom.com/",
+    "category": "Customer Support",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Developer API; workspace permissions and plan limits may apply"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "220",
+    "name": "Zendesk",
+    "officialUrl": "https://developer.zendesk.com/",
+    "category": "Customer Support",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Developer API; account permissions and plan limits may apply"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "221",
+    "name": "HubSpot",
+    "officialUrl": "https://developers.hubspot.com/",
+    "category": "CRM & Marketing",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Developer APIs; app review/limits may apply"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "222",
+    "name": "Mailchimp",
+    "officialUrl": "https://mailchimp.com/developer/",
+    "category": "Email Marketing",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Developer API; account authorization and marketing-consent rules apply"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "223",
+    "name": "Brevo",
+    "officialUrl": "https://developers.brevo.com/",
+    "category": "Email & Customer Messaging",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Developer API; account and consent requirements apply"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "224",
+    "name": "Zapier",
+    "officialUrl": "https://platform.zapier.com/",
+    "category": "Workflow Automation",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Integration platform; app review and plan limits may apply"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "225",
+    "name": "Make",
+    "officialUrl": "https://www.make.com/",
+    "category": "Workflow Automation",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Integration platform; connection permissions and plan limits may apply"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "226",
+    "name": "Airtable",
+    "officialUrl": "https://airtable.com/developers",
+    "category": "Databases & Workflow",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Web API; user authorization and rate limits apply"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "227",
+    "name": "Notion",
+    "officialUrl": "https://developers.notion.com/",
+    "category": "Workspace & Knowledge",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Integration API; user authorization and workspace access required"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "228",
+    "name": "Algolia",
+    "officialUrl": "https://www.algolia.com/developers/",
+    "category": "Search APIs",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Search API; application credentials and plan limits apply"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "229",
+    "name": "Ably",
+    "officialUrl": "https://ably.com/",
+    "category": "Realtime Messaging APIs",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Developer API; credentials and usage limits apply"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "230",
+    "name": "Supabase",
+    "officialUrl": "https://supabase.com/docs",
+    "category": "Database & Authentication",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Developer APIs; secure project configuration required"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "231",
+    "name": "Firebase",
+    "officialUrl": "https://firebase.google.com/",
+    "category": "App Backend & Analytics",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Developer SDKs/APIs; project setup and privacy configuration required"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "232",
+    "name": "Sentry",
+    "officialUrl": "https://docs.sentry.io/",
+    "category": "Error Monitoring",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "SDK/API integration; project configuration required"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "233",
+    "name": "Datadog",
+    "officialUrl": "https://docs.datadoghq.com/api/",
+    "category": "Monitoring & Analytics",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "API integration; credentials, permissions and plan may apply"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "234",
+    "name": "New Relic",
+    "officialUrl": "https://docs.newrelic.com/",
+    "category": "Monitoring & Analytics",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "APIs; account permissions and usage limits apply"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "235",
+    "name": "DigitalOcean",
+    "officialUrl": "https://docs.digitalocean.com/reference/api/",
+    "category": "Cloud Infrastructure",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Cloud API; account access and security controls required"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "236",
+    "name": "BigCommerce",
+    "officialUrl": "https://developer.bigcommerce.com/",
+    "category": "E-commerce Platform",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Store API; merchant authorization and app permissions required"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "237",
+    "name": "WooCommerce",
+    "officialUrl": "https://woocommerce.com/",
+    "category": "E-commerce Platform",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "REST API; store owner authorization and secure credentials required"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "238",
+    "name": "Wix",
+    "officialUrl": "https://dev.wix.com/",
+    "category": "Website & E-commerce Platform",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Developer APIs; app permissions and review may apply"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "239",
+    "name": "Squarespace",
+    "officialUrl": "https://developers.squarespace.com/",
+    "category": "Website & E-commerce Platform",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Developer APIs; scopes and plan availability vary"
+    },
+    "source": "additional research; official developer or company site"
+  },
+  {
+    "number": "240",
+    "name": "Salla",
+    "officialUrl": "https://docs.salla.dev/",
+    "category": "E-commerce Platform",
+    "connection": {
+      "type": "candidate_integration",
+      "status": "Developer API; merchant approval and regional eligibility may apply"
+    },
+    "source": "additional research; official developer or company site"
+  }
+]
