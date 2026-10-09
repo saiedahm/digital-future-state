@@ -27,3 +27,12 @@ This is a **front-end prototype**, not a production identity or subscription ser
 3. Configure a payment provider and legally compliant subscription, cancellation, and refund flows.
 4. Replace legal placeholders with verified details and reviewed legal text.
 5. Verify the custom domain and production deployment settings before switching live traffic.
+
+
+## Brand system and static quality files
+- `assets/dfs-emblem.svg` — shared gold biometric shield emblem used by the header and passport preview.
+- `assets/favicon.svg` — matching browser icon.
+- `manifest.webmanifest` — basic installable-web-app metadata.
+- `robots.txt` and `sitemap.xml` — basic crawl discovery files.
+
+The passport preview consistently reads **DIGITAL FUTURE STATE** at the top, uses the shared platform emblem in the center/header area, and displays **PASSPORT** with a biometric emblem at the bottom. This is a design motif for a platform profile, not an official travel or government identity document.
