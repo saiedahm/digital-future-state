@@ -30,3 +30,9 @@
 .gold-seal{display:flex;align-items:center;justify-content:center;width:42px;height:42px;flex-shrink:0;overflow:hidden}
 .gold-seal img{display:block;width:40px;height:40px;object-fit:contain;filter:drop-shadow(0 0 5px rgba(217,182,107,.25))}
 .digital-pass::before{background-size:min(62%,245px);background-position:50% 53%;opacity:.13}
+
+/* Use the uploaded large-format brand images in the live homepage */
+.uploaded-passport-hero{display:block;width:min(100%,440px);max-height:470px;object-fit:contain;position:relative;z-index:2;margin:0 auto;filter:drop-shadow(0 18px 35px rgba(0,0,0,.28))}
+.uploaded-promo-section{padding-top:50px;padding-bottom:20px}
+.uploaded-promo-banner{display:block;width:100%;height:auto;max-height:560px;object-fit:contain;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}
+@media(max-width:700px){.uploaded-passport-hero{max-height:390px}.uploaded-promo-section{padding-top:30px}}
