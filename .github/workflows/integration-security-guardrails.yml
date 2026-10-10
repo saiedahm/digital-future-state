@@ -31,7 +31,7 @@ jobs:
 
           const required = [
             [checkout, 'APP_ALLOWED_ORIGINS', 'Checkout must validate allowed origins.'],
-            [checkout, 'Authorization: authHeader', 'Checkout must validate the signed-in user's token with Supabase.'],
+            [checkout, 'Authorization: authHeader', "Checkout must validate the signed-in user token with Supabase."],
             [checkout, 'price.unit_amount !== plan.amount', 'Checkout must validate the configured price amount.'],
             [checkout, 'price.currency !== "eur"', 'Checkout must validate EUR currency.'],
             [checkout, 'price.recurring.interval !== "month"', 'Checkout must validate monthly recurrence.'],
@@ -40,7 +40,7 @@ jobs:
             [webhook, 'stripe_webhook_events', 'Webhook event deduplication must remain enabled.'],
             [webhook, 'Invalid or expired Stripe signature', 'Webhook must reject invalid signatures.'],
             [portal, 'APP_ALLOWED_ORIGINS', 'Billing portal must validate allowed origins.'],
-            [portal, 'Authorization: authHeader', 'Billing portal must validate the signed-in user's token.'],
+            [portal, 'Authorization: authHeader', "Billing portal must validate the signed-in user token."],
             [account, 'deleteProfile', 'Account page should expose the profile deletion control.'],
             [authPage, 'const APP_ORIGIN=location.origin', 'Authentication callbacks must use the current site origin, not a hard-coded legacy domain.'],
             [authPage, 'emailRedirectTo:authReturnUrl', 'Email confirmation must return to the current site authentication page.'],
