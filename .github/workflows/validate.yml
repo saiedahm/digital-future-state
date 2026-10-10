@@ -105,7 +105,16 @@ jobs:
             try { execFileSync(process.execPath, ['--check', file], { stdio: 'pipe' }); }
             catch (error) { throw new Error('JavaScript syntax error in ' + file + ': ' + error.stderr.toString()); }
           }
-          console.log('Account and membership JavaScript syntax, API syntax, global directory, six plan tiers, and approved price checks passed.');
+          const priority = fs.readFileSync('integrations/priority-ten.html','utf8');
+          const priorityCards = (priority.match(/<article class="card">/g) || []).length;
+          if (priorityCards !== 10) throw new Error('Expected exactly 10 priority integration cards, found ' + priorityCards);
+          for (const provider of ['Google','Microsoft','Stripe','PayPal','LinkedIn','WhatsApp Business','Google Maps','Google Translate','DHL','Booking.com']) {
+            if (!priority.includes(provider)) throw new Error('Priority integration missing: ' + provider);
+          }
+          if (!priority.includes('not proof that these providers have approved or connected')) {
+            throw new Error('Priority integration page must clearly disclose that providers are not yet connected.');
+          }
+          console.log('Account and membership JavaScript syntax, API syntax, integration catalogs, six plan tiers, and approved price checks passed.');
           NODE
       - name: Validate pages, assets, links, and required interface
         run: |
@@ -131,6 +140,11 @@ jobs:
           for (const token of ['function applyLanguage','languagePacks','document.documentElement.dir','localStorage']) {
             if (!js.includes(token)) throw new Error('Missing expected client behavior: ' + token);
           }
+          const priorityPage = fs.readFileSync('integrations/priority-ten.html','utf8');
+          if (!priorityPage.includes('PHASE 1 · TEN PRIORITY SERVICES')) throw new Error('Priority integration roadmap title missing.');
+          if (!html.includes('/integrations/priority-ten.html')) throw new Error('Priority ten integration page is not linked from the homepage.');
+          const pilot = fs.readFileSync('integrations/index.html','utf8');
+          if (!pilot.includes('/integrations/priority-ten.html')) throw new Error('Priority ten integration page is not linked from the integration pilot.');
           for (const file of ['assets/dfs-emblem.svg','assets/favicon.svg']) {
             if (!fs.readFileSync(file,'utf8').includes('<svg')) throw new Error('Invalid SVG asset: ' + file);
           }
