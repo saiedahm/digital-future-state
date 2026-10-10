@@ -251,30 +251,61 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const query = new URLSearchParams({ event_id: "eq." + event.id, select: "event_id" });
-    const existing = await supabaseRequest(base, serviceKey,
-      "stripe_webhook_events?" + query.toString());
-    if (!existing.ok) {
-      const detail = await existing.text();
-      console.error("Webhook deduplication lookup failed", existing.status, detail.slice(0, 200));
-      return response(res, 503, { error: "Webhook storage is not ready. Apply the Stripe webhook migration." });
+    // Atomically claim the event before processing it. The primary key prevents two
+    // concurrent deliveries from both claiming the same Stripe event.
+    const claim = await supabaseRequest(base, serviceKey,
+      "stripe_webhook_events?on_conflict=event_id", {
+        method: "POST",
+        prefer: "resolution=ignore-duplicates,return=representation",
+        body: { event_id: event.id, event_type: event.type, status: "processing" }
+      });
+    if (!claim.ok) {
+      const detail = await claim.text();
+      console.error("Webhook event claim failed", claim.status, detail.slice(0, 200));
+      return response(res, 503, { error: "Webhook storage is not ready. Apply database/stripe-webhook-events.sql." });
     }
-    const rows = await existing.json();
-    if (Array.isArray(rows) && rows.length) {
-      return response(res, 200, { received: true, duplicate: true });
+    const claimedRows = await claim.json();
+    if (!Array.isArray(claimedRows) || claimedRows.length === 0) {
+      const query = new URLSearchParams({ event_id: "eq." + event.id, select: "status" });
+      const existing = await supabaseRequest(base, serviceKey,
+        "stripe_webhook_events?" + query.toString());
+      if (!existing.ok) {
+        return response(res, 503, { error: "Could not verify webhook event processing state." });
+      }
+      const rows = await existing.json();
+      if (Array.isArray(rows) && rows[0] && rows[0].status === "processed") {
+        return response(res, 200, { received: true, duplicate: true });
+      }
+      // Another delivery is working on this event; return a retryable error rather
+      // than acknowledging it while its result is not yet committed.
+      return response(res, 503, { error: "This event is already being processed; retry shortly." });
     }
 
-    await handleEvent(event, base, serviceKey);
-
-    const saved = await supabaseRequest(base, serviceKey, "stripe_webhook_events", {
-      method: "POST",
-      prefer: "resolution=ignore-duplicates,return=minimal",
-      body: { event_id: event.id, event_type: event.type }
-    });
-    if (!saved.ok) {
-      const detail = await saved.text();
-      console.error("Webhook event record failed", saved.status, detail.slice(0, 200));
-      return response(res, 503, { error: "Webhook event could not be recorded for idempotent processing." });
+    try {
+      await handleEvent(event, base, serviceKey);
+      const query = new URLSearchParams({ event_id: "eq." + event.id });
+      const completed = await supabaseRequest(base, serviceKey,
+        "stripe_webhook_events?" + query.toString(), {
+          method: "PATCH",
+          prefer: "return=minimal",
+          body: { status: "processed", processed_at: new Date().toISOString() }
+        });
+      if (!completed.ok) {
+        const detail = await completed.text();
+        throw new Error("Could not mark webhook event processed: " + completed.status + " " + detail.slice(0, 200));
+      }
+    } catch (processingError) {
+      // Release the event claim so Stripe can safely retry. Membership writes are
+      // upserts keyed by subscription ID, so retrying a partially completed event
+      // does not create duplicate membership rows.
+      const query = new URLSearchParams({ event_id: "eq." + event.id });
+      const released = await supabaseRequest(base, serviceKey,
+        "stripe_webhook_events?" + query.toString(), { method: "DELETE", prefer: "return=minimal" });
+      if (!released.ok) {
+        const detail = await released.text();
+        console.error("Could not release failed webhook event claim", released.status, detail.slice(0, 200));
+      }
+      throw processingError;
     }
 
     return response(res, 200, { received: true, eventType: event.type });
