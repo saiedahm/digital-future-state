@@ -25,7 +25,7 @@ async function readRawBody(req) {
 
 function verifySignature(raw, header, secret) {
   if (typeof header !== "string") return false;
-  const parts = header.split(",");
+  const parts = header.split(",").map(part => part.trim());
   const timestampPart = parts.find(part => part.startsWith("t="));
   const timestamp = timestampPart && timestampPart.slice(2);
   const signatures = parts.filter(part => part.startsWith("v1=")).map(part => part.slice(3));
@@ -197,7 +197,8 @@ async function handleEvent(event, base, serviceKey) {
   }
 
   if (event.type === "invoice.payment_failed" || event.type === "invoice.paid") {
-    const subscriptionId = idFrom(object.subscription);
+    const subscriptionId = idFrom(object.subscription) ||
+      idFrom(object.parent && object.parent.subscription_details && object.parent.subscription_details.subscription);
     if (!subscriptionId) return;
     const subscription = await stripeGet("/subscriptions/" + encodeURIComponent(subscriptionId));
     const metadata = subscription.metadata || {};
