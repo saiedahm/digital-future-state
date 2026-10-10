@@ -1,8 +1,12 @@
 const crypto = require("node:crypto");
 
 // Stripe signs the exact raw request body. Never trust an unsigned event.
+// Disable Vercel/Next automatic body parsing so signature verification uses
+// the original bytes received from Stripe.
 // This endpoint verifies and acknowledges events only; it does NOT grant
 // membership access until durable, idempotent subscription processing exists.
+module.exports.config = { api: { bodyParser: false } };
+
 module.exports = async function handler(req, res) {
   res.setHeader("Cache-Control", "no-store");
   res.setHeader("Content-Type", "application/json; charset=utf-8");
@@ -24,8 +28,19 @@ module.exports = async function handler(req, res) {
 
   // Vercel may expose the original bytes as rawBody. A string body is also
   // acceptable only if the platform preserved the exact bytes received.
-  const raw = req.rawBody || (Buffer.isBuffer(req.body) ? req.body :
+  let raw = req.rawBody || (Buffer.isBuffer(req.body) ? req.body :
     (typeof req.body === "string" ? Buffer.from(req.body, "utf8") : null));
+  if (!raw) {
+    try {
+      const chunks = [];
+      for await (const chunk of req) {
+        chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+      }
+      raw = Buffer.concat(chunks);
+    } catch {
+      return res.status(400).json({ error: "Unable to read raw request body" });
+    }
+  }
   if (!raw || !Buffer.isBuffer(raw)) {
     return res.status(400).json({
       error: "Raw request body unavailable; signature cannot be verified safely"
