@@ -100,7 +100,7 @@ jobs:
             try { new Function(script); }
             catch (error) { throw new Error('Inline JavaScript syntax error in membership/index.html script ' + (index + 1) + ': ' + error.message); }
           });
-          for (const file of ['api/stripe-checkout.js','api/stripe-webhook.js','api/health.js','api/requests.js']) {
+          for (const file of ['api/stripe-checkout.js','api/stripe-webhook.js','api/stripe-portal.js','api/health.js','api/requests.js']) {
             const { execFileSync } = require('node:child_process');
             try { execFileSync(process.execPath, ['--check', file], { stdio: 'pipe' }); }
             catch (error) { throw new Error('JavaScript syntax error in ' + file + ': ' + error.stderr.toString()); }
