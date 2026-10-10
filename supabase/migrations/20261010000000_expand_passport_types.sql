@@ -3,7 +3,7 @@
 alter table public.profiles drop constraint if exists profiles_profile_type_check;
 alter table public.profiles
   add constraint profiles_profile_type_check
-  check (profile_type in ('Global Pass','Visitor Pass','Premium Pass','Professional Pass','Business Pass','Organization Pass'));
+  check (profile_type in ('Global Pass','Visitor Pass','Citizen / Resident','Organization / State','Diplomat','Business Executive'));
 
 -- Keep the photo bucket private and enforce per-user folders.
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
