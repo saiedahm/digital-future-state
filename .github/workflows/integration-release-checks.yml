@@ -1,0 +1,52 @@
+name: Integration release-gate documentation checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  integration-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Verify OAuth and Stripe release guidance
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const oauthPath = 'docs/oauth-provider-checklist.md';
+          const stripePath = 'docs/stripe-test-mode-checklist.md';
+          for (const file of [oauthPath, stripePath]) {
+            if (!fs.existsSync(file)) throw new Error('Missing release checklist: ' + file);
+          }
+          const oauth = fs.readFileSync(oauthPath, 'utf8');
+          for (const term of ['Supabase', 'Google', 'Microsoft', 'Redirect URLs', 'never in public website files']) {
+            if (!oauth.toLowerCase().includes(term.toLowerCase())) {
+              throw new Error('OAuth checklist missing required guidance: ' + term);
+            }
+          }
+          const stripe = fs.readFileSync(stripePath, 'utf8');
+          for (const term of [
+            'STRIPE_SECRET_KEY', 'STRIPE_WEBHOOK_SECRET', 'SUPABASE_SERVICE_ROLE_KEY',
+            'STRIPE_PRICE_499', 'STRIPE_PRICE_699', 'STRIPE_PRICE_899',
+            'STRIPE_PRICE_1199', 'STRIPE_PRICE_1399', 'test-mode',
+            'checkout.session.completed', 'customer.subscription.updated',
+            'customer.subscription.deleted', 'invoice.payment_failed', 'invoice.paid'
+          ]) {
+            if (!stripe.includes(term)) throw new Error('Stripe checklist missing required setting or event: ' + term);
+          }
+          const webhook = fs.readFileSync('api/stripe-webhook.js', 'utf8');
+          for (const event of [
+            'checkout.session.completed', 'checkout.session.async_payment_succeeded',
+            'checkout.session.async_payment_failed', 'customer.subscription.updated',
+            'customer.subscription.deleted', 'invoice.payment_failed', 'invoice.paid'
+          ]) {
+            if (!webhook.includes(event)) throw new Error('Webhook handler does not mention expected event: ' + event);
+          }
+          console.log('OAuth/Stripe release guidance and webhook event documentation checks passed.');
+          NODE
