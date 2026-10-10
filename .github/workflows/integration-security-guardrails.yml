@@ -1,0 +1,72 @@
+name: Integration security guardrails
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  guardrails:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify payment and account safety invariants
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const checkout = fs.readFileSync('api/stripe-checkout.js', 'utf8');
+          const webhook = fs.readFileSync('api/stripe-webhook.js', 'utf8');
+          const portal = fs.readFileSync('api/stripe-portal.js', 'utf8');
+          const health = fs.readFileSync('api/health.js', 'utf8');
+          const account = fs.readFileSync('account/index.html', 'utf8');
+          const config = fs.readFileSync('supabase/config.js', 'utf8');
+
+          const required = [
+            [checkout, 'APP_ALLOWED_ORIGINS', 'Checkout must validate allowed origins.'],
+            [checkout, 'Authorization: authHeader', 'Checkout must validate the signed-in user's token with Supabase.'],
+            [checkout, 'price.unit_amount !== plan.amount', 'Checkout must validate the configured price amount.'],
+            [checkout, 'price.currency !== "eur"', 'Checkout must validate EUR currency.'],
+            [checkout, 'price.recurring.interval !== "month"', 'Checkout must validate monthly recurrence.'],
+            [webhook, 'timingSafeEqual', 'Webhook signature comparison must be timing-safe.'],
+            [webhook, 'STRIPE_WEBHOOK_SECRET', 'Webhook signing secret must be required.'],
+            [webhook, 'stripe_webhook_events', 'Webhook event deduplication must remain enabled.'],
+            [webhook, 'Invalid or expired Stripe signature', 'Webhook must reject invalid signatures.'],
+            [portal, 'APP_ALLOWED_ORIGINS', 'Billing portal must validate allowed origins.'],
+            [portal, 'Authorization: authHeader', 'Billing portal must validate the signed-in user's token.'],
+            [account, 'deleteProfile', 'Account page should expose the profile deletion control.'],
+            [config, 'sb_publishable_', 'Browser Supabase configuration must use a publishable key.']
+          ];
+          for (const [source, token, message] of required) {
+            if (!source.includes(token)) throw new Error(message);
+          }
+
+          for (const [name, source] of [['checkout', checkout], ['webhook', webhook], ['portal', portal], ['health', health]]) {
+            if (/sk_live_[A-Za-z0-9]{12,}/.test(source) || /whsec_[A-Za-z0-9]{12,}/.test(source)) {
+              throw new Error('Possible hard-coded Stripe secret found in ' + name + ' source.');
+            }
+          }
+          if (/service_role/i.test(config) || /SUPABASE_SERVICE_ROLE_KEY/.test(config)) {
+            throw new Error('Private Supabase service-role key must never appear in browser configuration.');
+          }
+
+          const schema = fs.readFileSync('database/schema.sql', 'utf8');
+          for (const token of [
+            'alter table public.profiles enable row level security',
+            'alter table public.requests enable row level security',
+            'alter table public.memberships enable row level security',
+            'revoke insert, update, delete on public.memberships from anon, authenticated',
+            'create policy "memberships_select_own"'
+          ]) {
+            if (!schema.includes(token)) throw new Error('Database security invariant missing: ' + token);
+          }
+          console.log('Static integration security guardrails passed. Runtime configuration and end-to-end tests are still required.');
+          NODE
+      - name: Check server endpoint syntax
+        run: |
+          node --check api/stripe-checkout.js
+          node --check api/stripe-webhook.js
+          node --check api/stripe-portal.js
+          node --check api/health.js
