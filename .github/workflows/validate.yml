@@ -53,6 +53,25 @@ jobs:
           if (!fs.readFileSync('index.html', 'utf8').includes('Integration pilot · 20 providers')) {
             throw new Error('Integration pilot is not linked from the homepage.');
           }
+          const globalCatalog = fs.readFileSync('integrations/global-directory.html', 'utf8');
+          const regionDataMatch = globalCatalog.match(/const REGIONS=(\\[[\\s\\S]*?\\]);\\nconst modes=/);
+          if (!regionDataMatch) throw new Error('Could not find global integration region data.');
+          const regionData = JSON.parse(regionDataMatch[1]);
+          if (regionData.length !== 6) throw new Error('Expected six regions in global directory.');
+          for (const region of regionData) {
+            if (region.items.length !== 20) throw new Error('Expected 20 candidates in region ' + region.title);
+            for (const item of region.items) {
+              if (!item[0] || !item[1] || !/^https:\\/\\//.test(item[2]) || !item[3]) {
+                throw new Error('Incomplete company entry in region ' + region.title + ': ' + JSON.stringify(item));
+              }
+            }
+          }
+          if (!fs.readFileSync('index.html', 'utf8').includes('/integrations/global-directory.html')) {
+            throw new Error('Global 120-candidate directory is not linked from the homepage.');
+          }
+          if (!fs.readFileSync('integrations/index.html', 'utf8').includes('/integrations/global-directory.html')) {
+            throw new Error('Global directory is not linked from the original 20-candidate pilot.');
+          }
           const membership = fs.readFileSync('membership/index.html', 'utf8');
           const planCount = (membership.match(/<article class="plan(?: featured)?">/g) || []).length;
           if (planCount !== 6) throw new Error('Expected six membership display tiers, found ' + planCount);
@@ -65,7 +84,7 @@ jobs:
           if (!fs.existsSync('supabase/migrations/20261011000000_profile_self_delete.sql')) {
             throw new Error('Profile self-delete migration is missing.');
           }
-          console.log('Account-script syntax, 20 integration candidates, six plan tiers, and approved price checks passed.');
+          console.log('Account-script syntax, 20 original candidates, 120 regional candidates, six plan tiers, and approved price checks passed.');
           NODE
       - name: Validate pages, assets, links, and required interface
         run: |
