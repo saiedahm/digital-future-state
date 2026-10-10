@@ -81,7 +81,7 @@ jobs:
           }
 
           // Keep the citizen-facing priority directory complete and transparent.
-          const priorityMatch = homepage.match(/<section[^>]*id="citizen-services"[^>]*>([\\s\\S]*?)<\\/section>/);
+          const priorityMatch = homepage.match(/<section[^>]*id="citizen-services"[^>]*>([\s\S]*?)<\/section>/);
           if (!priorityMatch) throw new Error('Citizen priority services section is missing.');
           const priority = priorityMatch[1];
           const priorityCards = priority.match(/class="priority-service-card"/g) || [];
@@ -105,7 +105,7 @@ jobs:
           ]) {
             if (!priority.includes(token)) throw new Error('Citizen priority directory is missing required link or transparent status: ' + token);
           }
-          const externalLinks = [...priority.matchAll(/<a\\b[^>]*href="https?:\\/\\/[^"]+"[^>]*>/g)].map(match => match[0]);
+          const externalLinks = [...priority.matchAll(/<a\b[^>]*href="https?:\/\/[^"]+"[^>]*>/g)].map(match => match[0]);
           if (externalLinks.length !== 10 || externalLinks.some(link => !link.includes('target="_blank"') || !link.includes('rel="noopener noreferrer"'))) {
             throw new Error('All ten official provider links must open safely in a new tab.');
           }
