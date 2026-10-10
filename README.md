@@ -5,6 +5,7 @@ A responsive static website prototype for the DIGITAL FUTURE STATE concept.
 ## Files
 - `index.html` — landing page, passport-style profile preview, sample directory, security notes, citizen contact form, footer legal links, and navigation to the integration pilot.
 - `integrations/index.html` — 20 candidate technology providers with official developer documentation; these are research candidates, not confirmed partners.
+- `integrations/global-directory.html` — searchable catalog of 120 additional candidates, 20 each from the United States, Europe, China, South Korea, other Asian markets, and the Middle East. Official portals are research starting points, not proof of an available API or partnership.
 - `account/auth.html` — email/password, email-link account access, password-reset completion, plus Google and Microsoft OAuth entry points through Supabase.
 - `supabase/migrations/20261011000000_profile_self_delete.sql` — least-privilege policy allowing an authenticated user to delete only their own saved profile record.
 - `docs/IDENTITY-INTEGRATION-PILOT.md` — provider configuration requirements and staged rollout plan.
