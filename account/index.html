@@ -45,9 +45,9 @@ function update(){const selected=$('passType').value;const price=$('accountPassP
 $('photo').addEventListener('change',()=>{const f=$('photo').files[0];if(!f)return;if(!['image/jpeg','image/png','image/webp'].includes(f.type)||f.size>2*1024*1024){status('Choose a JPG, PNG or WebP image smaller than 2 MB.');$('photo').value='';return;}photoFile=f;const reader=new FileReader();reader.onload=()=>{const box=$('portrait'),img=new Image();img.src=String(reader.result);img.alt='Profile preview';box.replaceChildren(img);};reader.readAsDataURL(f);});
 function updateAuthControls(){const signedIn=!!session;$('authState').style.display='inline-block';$('authState').textContent=signedIn?'Signed in':'Not signed in';$('authLink').style.display=signedIn?'none':'inline-block';$('signOut').style.display=signedIn?'inline-block':'none';}
 async function init(){if(!client){status('Secure account connection is not configured yet. Complete Supabase setup before saving real data.');updateAuthControls();return;}const {data,error}=await client.auth.getSession();if(error||!data.session){session=null;updateAuthControls();status('Please sign in before saving your profile. Use the Sign in / Create account link above.');return;}session=data.session;updateAuthControls();const {data:profile,error:loadError}=await client.from('profiles').select('display_name,country,birth_date,profile_type,photo_path').eq('user_id',session.user.id).maybeSingle();if(loadError){status('Could not load profile: '+loadError.message);return;}if(profile){$('fullName').value=profile.display_name||'';$('country').value=profile.country||'';$('birthDate').value=profile.birth_date||'';$('passType').value=profile.profile_type||'Global Pass';update();if(profile.photo_path){const {data:photoData,error:photoError}=await client.storage.from('profile-photos').createSignedUrl(profile.photo_path,300);if(!photoError&&photoData?.signedUrl){const img=new Image();img.src=photoData.signedUrl;img.alt='Saved profile photo';$('portrait').replaceChildren(img);}}status('Signed in. Your saved profile is loaded.');}else status('Signed in. Add your details and save your profile.');}
-$('accountForm').addEventListener('submit',async e=>{e.preventDefault();update();if(!client||!session){status('Sign in first using the Sign in / Create account link above.');return;}const display_name=$('fullName').value.trim();if(!display_name){status('Enter your display name.');return;}let photo_path=null;if(photoFile){photo_path=session.user.id+'/'+Date.now()+'-'+photoFile.name.replace(/[^a-zA-Z0-9._-]/g,'_');const {error:uploadError}=await client.storage.from('profile-photos').upload(photo_path,photoFile,{upsert:true,contentType:photoFile.type});if(uploadError){status('Photo upload failed: '+uploadError.message);return;}}
+$('accountForm').addEventListener('submit',async e=>{e.preventDefault();update();if(!client||!session){status('Sign in first using the Sign in / Create account link above.');return;}const display_name=$('fullName').value.trim();if(!display_name){status('Enter your display name.');return;}let photo_path=null,oldPhotoPath=null;if(photoFile){const {data:oldProfile,error:oldProfileError}=await client.from('profiles').select('photo_path').eq('user_id',session.user.id).maybeSingle();if(oldProfileError){status('Could not prepare profile photo update: '+oldProfileError.message);return;}oldPhotoPath=oldProfile?.photo_path||null;photo_path=session.user.id+'/'+Date.now()+'-'+photoFile.name.replace(/[^a-zA-Z0-9._-]/g,'_');const {error:uploadError}=await client.storage.from('profile-photos').upload(photo_path,photoFile,{upsert:false,contentType:photoFile.type});if(uploadError){status('Photo upload failed: '+uploadError.message);return;}}
 const row={user_id:session.user.id,display_name,country:$('country').value.trim(),birth_date:$('birthDate').value||null,profile_type:$('passType').value,updated_at:new Date().toISOString()};if(photo_path)row.photo_path=photo_path;
-const {error}=await client.from('profiles').upsert(row,{onConflict:'user_id'});if(error){status('Profile save failed: '+error.message);return;}status('Profile saved to your account.');photoFile=null;});
+const {error}=await client.from('profiles').upsert(row,{onConflict:'user_id'});if(error){if(photo_path&&photo_path!==oldPhotoPath)await client.storage.from('profile-photos').remove([photo_path]);status('Profile save failed: '+error.message);return;}if(photo_path&&oldPhotoPath&&oldPhotoPath!==photo_path){const {error:cleanupError}=await client.storage.from('profile-photos').remove([oldPhotoPath]);if(cleanupError){status('Profile saved, but the previous photo could not be removed: '+cleanupError.message);photoFile=null;return;}}status('Profile saved to your account.');photoFile=null;});
 $('print').addEventListener('click',()=>{if(!$('fullName').value.trim()){status('Enter a display name first.');return;}window.print();});
 $('deleteProfile').addEventListener('click',async()=>{
   if(!client||!session){status('Sign in to manage saved profile data.');return;}
@@ -56,9 +56,18 @@ $('deleteProfile').addEventListener('click',async()=>{
   status('Deleting saved profile data…');
   const {data:profile,error:readError}=await client.from('profiles').select('photo_path').eq('user_id',session.user.id).maybeSingle();
   if(readError){status('Could not read your saved profile: '+readError.message);return;}
-  if(profile?.photo_path){
-    const {error:photoError}=await client.storage.from('profile-photos').remove([profile.photo_path]);
-    if(photoError){status('Profile deletion stopped because the saved photo could not be removed: '+photoError.message);return;}
+  const allPhotos=[];let offset=0;
+  while(true){
+    const {data:files,error:listError}=await client.storage.from('profile-photos').list(session.user.id,{limit:1000,offset});
+    if(listError){status('Profile deletion stopped because saved photos could not be listed: '+listError.message);return;}
+    const current=(files||[]).filter(file=>file&&file.name&&!file.name.startsWith('.')).map(file=>session.user.id+'/'+file.name);
+    allPhotos.push(...current);
+    if(!files||files.length<1000)break;
+    offset+=1000;
+  }
+  for(let i=0;i<allPhotos.length;i+=100){
+    const {error:photoError}=await client.storage.from('profile-photos').remove(allPhotos.slice(i,i+100));
+    if(photoError){status('Profile deletion stopped because saved photos could not all be removed: '+photoError.message);return;}
   }
   const {error:deleteError}=await client.from('profiles').delete().eq('user_id',session.user.id);
   if(deleteError){status('The profile record could not be deleted. If its photo was removed, upload it again after saving your profile. Details: '+deleteError.message);return;}
