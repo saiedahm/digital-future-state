@@ -303,3 +303,6 @@
 @media(max-width:760px){
   .contact-section .contact-form{max-width:100%}
 }
+
+/* Passport colour follows selected type */
+.passport-choice .choice-price{display:block;color:var(--gold2);font-weight:800;margin-top:6px}.pass-option[data-pass="Visitor Pass"]{--option-accent:#168dff}.pass-option[data-pass="Citizen / Resident"]{--option-accent:#16c784}.pass-option[data-pass="Organization / State"]{--option-accent:#d8e5f2}.pass-option[data-pass="Diplomat"]{--option-accent:#e4bb45}.pass-option[data-pass="Business Executive"]{--option-accent:#ed2944}.pass-option.selected{border-color:var(--option-accent,var(--gold));box-shadow:0 0 18px rgba(217,182,107,.18)}.digital-pass{border-color:var(--pass-accent,#e6c35f)!important;box-shadow:0 0 22px rgba(230,195,95,.18)}.digital-pass .digital-pass-head,.digital-pass .digital-pass-foot{border-color:var(--pass-accent,#e6c35f)}.digital-pass[data-pass-color="visitor"]{background:linear-gradient(145deg,#062b62,#071426 80%)}.digital-pass[data-pass-color="citizen"]{background:linear-gradient(145deg,#06452f,#071426 80%)}.digital-pass[data-pass-color="organization"]{background:linear-gradient(145deg,#d8e5f2,#52677e 90%);color:#071426}.digital-pass[data-pass-color="diplomat"]{background:linear-gradient(145deg,#080a0e,#241d0b 90%)}.digital-pass[data-pass-color="business"]{background:linear-gradient(145deg,#790b1b,#240711 90%)}
