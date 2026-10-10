@@ -8,8 +8,6 @@ const PLANS = Object.freeze({
   business: { amount: 1399, env: "STRIPE_PRICE_1399" }
 });
 
-module.exports.config = { api: { bodyParser: false } };
-
 function response(res, status, body) {
   return res.status(status).json(body);
 }
@@ -168,7 +166,7 @@ async function handleEvent(event, base, serviceKey) {
     }
     const subscriptionId = idFrom(object.subscription);
     if (!subscriptionId) throw new Error("Checkout session is missing a subscription");
-    const userId = object.metadata && object.metadata.user_id;
+    const userId = (object.metadata && object.metadata.user_id) || object.client_reference_id;
     const planCode = object.metadata && object.metadata.plan_code;
     const subscription = await stripeGet("/subscriptions/" + encodeURIComponent(subscriptionId));
     await saveMembership({
@@ -279,3 +277,6 @@ module.exports = async function handler(req, res) {
     return response(res, 503, { error: "Subscription update failed; Stripe may retry this event." });
   }
 };
+
+// This property must be assigned after module.exports is set to the handler.
+module.exports.config = { api: { bodyParser: false } };
