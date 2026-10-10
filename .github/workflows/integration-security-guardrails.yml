@@ -77,6 +77,67 @@ jobs:
           }
           console.log('Static integration security guardrails and trial-banner checks passed. Runtime configuration and end-to-end tests are still required.');
           NODE
+      - name: Test payment health endpoint fail-closed status
+        run: |
+          node <<'NODE'
+          const assert = require('node:assert/strict');
+          const handler = require('./api/health.js');
+          const keys = {
+            SUPABASE_URL: 'https://example.supabase.co',
+            SUPABASE_SERVICE_ROLE_KEY: 'test-only-placeholder',
+            APP_ALLOWED_ORIGINS: 'https://example.com',
+            STRIPE_SECRET_KEY: 'sk_test_example123',
+            STRIPE_WEBHOOK_SECRET: 'whsec_test_placeholder',
+            STRIPE_PRICE_499: 'price_test499',
+            STRIPE_PRICE_699: 'price_test699',
+            STRIPE_PRICE_899: 'price_test899',
+            STRIPE_PRICE_1199: 'price_test1199',
+            STRIPE_PRICE_1399: 'price_test1399'
+          };
+          const names = Object.keys(keys);
+          const previous = Object.fromEntries(names.map(key => [key, process.env[key]]));
+          async function callHealth() {
+            let statusCode;
+            let body;
+            const res = {
+              setHeader() {},
+              status(code) { statusCode = code; return this; },
+              json(value) { body = value; return this; }
+            };
+            await handler({ method: 'GET' }, res);
+            return { statusCode, body };
+          }
+          (async () => {
+            try {
+              Object.assign(process.env, keys);
+              let result = await callHealth();
+              assert.equal(result.statusCode, 200);
+              assert.equal(result.body.paymentMode, 'test');
+              assert.equal(result.body.paymentConfigurationPresent, true);
+              assert.equal(result.body.releaseReady, false);
+              assert.equal(result.body.status, 'configuration-present-not-verified');
+
+              process.env.STRIPE_SECRET_KEY = 'malformed-key';
+              result = await callHealth();
+              assert.equal(result.body.paymentConfigurationPresent, false);
+              assert.equal(result.body.checks.stripeSecretFormatValid, false);
+              assert.equal(result.body.releaseReady, false);
+
+              delete process.env.STRIPE_PRICE_499;
+              process.env.STRIPE_SECRET_KEY = 'sk_test_example123';
+              result = await callHealth();
+              assert.equal(result.body.paymentConfigurationPresent, false);
+              assert.equal(result.body.status, 'configuration-incomplete');
+              assert.equal(result.body.releaseReady, false);
+              console.log('Health endpoint fail-closed tests passed.');
+            } finally {
+              for (const key of names) {
+                if (previous[key] === undefined) delete process.env[key];
+                else process.env[key] = previous[key];
+              }
+            }
+          })().catch(error => { console.error(error); process.exitCode = 1; });
+          NODE
       - name: Check server endpoint syntax
         run: |
           node --check api/stripe-checkout.js
