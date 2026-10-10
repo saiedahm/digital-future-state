@@ -54,14 +54,14 @@ jobs:
             throw new Error('Integration pilot is not linked from the homepage.');
           }
           const globalCatalog = fs.readFileSync('integrations/global-directory.html', 'utf8');
-          const regionDataMatch = globalCatalog.match(/const REGIONS=(\\[[\\s\\S]*?\\]);\\nconst modes=/);
+          const regionDataMatch = globalCatalog.match(/const REGIONS=(\[[\s\S]*?\]);\nconst modes=/);
           if (!regionDataMatch) throw new Error('Could not find global integration region data.');
           const regionData = JSON.parse(regionDataMatch[1]);
           if (regionData.length !== 6) throw new Error('Expected six regions in global directory.');
           for (const region of regionData) {
             if (region.items.length !== 20) throw new Error('Expected 20 candidates in region ' + region.title);
             for (const item of region.items) {
-              if (!item[0] || !item[1] || !/^https:\\/\\//.test(item[2]) || !item[3]) {
+              if (!item[0] || !item[1] || !/^https:\/\//.test(item[2]) || !item[3]) {
                 throw new Error('Incomplete company entry in region ' + region.title + ': ' + JSON.stringify(item));
               }
             }
