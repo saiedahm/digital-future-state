@@ -56,12 +56,12 @@ async function loadMembership(){
  if(!output)return;
  if(!client||!session){output.textContent='Sign in to view the membership linked to your account.';return;}
  output.textContent='Checking your membership status…';
- const {data,error}=await client.from('memberships').select('plan_code,amount_cents,currency,status,current_period_end,created_at,provider_customer_id').eq('user_id',session.user.id).order('created_at',{ascending:false}).limit(20);
+ const {data,error}=await client.from('memberships').select('plan_code,amount_cents,currency,status,current_period_end,created_at').eq('user_id',session.user.id).order('created_at',{ascending:false}).limit(20);
  if(error){output.textContent='Membership status is temporarily unavailable. Please try again later.';return;}
  const rows=Array.isArray(data)?data:[];
  const row=rows.find(item=>['active','past_due','incomplete','pending'].includes(item.status))||rows[0];
  const manageButton=$('manageBilling');
- if(manageButton)manageButton.style.display=row&&row.provider_customer_id?'inline-block':'none';
+ if(manageButton)manageButton.style.display=row&&['active','past_due','incomplete','pending','canceled'].includes(row.status)?'inline-block':'none';
  if(!row){output.textContent='No paid membership is linked to this account. Public directory browsing remains free.';return;}
  const names={essential:'Visitor Pass',plus:'Citizen / Resident',premium:'Organization / State',professional:'Diplomat',business:'Business Executive',organization:'Organization'};
  const states={pending:'Pending verification',active:'Active',past_due:'Payment needs attention',canceled:'Canceled',incomplete:'Incomplete'};
