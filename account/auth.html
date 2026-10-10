@@ -22,7 +22,7 @@ button{padding:13px;border:1px solid var(--gold);border-radius:8px;background:va
 <p class="hint">Account access becomes active only after the Supabase public configuration is installed and email authentication is enabled for this project.</p>
 <form id="authForm">
 <label>Email address<input id="email" type="email" autocomplete="email" maxlength="254" required></label>
-<label>Password<input id="password" type="password" autocomplete="current-password" minlength="8" required></label>
+<label>Password<div class="password-wrap" style="position:relative"><input id="password" type="password" autocomplete="current-password" minlength="8" required style="padding-right:82px"><button type="button" id="togglePassword" class="secondary" aria-pressed="false" style="position:absolute;right:6px;top:50%;transform:translateY(-50%);padding:5px 8px;font-size:12px">Show</button></div></label>
 <div class="row"><button type="submit" id="signin">Sign in</button><button type="button" class="secondary" id="signup">Create account</button></div>
 <button type="button" class="secondary" id="reset">Send password reset link</button>
 <button type="button" class="secondary" id="magic">Sign in with an email link (no password)</button>
@@ -35,7 +35,9 @@ button{padding:13px;border:1px solid var(--gold);border-radius:8px;background:va
 <script>
 (function(){
  const $=id=>document.getElementById(id), form=$("authForm");
- const APP_ORIGIN="https://digital-future-state-fio4gn8nm-dnexora26-4685.vercel.app";
+ const togglePassword=$("togglePassword");
+ togglePassword.addEventListener("click",()=>{const input=$("password");const reveal=input.type==="password";input.type=reveal?"text":"password";togglePassword.textContent=reveal?"Hide":"Show";togglePassword.setAttribute("aria-pressed",String(reveal));});
+ const APP_ORIGIN=location.origin;
  const authReturnUrl=APP_ORIGIN+"/account/auth.html";
  const status=$("status");
  function client(){if(!window.dfsSupabase){status.textContent="Secure sign-in is not connected yet. Configure the public Supabase project settings and enable email authentication first.";return null;}return window.dfsSupabase;}
