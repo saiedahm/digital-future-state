@@ -37,7 +37,9 @@ jobs:
             [checkout, 'price.recurring.interval !== "month"', 'Checkout must validate monthly recurrence.'],
             [webhook, 'timingSafeEqual', 'Webhook signature comparison must be timing-safe.'],
             [webhook, 'STRIPE_WEBHOOK_SECRET', 'Webhook signing secret must be required.'],
-            [webhook, 'stripe_webhook_events', 'Webhook event deduplication must remain enabled.'],
+            [webhook, 'on_conflict=event_id', 'Webhook events must be claimed atomically to prevent concurrent duplicate processing.'],
+            [webhook, 'status: "processed"', 'Webhook events must be marked processed only after handling succeeds.'],
+            [webhook, 'method: "DELETE"', 'Failed webhook processing must release the event claim for safe retries.'],
             [webhook, 'Invalid or expired Stripe signature', 'Webhook must reject invalid signatures.'],
             [portal, 'APP_ALLOWED_ORIGINS', 'Billing portal must validate allowed origins.'],
             [portal, 'Authorization: authHeader', "Billing portal must validate the signed-in user token."],
@@ -90,9 +92,10 @@ jobs:
           for (const token of [
             'create table if not exists public.stripe_webhook_events',
             'event_id text primary key',
+            "status text not null default 'processing'",
             'alter table public.stripe_webhook_events enable row level security',
             'revoke all on table public.stripe_webhook_events from anon, authenticated',
-            'grant select, insert on table public.stripe_webhook_events to service_role'
+            'grant select, insert, update, delete on table public.stripe_webhook_events to service_role'
           ]) {
             if (!eventLedger.includes(token)) throw new Error('Stripe webhook event-ledger migration invariant missing: ' + token);
           }
