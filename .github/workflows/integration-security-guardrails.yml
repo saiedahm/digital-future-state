@@ -24,6 +24,7 @@ jobs:
           const portal = fs.readFileSync('api/stripe-portal.js', 'utf8');
           const health = fs.readFileSync('api/health.js', 'utf8');
           const account = fs.readFileSync('account/index.html', 'utf8');
+          const authPage = fs.readFileSync('account/auth.html', 'utf8');
           const config = fs.readFileSync('supabase/config.js', 'utf8');
           const homepage = fs.readFileSync('index.html', 'utf8');
           const styles = fs.readFileSync('styles.css', 'utf8');
@@ -41,6 +42,9 @@ jobs:
             [portal, 'APP_ALLOWED_ORIGINS', 'Billing portal must validate allowed origins.'],
             [portal, 'Authorization: authHeader', 'Billing portal must validate the signed-in user's token.'],
             [account, 'deleteProfile', 'Account page should expose the profile deletion control.'],
+            [authPage, 'const APP_ORIGIN=location.origin', 'Authentication callbacks must use the current site origin, not a hard-coded legacy domain.'],
+            [authPage, 'emailRedirectTo:authReturnUrl', 'Email confirmation must return to the current site authentication page.'],
+            [authPage, 'redirectTo:authReturnUrl', 'Password recovery must return to the current site authentication page.'],
             [config, 'sb_publishable_', 'Browser Supabase configuration must use a publishable key.'],
             [health, 'paymentMode', 'Health endpoint must report the detected Stripe key mode.'],
             [health, 'releaseReady = false', 'Health endpoint must not claim release readiness from configuration presence alone.'],
