@@ -108,8 +108,11 @@
     window.setTimeout(()=>{const option=$('.pass-option').find(b=>b.dataset.pass===pass);if(option)option.click();else{const hidden=$('#passType');if(hidden)hidden.value=pass;const type=$('#previewType');if(type)type.textContent=pass.toUpperCase();}},250);
   });
 
+  const passPrices={'Global Pass':'Free / custom plan','Visitor Pass':'€4.99 / month','Citizen / Resident':'€6.99 / month','Organization / State':'€8.99 / month','Diplomat':'€11.99 / month','Business Executive':'€13.99 / month'};
+  const passColors={'Global Pass':'global','Visitor Pass':'visitor','Citizen / Resident':'citizen','Organization / State':'organization','Diplomat':'diplomat','Business Executive':'business'};
+  function updatePassPrice(){const title=$('#selectedPriceTitle');if(title)title.textContent=selectedPass+' · '+passPrices[selectedPass];const note=$('#selectedPriceNote');if(note)note.textContent='Price is monthly. Online payment will be connected in the next step.';const card=$('#digitalPass');if(card){card.dataset.passColor=passColors[selectedPass]||'global';const colors={global:'#e6c35f',visitor:'#168dff',citizen:'#16c784',organization:'#d8e5f2',diplomat:'#e4bb45',business:'#ed2944'};card.style.setProperty('--pass-accent',colors[passColors[selectedPass]]||colors.global);}$('.pass-option').forEach(b=>b.classList.toggle('selected',b.dataset.pass===selectedPass));}
   let selectedPass='Global Pass';
-  $$('.pass-option').forEach(button=>button.addEventListener('click',()=>{$$('.pass-option').forEach(x=>x.classList.remove('selected'));button.classList.add('selected');selectedPass=button.dataset.pass;$('#passType').value=selectedPass;$('#previewType').textContent=selectedPass.toUpperCase();}));
+  $$('.pass-option').forEach(button=>button.addEventListener('click',()=>{$$('.pass-option').forEach(x=>x.classList.remove('selected'));button.classList.add('selected');selectedPass=button.dataset.pass;$('#passType').value=selectedPass;$('#previewType').textContent=selectedPass.toUpperCase();updatePassPrice();}));
   const name=$('#fullName'),birth=$('#birthDate'),country=$('#nationality'),photo=$('#photoInput');
   const PROFILE_KEY='dfs-citizen-profile-v1';
   let selectedPhotoData='';
@@ -133,4 +136,5 @@
   $('#cookieClose')?.addEventListener('click',dismissCookieNotice);
   loadProfile();
   updatePreview();
+  updatePassPrice();
 })();
