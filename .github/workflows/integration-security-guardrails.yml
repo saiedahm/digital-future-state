@@ -73,6 +73,29 @@ jobs:
           ]) {
             if (!schema.includes(token)) throw new Error('Database security invariant missing: ' + token);
           }
+
+          const photoStorage = fs.readFileSync('database/storage-profile-photos.sql', 'utf8');
+          for (const token of [
+            "values ('profile-photos', 'profile-photos', false)",
+            'storage.foldername(name))[1] = auth.uid()::text',
+            'dfs_profile_photos_select_own',
+            'dfs_profile_photos_insert_own',
+            'dfs_profile_photos_update_own',
+            'dfs_profile_photos_delete_own'
+          ]) {
+            if (!photoStorage.includes(token)) throw new Error('Private profile-photo storage policy missing: ' + token);
+          }
+
+          const eventLedger = fs.readFileSync('database/stripe-webhook-events.sql', 'utf8');
+          for (const token of [
+            'create table if not exists public.stripe_webhook_events',
+            'event_id text primary key',
+            'alter table public.stripe_webhook_events enable row level security',
+            'revoke all on table public.stripe_webhook_events from anon, authenticated',
+            'grant select, insert on table public.stripe_webhook_events to service_role'
+          ]) {
+            if (!eventLedger.includes(token)) throw new Error('Stripe webhook event-ledger migration invariant missing: ' + token);
+          }
           for (const token of ['trial-banner', '30 October 2026', '30/10/2026', 'TRIAL PERIOD']) {
             if (!homepage.includes(token)) throw new Error('Trial announcement missing required text: ' + token);
           }
