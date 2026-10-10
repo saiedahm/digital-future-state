@@ -109,7 +109,14 @@ jobs:
           if (externalLinks.length !== 10 || externalLinks.some(link => !link.includes('target="_blank"') || !link.includes('rel="noopener noreferrer"'))) {
             throw new Error('All ten official provider links must open safely in a new tab.');
           }
-          console.log('Static security guardrails, trial banner, and priority-ten directory checks passed. Runtime configuration and end-to-end tests are still required.');
+          const directoryScript = fs.readFileSync('app.js', 'utf8');
+          if (directoryScript.includes('verified-format listings loaded')) {
+            throw new Error('Directory must not imply listings are verified merely because they have URL format.');
+          }
+          for (const token of ['Official URLs are listed for discovery', 'availability, verification and partnership are not implied']) {
+            if (!directoryScript.includes(token)) throw new Error('Directory transparency message missing: ' + token);
+          }
+          console.log('Static security guardrails, trial banner, priority-ten directory, and directory-transparency checks passed. Runtime configuration and end-to-end tests are still required.');
           NODE
       - name: Test payment health endpoint fail-closed status
         run: |
