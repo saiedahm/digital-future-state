@@ -81,6 +81,22 @@ module.exports = async function handler(req, res) {
       return json(res, 401, { error: "Could not verify your account." });
     }
 
+    // Validate the configured Price ID against the approved plan before redirecting
+    // any user to checkout. This prevents a mistaken env var from charging the wrong amount.
+    const priceResponse = await fetch("https://api.stripe.com/v1/prices/" + encodeURIComponent(priceId), {
+      headers: { Authorization: "Bearer " + stripeSecret }
+    });
+    const price = await priceResponse.json();
+    if (!priceResponse.ok || !price || price.active !== true ||
+        price.type !== "recurring" || price.currency !== "eur" ||
+        price.unit_amount !== plan.amount || !price.recurring ||
+        price.recurring.interval !== "month" || price.recurring.interval_count !== 1) {
+      console.error("Stripe Price ID does not match the approved monthly EUR plan", priceResponse.status);
+      return json(res, 503, {
+        error: "This plan's Stripe price must be configured as the approved monthly EUR amount. No payment has been started."
+      });
+    }
+
     const membershipQuery = new URLSearchParams({
       user_id: "eq." + user.id,
       select: "provider_customer_id,status,created_at",
