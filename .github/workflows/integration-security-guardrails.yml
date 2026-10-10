@@ -79,7 +79,37 @@ jobs:
           for (const token of ['.trial-banner', 'max-width:600px', 'var(--gold2)']) {
             if (!styles.includes(token)) throw new Error('Trial announcement styling missing: ' + token);
           }
-          console.log('Static integration security guardrails and trial-banner checks passed. Runtime configuration and end-to-end tests are still required.');
+
+          // Keep the citizen-facing priority directory complete and transparent.
+          const priorityMatch = homepage.match(/<section[^>]*id="citizen-services"[^>]*>([\\s\\S]*?)<\\/section>/);
+          if (!priorityMatch) throw new Error('Citizen priority services section is missing.');
+          const priority = priorityMatch[1];
+          const priorityCards = priority.match(/class="priority-service-card"/g) || [];
+          if (priorityCards.length !== 10) {
+            throw new Error('Citizen priority directory must contain exactly ten service cards; found ' + priorityCards.length + '.');
+          }
+          for (const token of [
+            'https://www.google.com/',
+            'https://www.microsoft.com/',
+            'https://stripe.com/',
+            'https://www.paypal.com/',
+            'https://www.linkedin.com/',
+            'https://business.whatsapp.com/',
+            'https://maps.google.com/',
+            'https://translate.google.com/',
+            'https://www.dhl.com/',
+            'https://www.booking.com/',
+            '/integrations/priority-ten.html',
+            'technical integration not yet verified',
+            'not endorsements or claims of partnership'
+          ]) {
+            if (!priority.includes(token)) throw new Error('Citizen priority directory is missing required link or transparent status: ' + token);
+          }
+          const externalLinks = [...priority.matchAll(/<a\\b[^>]*href="https?:\\/\\/[^"]+"[^>]*>/g)].map(match => match[0]);
+          if (externalLinks.length !== 10 || externalLinks.some(link => !link.includes('target="_blank"') || !link.includes('rel="noopener noreferrer"'))) {
+            throw new Error('All ten official provider links must open safely in a new tab.');
+          }
+          console.log('Static security guardrails, trial banner, and priority-ten directory checks passed. Runtime configuration and end-to-end tests are still required.');
           NODE
       - name: Test payment health endpoint fail-closed status
         run: |
