@@ -1,38 +1,46 @@
-# DIGITAL FUTURE STATE — v1 prototype
+# DIGITAL FUTURE STATE — v1 platform prototype
 
-A responsive static website prototype for the DIGITAL FUTURE STATE concept.
+A responsive static website prototype for the DIGITAL FUTURE STATE concept, with Supabase account/profile features and server-side Stripe subscription endpoints.
 
-## Files
-- `index.html` — public landing page, passport-style profile preview, directory, contact form and legal links.
-- `account/auth.html` and `account/index.html` — Supabase authentication and personal-profile UI.
-- `membership/index.html` — informational membership plans.
-- `database/schema.sql` and `supabase/migrations/` — PostgreSQL/Supabase schema and access policies.
-- `api/health.js`, `api/requests.js`, `api/stripe-checkout.js`, `api/stripe-webhook.js` — serverless endpoint scaffolds.
+## Main areas
+
+- `index.html` — public landing page, profile preview, directory, contact form and legal links.
+- `account/auth.html` and `account/index.html` — Supabase authentication, profile UI, membership status and billing-portal entry point.
+- `membership/index.html` and `membership/success.html` — monthly plans and a safe checkout return page.
+- `api/stripe-checkout.js` — authenticated Stripe Checkout session creation, fixed plan allowlist, price verification and prevention of duplicate concurrent subscriptions.
+- `api/stripe-webhook.js` — raw-body Stripe signature validation, event deduplication and membership lifecycle writes.
+- `api/stripe-portal.js` — authenticated Stripe Billing Portal session creation.
+- `api/health.js`, `api/requests.js` — configuration checks and support-request endpoint.
+- `database/schema.sql` and `supabase/migrations/` — database schema, row-level policies and webhook event ledger.
 - `app.js`, `styles.css` — public-site behavior and design.
 - `widerruf.html`, `agb.html`, `datenschutz.html`, `impressum.html` — legal-information drafts.
 
 ## Important status
-This repository is **not yet a production-ready identity or subscription service**.
-- Public browsing and the landing-page preview are available without a subscription.
-- Account creation and profile save/load depend on the configured Supabase project, applied migrations, and authentication redirect settings.
-- The profile/passport-style card is a platform profile, not a government document, passport, visa, proof of citizenship, or verified identity credential.
+
+This repository is **not yet cleared for live payment launch**. Subscription code is implemented, but real operation depends on correct Vercel secrets, matching Stripe mode and recurring EUR Price IDs, applied Supabase migrations, Stripe event destination configuration, and successful end-to-end tests.
+
+- Public browsing is available without a subscription.
+- Account creation and profile save/load depend on Supabase setup, database migrations and authentication redirect settings.
+- The profile/passport-style card is only a platform profile, not a government document, passport, visa, proof of citizenship or verified identity credential.
 - Google and Microsoft sign-in require provider configuration and end-to-end tests.
-- Real checkout, active memberships, cancellation/refunds, and verified paid entitlements are not enabled. The API checkout and webhook endpoints intentionally fail closed.
+- Stripe Checkout and the Billing Portal fail closed when required settings are absent or invalid. Membership access is written only from validated server-side Stripe notifications; this must be verified with test-mode transactions before launch.
 - The public contact form currently prepares an email draft; it does not submit a server-side request.
 - The directory lists public external links and does not imply partnerships or universal sign-in.
 - Legal pages are drafts and must be completed with verified operator details and reviewed before production.
 
 ## Approved display prices
-The approved paid monthly display prices are **€4.99, €6.99, €8.99, €11.99, and €13.99**. These are informational only until a real payment provider, server-side checkout, signed webhook processing, cancellation/refund flows, and entitlement checks have been configured and tested. No charge can currently be made by this prototype. Do not use €15.99.
+
+The approved paid monthly prices are **€4.99, €6.99, €8.99, €11.99 and €13.99**. Each price is mapped server-side to a dedicated recurring Stripe Price ID and is checked for currency, amount and monthly interval before a checkout session is created. Do not use €15.99.
 
 ## Production release gates
-1. Apply and verify all Supabase migrations in the intended project.
-2. Verify email confirmation, sign-in/out, password reset, OAuth redirects, and two-user data isolation.
-3. Verify profile save/load, private photo upload, export, and deletion in a real browser.
-4. Configure and test secure request intake and a support workflow.
-5. Configure a real payment provider and test checkout, signed/idempotent webhooks, subscription lifecycle, cancellation, refunds, and access entitlements.
-6. Add appropriate rate limiting, monitoring, privacy retention, and account/data export/deletion processes.
-7. Replace legal placeholders with verified operator details and obtain legal review.
-8. Test the deployed Vercel site on desktop and mobile, confirm the production domain, and keep a rollback plan.
 
-A green static validation workflow is not a full browser, payment, authentication, or security test. Do not describe the platform as 100% complete until all applicable release gates pass.
+1. Apply and verify all Supabase migrations, including `20261010020000_stripe_webhook_idempotency.sql`, in the intended Supabase project.
+2. Set server-only variables in Vercel. Configure all five approved Stripe Price IDs and ensure test-mode keys/prices/webhook are all in test mode.
+3. Enable Stripe Billing Portal cancellation settings and subscribe the webhook destination to checkout, subscription update/delete and invoice paid/failed events.
+4. Complete sandbox checkout, confirm a membership row is written to the correct user, and verify duplicate webhook delivery does not create duplicate records.
+5. Test renewals, failed payments, cancellation and access status updates, plus two-user account isolation.
+6. Verify email confirmation, sign-in/out, password reset, OAuth redirects, profile save/load, private photo upload, export and deletion in a real browser.
+7. Configure and test secure support-request intake and appropriate abuse controls, monitoring and data retention.
+8. Replace legal placeholders with verified operator details, obtain legal review, test desktop/mobile and keep a rollback plan.
+
+A green deployment or static-validation workflow is not a full browser, payment, authentication or security test. Do not switch to live-mode payments until all applicable release gates pass.
