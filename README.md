@@ -11,7 +11,10 @@ A responsive static website prototype for the DIGITAL FUTURE STATE concept, with
 - `api/stripe-webhook.js` — raw-body Stripe signature validation, event deduplication and membership lifecycle writes.
 - `api/stripe-portal.js` — authenticated Stripe Billing Portal session creation.
 - `api/health.js`, `api/requests.js` — configuration checks and support-request endpoint.
-- `database/schema.sql` and `supabase/migrations/` — database schema, row-level policies and webhook event ledger.
+- `database/schema.sql` — core tables and row-level security policies.
+- `database/storage-profile-photos.sql` — private profile-photo bucket and per-user storage policies; apply in the intended Supabase project.
+- `database/stripe-webhook-events.sql` — private Stripe webhook event ledger used for event deduplication; apply before configuring the webhook.
+- `supabase/migrations/` — additional versioned database migrations.
 - `app.js`, `styles.css` — public-site behavior and design.
 - `widerruf.html`, `agb.html`, `datenschutz.html`, `impressum.html` — legal-information drafts.
 
@@ -32,9 +35,19 @@ This repository is **not yet cleared for live payment launch**. Subscription cod
 
 The approved paid monthly prices are **€4.99, €6.99, €8.99, €11.99 and €13.99**. Each price is mapped server-side to a dedicated recurring Stripe Price ID and is checked for currency, amount and monthly interval before a checkout session is created. Do not use €15.99.
 
+## Required Supabase and Stripe setup
+
+Before testing accounts and subscriptions, open the Supabase SQL Editor for the project configured in Vercel and apply, in order:
+
+1. `database/schema.sql` if the core tables and row-level security policies have not already been applied.
+2. `database/storage-profile-photos.sql` to create the private profile-photo bucket and per-user storage rules.
+3. `database/stripe-webhook-events.sql` to create the private webhook event ledger used by `api/stripe-webhook.js`.
+
+Then configure server-only Vercel variables for the same Supabase project and the Stripe test environment. Do not paste secret keys into source files or browser configuration. The repository cannot apply SQL to the external Supabase project by itself; verify the SQL editor reports success and then test a new account and profile-photo upload.
+
 ## Production release gates
 
-1. Apply and verify all Supabase migrations, including `20261010020000_stripe_webhook_idempotency.sql`, in the intended Supabase project.
+1. Apply and verify all Supabase migrations, including `database/stripe-webhook-events.sql`, in the intended Supabase project.
 2. Set server-only variables in Vercel. Configure all five approved Stripe Price IDs and ensure test-mode keys/prices/webhook are all in test mode.
 3. Enable Stripe Billing Portal cancellation settings and subscribe the webhook destination to checkout, subscription update/delete and invoice paid/failed events.
 4. Complete sandbox checkout, confirm a membership row is written to the correct user, and verify duplicate webhook delivery does not create duplicate records.
