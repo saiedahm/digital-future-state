@@ -41,7 +41,10 @@ jobs:
             [portal, 'APP_ALLOWED_ORIGINS', 'Billing portal must validate allowed origins.'],
             [portal, 'Authorization: authHeader', 'Billing portal must validate the signed-in user's token.'],
             [account, 'deleteProfile', 'Account page should expose the profile deletion control.'],
-            [config, 'sb_publishable_', 'Browser Supabase configuration must use a publishable key.']
+            [config, 'sb_publishable_', 'Browser Supabase configuration must use a publishable key.'],
+            [health, 'paymentMode', 'Health endpoint must report the detected Stripe key mode.'],
+            [health, 'releaseReady = false', 'Health endpoint must not claim release readiness from configuration presence alone.'],
+            [health, 'stripeSecretFormatValid', 'Health endpoint must validate Stripe secret-key format.']
           ];
           for (const [source, token, message] of required) {
             if (!source.includes(token)) throw new Error(message);
