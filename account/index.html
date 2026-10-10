@@ -35,6 +35,7 @@
   <h2>Membership status</h2>
   <p id="membershipStatusText" role="status" aria-live="polite">Sign in to view the membership linked to your account.</p>
   <a class="btn" href="/membership/">View membership plans</a>
+  <button class="btn" id="manageBilling" type="button" style="display:none">Manage / cancel subscription</button>
 </section>
 </main>
 <footer class="footer">© 2026 DIGITAL FUTURE STATE · <a href="/datenschutz.html" data-legal="/datenschutz.html">Privacy</a><a href="/impressum.html" data-legal="/impressum.html">Legal notice</a><a href="/agb.html" data-legal="/agb.html">Terms</a></footer>
@@ -55,9 +56,12 @@ async function loadMembership(){
  if(!output)return;
  if(!client||!session){output.textContent='Sign in to view the membership linked to your account.';return;}
  output.textContent='Checking your membership status…';
- const {data,error}=await client.from('memberships').select('plan_code,amount_cents,currency,status,current_period_end,created_at').eq('user_id',session.user.id).order('created_at',{ascending:false}).limit(1);
+ const {data,error}=await client.from('memberships').select('plan_code,amount_cents,currency,status,current_period_end,created_at,provider_customer_id').eq('user_id',session.user.id).order('created_at',{ascending:false}).limit(20);
  if(error){output.textContent='Membership status is temporarily unavailable. Please try again later.';return;}
- const row=Array.isArray(data)?data[0]:null;
+ const rows=Array.isArray(data)?data:[];
+ const row=rows.find(item=>['active','past_due','incomplete','pending'].includes(item.status))||rows[0];
+ const manageButton=$('manageBilling');
+ if(manageButton)manageButton.style.display=row&&row.provider_customer_id?'inline-block':'none';
  if(!row){output.textContent='No paid membership is linked to this account. Public directory browsing remains free.';return;}
  const names={essential:'Visitor Pass',plus:'Citizen / Resident',premium:'Organization / State',professional:'Diplomat',business:'Business Executive',organization:'Organization'};
  const states={pending:'Pending verification',active:'Active',past_due:'Payment needs attention',canceled:'Canceled',incomplete:'Incomplete'};
@@ -126,6 +130,22 @@ $('exportBackup').addEventListener('click',async()=>{
   document.body.appendChild(link);link.click();link.remove();URL.revokeObjectURL(url);
   status('Backup downloaded to this device. Keep the file private; it contains personal information.');
 });
-update();init();$('signOut').addEventListener('click',async()=>{if(!client)return;status('Signing out…');const {error}=await client.auth.signOut();if(error){status('Could not sign out: '+error.message);return;}session=null;updateAuthControls();status('You are signed out.');location.replace('/account/auth.html');});client?.auth.onAuthStateChange((_event,newSession)=>{session=newSession;updateAuthControls();if(!session)status('You are signed out. Sign in again to save your profile.');});
+update();init();
+$('manageBilling').addEventListener('click',async()=>{
+ if(!client||!session){status('Sign in to manage your membership.');return;}
+ const button=$('manageBilling');button.disabled=true;button.textContent='Opening secure billing…';
+ try{
+  const fresh=await client.auth.getSession();
+  const token=fresh.data&&fresh.data.session&&fresh.data.session.access_token;
+  if(!token){status('Your session expired. Sign in again.');return;}
+  const response=await fetch('/api/stripe-portal',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:'{}'});
+  const data=await response.json().catch(()=>({}));
+  if(!response.ok||!data.url){status(data.error||'Billing management is not available yet.');return;}
+  if(!data.url.startsWith('https://billing.stripe.com/')){status('The billing destination could not be verified.');return;}
+  location.assign(data.url);
+ }catch(_){status('Billing management could not be reached. Please try again.');}
+ finally{button.disabled=false;button.textContent='Manage / cancel subscription';}
+});
+$('signOut').addEventListener('click',async()=>{if(!client)return;status('Signing out…');const {error}=await client.auth.signOut();if(error){status('Could not sign out: '+error.message);return;}session=null;updateAuthControls();status('You are signed out.');location.replace('/account/auth.html');});client?.auth.onAuthStateChange((_event,newSession)=>{session=newSession;updateAuthControls();if(!session)status('You are signed out. Sign in again to save your profile.');});
 })();
 </script></body></html>
