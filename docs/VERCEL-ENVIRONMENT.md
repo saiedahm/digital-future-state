@@ -15,6 +15,7 @@ Required for authenticated checkout, webhook processing, and support requests:
 - `APP_ALLOWED_ORIGINS` — comma-separated exact trusted origins, e.g. `https://digital-future-state.vercel.app`. Do not include paths or trailing slashes.
 - `STRIPE_SECRET_KEY` — secret API key for the same Stripe mode used by your webhook and Price IDs.
 - `STRIPE_WEBHOOK_SECRET` — signing secret for the Stripe destination pointing at `https://digital-future-state.vercel.app/api/stripe-webhook`.
+- `STRIPE_BILLING_PORTAL_CONFIGURATION_ID` — optional Billing Portal configuration ID, if you want to pin the portal session to a specific cancellation/payment-method configuration.
 
 Create five recurring monthly EUR prices in Stripe for the approved amounts, then set the corresponding Price IDs in Vercel:
 
@@ -34,7 +35,7 @@ Apply `supabase/migrations/20261010020000_stripe_webhook_idempotency.sql` to the
 
 ## Stripe destination events
 
-Configure the destination URL above and subscribe to these events so the membership lifecycle can be synchronized:
+Enable the Stripe Billing Portal in the Dashboard and allow customers to view invoices, update payment methods and cancel subscriptions according to your chosen policy. Configure the destination URL above and subscribe to these events so the membership lifecycle can be synchronized:
 
 - `checkout.session.completed`
 - `checkout.session.async_payment_succeeded`
