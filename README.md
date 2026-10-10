@@ -3,55 +3,36 @@
 A responsive static website prototype for the DIGITAL FUTURE STATE concept.
 
 ## Files
-- `index.html` — landing page, passport-style profile preview, sample directory, security notes, citizen contact form, footer legal links, and navigation to the integration pilot.
-- `integrations/index.html` — 20 candidate technology providers with official developer documentation; these are research candidates, not confirmed partners.
-- `integrations/global-directory.html` — searchable catalog of 120 additional candidates, 20 each from the United States, Europe, China, South Korea, other Asian markets, and the Middle East. Official portals are research starting points, not proof of an available API or partnership.
-- `account/auth.html` — email/password, email-link account access, password-reset completion, plus Google and Microsoft OAuth entry points through Supabase.
-- `supabase/migrations/20261011000000_profile_self_delete.sql` — least-privilege policy allowing an authenticated user to delete only their own saved profile record.
-- `docs/IDENTITY-INTEGRATION-PILOT.md` — provider configuration requirements and staged rollout plan.
-- `styles.css` — responsive dark navy / gold design system.
-- `app.js` — menu, profile preview, local photo preview, directory search, print action, email-draft contact interaction, cookie notice.
-- `widerruf.html`, `agb.html`, `datenschutz.html`, `impressum.html` — German legal-information drafts.
-
-## Preview
-Open `index.html` in a browser or deploy this repository as a static site on Vercel / GitHub Pages.
+- `index.html` — public landing page, passport-style profile preview, directory, contact form and legal links.
+- `account/auth.html` and `account/index.html` — Supabase authentication and personal-profile UI.
+- `membership/index.html` — informational membership plans.
+- `database/schema.sql` and `supabase/migrations/` — PostgreSQL/Supabase schema and access policies.
+- `api/health.js`, `api/requests.js`, `api/stripe-checkout.js`, `api/stripe-webhook.js` — serverless endpoint scaffolds.
+- `app.js`, `styles.css` — public-site behavior and design.
+- `widerruf.html`, `agb.html`, `datenschutz.html`, `impressum.html` — legal-information drafts.
 
 ## Important status
-This is a **front-end prototype**, not a production identity or subscription service.
-- The homepage's quick preview is browser-only. The separate account page can load/save the profile through Supabase only after the database migrations and authentication settings are configured.
-- The profile/passport-style card is not a government document, passport, visa, or proof of citizenship.
-- Supabase email/password and email-link authentication code is present; Google and Microsoft OAuth buttons are wired to Supabase but require provider configuration and production end-to-end testing before they can be called working.
-- No identity verification, server-side contact storage, payment checkout, active paid membership, or universal single sign-on to external websites is implemented.
-- The contact form opens the visitor's email application to prepare a message to `contact@digital-future.ai`; it does not send or store the message itself.
-- The sample directory contains public external links and does not imply partnerships or supported single sign-on.
-- Planned membership display prices are €4.99, €6.99, €8.99, €11.99, and €15.99/month for the non-free tiers. The €13.99 price is not approved. These prices are informational only; no charge can be made by this prototype.
-- Legal pages contain draft text and placeholders. Complete them with accurate operator details and obtain legal review before production.
+This repository is **not yet a production-ready identity or subscription service**.
+- Public browsing and the landing-page preview are available without a subscription.
+- Account creation and profile save/load depend on the configured Supabase project, applied migrations, and authentication redirect settings.
+- The profile/passport-style card is a platform profile, not a government document, passport, visa, proof of citizenship, or verified identity credential.
+- Google and Microsoft sign-in require provider configuration and end-to-end tests.
+- Real checkout, active memberships, cancellation/refunds, and verified paid entitlements are not enabled. The API checkout and webhook endpoints intentionally fail closed.
+- The public contact form currently prepares an email draft; it does not submit a server-side request.
+- The directory lists public external links and does not imply partnerships or universal sign-in.
+- Legal pages are drafts and must be completed with verified operator details and reviewed before production.
 
-## Before production
-1. Apply the Supabase migrations in chronological order to the intended project, then test each operation with two separate test accounts. The profile deletion control requires the `20261011000000_profile_self_delete.sql` migration.
-2. Confirm provider setup for Google/Microsoft and test redirect URLs, sign-out, email confirmation, password reset and account recovery.
-3. Add a secure authentication and database layer with access controls and data minimization.
-2. Implement and test the real complaint/request intake path and privacy retention process.
-3. Configure a payment provider and legally compliant subscription, cancellation, and refund flows.
-4. Replace legal placeholders with verified details and reviewed legal text.
-5. Verify the custom domain and production deployment settings before switching live traffic.
+## Approved display prices
+The approved paid monthly display prices are **€4.99, €6.99, €8.99, €11.99, and €13.99**. These are informational only until a real payment provider, server-side checkout, signed webhook processing, cancellation/refund flows, and entitlement checks have been configured and tested. No charge can currently be made by this prototype. Do not use €15.99.
 
+## Production release gates
+1. Apply and verify all Supabase migrations in the intended project.
+2. Verify email confirmation, sign-in/out, password reset, OAuth redirects, and two-user data isolation.
+3. Verify profile save/load, private photo upload, export, and deletion in a real browser.
+4. Configure and test secure request intake and a support workflow.
+5. Configure a real payment provider and test checkout, signed/idempotent webhooks, subscription lifecycle, cancellation, refunds, and access entitlements.
+6. Add appropriate rate limiting, monitoring, privacy retention, and account/data export/deletion processes.
+7. Replace legal placeholders with verified operator details and obtain legal review.
+8. Test the deployed Vercel site on desktop and mobile, confirm the production domain, and keep a rollback plan.
 
-## Brand system and static quality files
-- `assets/dfs-emblem.svg` — shared gold biometric shield emblem used by the header and passport preview.
-- `assets/favicon.svg` — matching browser icon.
-- `manifest.webmanifest` — basic installable-web-app metadata.
-- `robots.txt` and `sitemap.xml` — basic crawl discovery files.
-
-The passport preview consistently reads **DIGITAL FUTURE STATE** at the top, uses the shared platform emblem in the center/header area, and displays **PASSPORT** with a biometric emblem at the bottom. This is a design motif for a platform profile, not an official travel or government identity document.
-
-
-## Pre-deployment quality gate
-The repository includes automated syntax and static asset checks. A passing workflow is not a full browser, payment, authentication, or security penetration test. The current contact form prepares a `mailto:` message; no server receives it. The cookie notice stores only its dismissed state in local browser storage; this prototype does not run analytics or advertising scripts.
-
-## Deployment checklist
-- Preview the branch deployment and test desktop/mobile layouts and all navigation paths.
-- Confirm the operator's legal details and obtain review of all legal pages.
-- Configure a real, secure backend for accounts, requests, membership entitlements, and audit/security controls.
-- Configure and test subscription checkout and cancellation with a payment provider; do not collect card details directly.
-- Confirm domain DNS, TLS, redirects, and rollback plan before changing production traffic.
+A green static validation workflow is not a full browser, payment, authentication, or security test. Do not describe the platform as 100% complete until all applicable release gates pass.
