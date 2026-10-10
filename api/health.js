@@ -32,12 +32,22 @@ module.exports = async function handler(req, res) {
     checks.stripeSecretConfigured &&
     checks.stripeWebhookSecretConfigured &&
     checks.stripePriceIdsConfigured;
+  const stripeKey = process.env.STRIPE_SECRET_KEY || "";
+  const stripeMode = stripeKey.startsWith("sk_test_")
+    ? "test"
+    : stripeKey.startsWith("sk_live_")
+      ? "live"
+      : "unknown";
+  const stripeSecretFormatValid = /^sk_(test|live)_[A-Za-z0-9]+$/.test(stripeKey);
+  const releaseReady = false;
 
   return res.status(200).json({
     service: "DIGITAL FUTURE STATE",
-    status: "configuration-check-only",
-    paymentConfigurationPresent: checkoutConfigured,
-    checks,
-    note: "Presence checks only. This endpoint does not verify database connectivity, applied migrations, Stripe account mode, webhook delivery, or successful payment processing."
+    status: checkoutConfigured && stripeSecretFormatValid ? "configuration-present-not-verified" : "configuration-incomplete",
+    paymentConfigurationPresent: checkoutConfigured && stripeSecretFormatValid,
+    paymentMode: stripeMode,
+    releaseReady,
+    checks: { ...checks, stripeSecretFormatValid },
+    note: "Configuration presence and key format only. This endpoint does not verify database connectivity, applied migrations, Stripe account mode against Price IDs, webhook delivery, or successful end-to-end payments. Release readiness remains false until those tests pass."
   });
 };
