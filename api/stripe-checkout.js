@@ -81,6 +81,33 @@ module.exports = async function handler(req, res) {
       return json(res, 401, { error: "Could not verify your account." });
     }
 
+    const membershipQuery = new URLSearchParams({
+      user_id: "eq." + user.id,
+      select: "provider_customer_id,status,created_at",
+      order: "created_at.desc",
+      limit: "20"
+    });
+    const membershipsResponse = await fetch(
+      supabaseUrl + "/rest/v1/memberships?" + membershipQuery.toString(),
+      { headers: { apikey: serviceKey, Authorization: "Bearer " + serviceKey } }
+    );
+    if (!membershipsResponse.ok) {
+      console.error("Could not check existing memberships", membershipsResponse.status);
+      return json(res, 503, { error: "Membership storage is not ready. No payment has been started." });
+    }
+    const existingRows = await membershipsResponse.json();
+    const activeLike = Array.isArray(existingRows) && existingRows.find(row =>
+      ["active", "past_due", "pending", "incomplete"].includes(row.status)
+    );
+    if (activeLike) {
+      return json(res, 409, {
+        error: "An existing membership is active or still being processed. Use the account billing controls instead of starting a second subscription."
+      });
+    }
+    const reusableCustomer = Array.isArray(existingRows)
+      ? existingRows.find(row => row.provider_customer_id && row.status === "canceled")
+      : null;
+
     const params = new URLSearchParams();
     params.set("mode", "subscription");
     params.set("success_url", origin + "/membership/success.html?session_id={CHECKOUT_SESSION_ID}");
@@ -96,7 +123,9 @@ module.exports = async function handler(req, res) {
     params.set("subscription_data[metadata][amount_cents]", String(plan.amount));
     params.set("allow_promotion_codes", "false");
 
-    if (typeof user.email === "string" && user.email.length <= 254) {
+    if (reusableCustomer) {
+      params.set("customer", reusableCustomer.provider_customer_id);
+    } else if (typeof user.email === "string" && user.email.length <= 254) {
       params.set("customer_email", user.email);
     }
 
