@@ -43,7 +43,7 @@
         const body=document.createElement('span');const b=document.createElement('b');b.textContent=item.name;const small=document.createElement('small');small.textContent=[item.category,item.country||item.region].filter(Boolean).join(' · ')||'Official website';body.append(b,small);
         const arrow=document.createElement('i');arrow.textContent='↗';a.append(avatar,body,arrow);root.appendChild(a);
       });
-      if(status)status.textContent=entries.length+' verified-format listings loaded · showing '+list.length+'. Links are external; availability and partnership are not implied.';
+      if(status)status.textContent=entries.length+' directory entries loaded · showing '+list.length+'. Official URLs are listed for discovery; availability, verification and partnership are not implied.';
     }
     [search,category,country].filter(Boolean).forEach(el=>el.addEventListener('input',render));
     [category,country].filter(Boolean).forEach(el=>el.addEventListener('change',render));
