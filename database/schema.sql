@@ -29,7 +29,7 @@ create table if not exists public.memberships (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references auth.users(id) on delete cascade,
   plan_code text not null check (plan_code in ('essential','plus','premium','professional','business','organization')),
-  amount_cents integer not null check (amount_cents in (499,699,899,1199,1399,1599)),
+  amount_cents integer not null check (amount_cents in (499,699,899,1199,1599)),
   currency char(3) not null default 'EUR' check (currency = 'EUR'),
   billing_interval text not null default 'month' check (billing_interval = 'month'),
   provider_customer_id text,
