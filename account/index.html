@@ -29,7 +29,7 @@
 <div class="passhead"><img src="/dfs-gold-emblem.png" alt=""> <span>DIGITAL FUTURE STATE</span></div>
 <div class="passbody"><div class="portrait" id="portrait">PROFILE PHOTO</div><div class="data"><small>PROFILE HOLDER</small><b id="pName">YOUR NAME</b><small>PROFILE TYPE</small><b id="pType">GLOBAL PASS</b><small>COUNTRY</small><b id="pCountry">NOT PROVIDED</b><small>DATE OF BIRTH</small><b id="pBirth">NOT PROVIDED</b></div></div>
 <div class="passfoot"><span>ONE ID · GLOBAL ACCESS</span><span>NOT AN OFFICIAL DOCUMENT</span></div></div>
-<p class="notice">This is a platform profile design only. It is not a passport, government ID, visa, or proof of citizenship.</p><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px"><button class="btn" id="print" type="button">Print / save preview</button><button class="btn" id="exportBackup" type="button">Download my passport backup</button></div><p class="notice">Your account is the main saved copy. The backup file is an extra copy on your own device; keep it private and do not share it.</p></section>
+<p class="notice">This is a platform profile design only. It is not a passport, government ID, visa, or proof of citizenship.</p><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px"><button class="btn" id="print" type="button">Print / save preview</button><button class="btn" id="exportBackup" type="button">Download profile data backup</button></div><p class="notice">Your account is the main saved copy. The JSON backup contains your saved profile fields and photo storage path, not the actual photo image. Keep it private and do not share it.</p></section>
 </div></main>
 <footer class="footer">© 2026 DIGITAL FUTURE STATE · <a href="/datenschutz.html" data-legal="/datenschutz.html">Privacy</a><a href="/impressum.html" data-legal="/impressum.html">Legal notice</a><a href="/agb.html" data-legal="/agb.html">Terms</a></footer>
 </div>
@@ -55,7 +55,7 @@ $('exportBackup').addEventListener('click',async()=>{
   const {data:profile,error}=await client.from('profiles').select('display_name,country,birth_date,profile_type,photo_path,created_at,updated_at').eq('user_id',session.user.id).maybeSingle();
   if(error){status('Could not read saved profile: '+error.message);return;}
   if(!profile){status('Save your profile first, then download a backup.');return;}
-  const backup={product:'DIGITAL FUTURE STATE',type:'personal-profile-backup',notOfficialIdentityDocument:true,exportedAt:new Date().toISOString(),profile};
+  const backup={product:'DIGITAL FUTURE STATE',type:'personal-profile-data-backup',notOfficialIdentityDocument:true,photoImageIncluded:false,exportedAt:new Date().toISOString(),profile};
   const blob=new Blob([JSON.stringify(backup,null,2)],{type:'application/json'});
   const url=URL.createObjectURL(blob),link=document.createElement('a');
   link.href=url;link.download='digital-future-state-passport-backup.json';
