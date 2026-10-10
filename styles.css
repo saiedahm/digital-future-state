@@ -370,3 +370,19 @@
 .connected-platform-note{display:flex;align-items:flex-start;gap:10px;margin:18px 0 0;padding:15px 17px;border:1px solid rgba(217,182,107,.42);border-left:3px solid var(--gold2);border-radius:10px;background:rgba(217,182,107,.055);color:#c6d2e1;font-size:13px;line-height:1.7}
 .connected-platform-note>span{color:var(--gold2);font-size:18px}
 @media(max-width:700px){.connected-platform-grid{grid-template-columns:1fr;gap:14px}.connected-platform-card{padding:22px 18px}.connected-platform-top{margin-bottom:18px}.connected-platform-status{font-size:9px}.connected-platform-link{width:100%}}
+
+
+/* Priority services surfaced on the citizen homepage */
+.priority-service-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:13px;margin:22px 0 18px}
+.priority-service-card{position:relative;display:flex;flex-direction:column;min-width:0;min-height:205px;padding:19px 16px 15px;background:linear-gradient(145deg,#0e223b,#09182b);border:1px solid rgba(217,182,107,.28);border-radius:14px;transition:border-color .2s,transform .2s}
+.priority-service-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.priority-service-number{font-size:9px;letter-spacing:1.5px;color:var(--gold);margin-bottom:16px}
+.priority-service-card h3{font-size:15px;margin:0 0 7px}
+.priority-service-card p{font-size:11px;line-height:1.7;color:var(--muted);margin:0 0 15px}
+.priority-service-card a{font-size:11px;font-weight:700;color:var(--gold2);margin-top:auto}
+.priority-service-card small{font-size:9px;line-height:1.55;color:#b8c6d6;border-top:1px solid var(--line);padding-top:10px;margin-top:12px}
+.priority-services-note{font-size:11px;line-height:1.8;color:var(--muted);border-left:2px solid var(--gold);padding-left:13px}
+.priority-services-note a{color:var(--gold2)}
+@media(max-width:1050px){.priority-service-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:650px){.priority-service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.priority-service-card{padding:16px 12px;min-height:215px}}
+@media(max-width:390px){.priority-service-grid{grid-template-columns:1fr}}
