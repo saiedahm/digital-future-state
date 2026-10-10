@@ -100,8 +100,9 @@ jobs:
             'https://www.dhl.com/',
             'https://www.booking.com/',
             '/integrations/priority-ten.html',
-            'technical integration not yet verified',
-            'not endorsements or claims of partnership'
+            'data-i18n="citizenServicesStatus"',
+            'data-i18n="citizenServicesTrust"',
+            'data-i18n="citizenServicesRoadmap"'
           ]) {
             if (!priority.includes(token)) throw new Error('Citizen priority directory is missing required link or transparent status: ' + token);
           }
