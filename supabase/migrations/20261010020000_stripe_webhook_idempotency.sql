@@ -8,4 +8,5 @@ create table if not exists public.stripe_webhook_events (
 
 alter table public.stripe_webhook_events enable row level security;
 revoke all on public.stripe_webhook_events from anon, authenticated;
+grant select, insert on public.stripe_webhook_events to service_role;
 -- The table is accessed only by the server using the Supabase service-role key.
