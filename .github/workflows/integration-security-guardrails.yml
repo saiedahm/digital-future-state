@@ -25,6 +25,8 @@ jobs:
           const health = fs.readFileSync('api/health.js', 'utf8');
           const account = fs.readFileSync('account/index.html', 'utf8');
           const config = fs.readFileSync('supabase/config.js', 'utf8');
+          const homepage = fs.readFileSync('index.html', 'utf8');
+          const styles = fs.readFileSync('styles.css', 'utf8');
 
           const required = [
             [checkout, 'APP_ALLOWED_ORIGINS', 'Checkout must validate allowed origins.'],
@@ -64,7 +66,13 @@ jobs:
           ]) {
             if (!schema.includes(token)) throw new Error('Database security invariant missing: ' + token);
           }
-          console.log('Static integration security guardrails passed. Runtime configuration and end-to-end tests are still required.');
+          for (const token of ['trial-banner', '30 October 2026', '30/10/2026', 'TRIAL PERIOD']) {
+            if (!homepage.includes(token)) throw new Error('Trial announcement missing required text: ' + token);
+          }
+          for (const token of ['.trial-banner', 'max-width:600px', 'var(--gold2)']) {
+            if (!styles.includes(token)) throw new Error('Trial announcement styling missing: ' + token);
+          }
+          console.log('Static integration security guardrails and trial-banner checks passed. Runtime configuration and end-to-end tests are still required.');
           NODE
       - name: Check server endpoint syntax
         run: |
