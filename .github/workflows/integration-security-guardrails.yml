@@ -13,6 +13,8 @@ jobs:
   guardrails:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
       - name: Verify payment and account safety invariants
         run: |
           node <<'NODE'
