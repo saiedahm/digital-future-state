@@ -41,12 +41,31 @@
 </section>
 </main>
 <footer class="footer">© 2026 DIGITAL FUTURE STATE · <a href="/datenschutz.html">Privacy</a><a href="/impressum.html">Legal notice</a><a href="/agb.html">Terms</a></footer>
+
+<div class="legal-modal" id="legalModal" role="dialog" aria-modal="true" aria-label="Legal information">
+  <div class="legal-dialog" style="display:flex;flex-direction:column">
+    <button type="button" class="legal-close" id="closeLegal" aria-label="Close legal page">×</button>
+    <div id="legalContent" style="overflow:auto;padding:30px 24px 24px;min-height:0;flex:1;color:#f7f4eb">
+      <p style="color:#d8b56b">Loading page…</p>
+    </div>
+  </div>
+</div>
+
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="/supabase/config.js"></script><script src="/supabase/client.js"></script>
 <script>
 (()=>{const $=id=>document.getElementById(id);let photoFile=null, client=window.dfsSupabase, session=null;
 function status(s){$('status').textContent=s;}
+const legalModal=$('legalModal'),legalContent=$('legalContent'),closeLegalButton=$('closeLegal');
+let legalReturnFocus=null;
+function closeLegal(){legalModal.classList.remove('open');document.body.style.overflow='';if(legalReturnFocus&&typeof legalReturnFocus.focus==='function')legalReturnFocus.focus();}
+async function openLegal(link){legalReturnFocus=link;legalContent.innerHTML='<p style="color:#d8b56b">Loading page…</p>';legalModal.classList.add('open');document.body.style.overflow='hidden';closeLegalButton.focus();try{const response=await fetch(link.href,{credentials:'same-origin'});if(!response.ok)throw new Error('HTTP '+response.status);const source=await response.text();const parsed=new DOMParser().parseFromString(source,'text/html');const main=parsed.querySelector('.legal-main, main');if(!main)throw new Error('Legal content not found');legalContent.replaceChildren(main.cloneNode(true));legalContent.querySelectorAll('a').forEach(a=>{const href=a.getAttribute('href');if(href&&/^https?:|^mailto:|^tel:/i.test(href)){a.target='_blank';a.rel='noopener noreferrer';}else if(href){a.addEventListener('click',e=>{e.preventDefault();closeLegal();location.href=a.href;});}});legalContent.querySelectorAll('h1,h2,h3').forEach(el=>el.style.color='#f7f4eb');legalContent.querySelectorAll('p,li').forEach(el=>el.style.color='#c7d3e1');}catch(error){legalContent.innerHTML='<h2 style="color:#f7f4eb">Page could not be loaded</h2><p style="color:#c7d3e1">Please try again shortly.</p>';}}
+document.querySelectorAll('.footer a[href="/datenschutz.html"],.footer a[href="/impressum.html"],.footer a[href="/agb.html"]').forEach(link=>{link.addEventListener('click',event=>{event.preventDefault();openLegal(link);});});
+closeLegalButton.addEventListener('click',closeLegal);
+legalModal.addEventListener('click',event=>{if(event.target===legalModal)closeLegal();});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&legalModal.classList.contains('open'))closeLegal();});
+
 const passPrices={'Global Pass':'Free basic profile','Visitor Pass':'€4.99 / month · planned','Citizen / Resident':'€6.99 / month · planned','Organization / State':'€8.99 / month · planned','Diplomat':'€11.99 / month · planned','Business Executive':'€13.99 / month · planned'};
 function update(){const selected=$('passType').value;const price=$('accountPassPrice');if(price)price.textContent=selected+' · '+(passPrices[selected]||'Price to be confirmed')+'. Selecting this design does not start or change a subscription.';const palette={'Global Pass':{color:'#d8b56b',bg:'linear-gradient(135deg,#142b43,#071426)'},'Visitor Pass':{color:'#168dff',bg:'linear-gradient(135deg,#06356f,#071426)'},'Citizen / Resident':{color:'#16c784',bg:'linear-gradient(135deg,#075438,#071426)'},'Organization / State':{color:'#d8e5f2',bg:'linear-gradient(135deg,#e2edf7,#647b93)'},'Diplomat':{color:'#e4bb45',bg:'linear-gradient(135deg,#090a0d,#241d0b)'},'Business Executive':{color:'#ed2944',bg:'linear-gradient(135deg,#790b1b,#240711)'}};const theme=palette[selected]||palette['Global Pass'];const pass=$('passport');pass.style.setProperty('--pass-accent',theme.color);pass.style.background=theme.bg;pass.style.color=selected==='Organization / State'?'#071426':'var(--white)';pass.dataset.passType=selected; $('pName').textContent=($('fullName').value.trim()||'YOUR NAME').toUpperCase();$('pCountry').textContent=($('country').value.trim()||'NOT PROVIDED').toUpperCase();$('pBirth').textContent=$('birthDate').value||'NOT PROVIDED';$('pType').textContent=selected.toUpperCase();document.querySelectorAll('.pass-choice').forEach(btn=>{const active=btn.dataset.type===selected;btn.setAttribute('aria-pressed',String(active));btn.style.setProperty('--choice-color',theme.color);});}
 ['fullName','country','birthDate'].forEach(id=>$(id).addEventListener('input',update));$('passType').addEventListener('change',update);$('passType').addEventListener('input',update);document.querySelectorAll('.pass-choice').forEach(btn=>btn.addEventListener('click',()=>{$('passType').value=btn.dataset.type;update();}));$('photo').addEventListener('change',()=>{const f=$('photo').files[0];if(!f)return;if(!['image/jpeg','image/png','image/webp'].includes(f.type)||f.size>2*1024*1024){status('Choose a JPG, PNG or WebP image smaller than 2 MB.');$('photo').value='';return;}photoFile=f;const reader=new FileReader();reader.onload=()=>{const box=$('portrait'),img=new Image();img.src=String(reader.result);img.alt='Profile preview';box.replaceChildren(img);};reader.readAsDataURL(f);});
