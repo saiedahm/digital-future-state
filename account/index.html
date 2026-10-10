@@ -32,9 +32,11 @@
 <p class="notice">This is a platform profile design only. It is not a passport, government ID, visa, or proof of citizenship.</p><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px"><button class="btn" id="print" type="button">Print / save preview</button><button class="btn" id="exportBackup" type="button">Download profile data backup</button><button class="btn btn-danger" id="deleteProfile" type="button">Delete saved profile data</button></div><p class="notice">Your account is the main saved copy. The JSON backup contains your saved profile fields and photo storage path, not the actual photo image. Keep it private and do not share it.</p></section>
 </div>
 <section class="panel" id="membershipPanel" style="margin:0 0 32px">
-  <h2>Membership status</h2>
+  <h2>Your digital pass and membership</h2>
+  <div class="notice" style="margin-bottom:14px"><strong style="color:var(--white)">Active pass level</strong><br><span id="effectivePassTitle">Global Pass · Free</span><br><span id="effectivePassDescription">Free profile and access to public pages.</span></div>
   <p id="membershipStatusText" role="status" aria-live="polite">Sign in to view the membership linked to your account.</p>
-  <a class="btn" href="/membership/">View membership plans</a>
+  <p class="notice">The active pass level is based on a verified active subscription. The selector above changes only the card preview and cannot grant a paid level. All pass names are private platform membership labels, not government identity or official credentials.</p>
+  <a class="btn" href="/membership/">Compare and upgrade passes</a>
   <button class="btn" id="manageBilling" type="button" style="display:none">Manage / cancel subscription</button>
 </section>
 </main>
@@ -53,21 +55,36 @@ $('photo').addEventListener('change',()=>{const f=$('photo').files[0];if(!f)retu
 function updateAuthControls(){const signedIn=!!session;$('authState').style.display='inline-block';$('authState').textContent=signedIn?'Signed in':'Not signed in';$('authLink').style.display=signedIn?'none':'inline-block';$('signOut').style.display=signedIn?'inline-block':'none';}
 async function loadMembership(){
  const output=$('membershipStatusText');
+ const title=$('effectivePassTitle');
+ const description=$('effectivePassDescription');
  if(!output)return;
  if(!client||!session){output.textContent='Sign in to view the membership linked to your account.';return;}
  output.textContent='Checking your membership status…';
  const {data,error}=await client.from('memberships').select('plan_code,amount_cents,currency,status,current_period_end,created_at').eq('user_id',session.user.id).order('created_at',{ascending:false}).limit(20);
- if(error){output.textContent='Membership status is temporarily unavailable. Please try again later.';return;}
+ if(error){output.textContent='Membership status is temporarily unavailable. Your paid access has not been changed.';if(title)title.textContent='Pass status unavailable';if(description)description.textContent='We could not verify an active paid membership. Please retry later.';return;}
  const rows=Array.isArray(data)?data:[];
- const row=rows.find(item=>['active','past_due','incomplete','pending'].includes(item.status))||rows[0];
+ // Only a server-written, verified ACTIVE Stripe membership grants a paid pass.
+ // Pending, incomplete, canceled and past-due rows never elevate the effective pass.
+ const activeRow=rows.find(item=>item.status==='active')||null;
+ const row=activeRow||rows.find(item=>['past_due','incomplete','pending'].includes(item.status))||rows[0]||null;
+ const names={essential:'Visitor Pass',plus:'Citizen / Resident',premium:'Organization / State',professional:'Diplomat',business:'Business Executive'};
+ const descriptions={
+  essential:'Active paid Visitor membership. Profile and membership status are available in your account.',
+  plus:'Active paid Resident membership. Profile and membership status are available in your account.',
+  premium:'Active Organization / State membership inside this private platform; this is not government affiliation.',
+  professional:'Active Diplomat-labelled membership inside this private platform; this is not a diplomatic credential.',
+  business:'Active Business Executive membership. Profile and membership status are available in your account.'
+ };
+ if(title)title.textContent=activeRow?(names[activeRow.plan_code]||'Paid membership')+' · Active':'Global Pass · Free';
+ if(description)description.textContent=activeRow?(descriptions[activeRow.plan_code]||'Active paid membership inside DIGITAL FUTURE STATE.'):'Free profile and access to public pages. Paid pass levels require verified active payment.';
  const manageButton=$('manageBilling');
  if(manageButton)manageButton.style.display=row&&['active','past_due','incomplete','pending','canceled'].includes(row.status)?'inline-block':'none';
- if(!row){output.textContent='No paid membership is linked to this account. Public directory browsing remains free.';return;}
- const names={essential:'Visitor Pass',plus:'Citizen / Resident',premium:'Organization / State',professional:'Diplomat',business:'Business Executive',organization:'Organization'};
- const states={pending:'Pending verification',active:'Active',past_due:'Payment needs attention',canceled:'Canceled',incomplete:'Incomplete'};
+ if(!row){output.textContent='No paid membership is linked to this account. Your active pass is Global Pass (free). Public directory browsing remains free.';return;}
+ const states={pending:'Pending verification',active:'Active',past_due:'Payment needs attention — paid pass is not granted',canceled:'Canceled',incomplete:'Incomplete — paid pass is not granted'};
  const amount=Number.isFinite(row.amount_cents)?(row.amount_cents/100).toLocaleString('de-DE',{style:'currency',currency:row.currency||'EUR'}):'';
  let message=(names[row.plan_code]||row.plan_code)+' · '+amount+'/month · '+(states[row.status]||row.status);
  if(row.current_period_end){const date=new Date(row.current_period_end);if(!Number.isNaN(date.getTime()))message+=' · period end '+date.toLocaleDateString();}
+ if(!activeRow)message+=' · Effective pass remains Global Pass until payment is verified and active.';
  output.textContent=message;
 }
 async function init(){if(!client){status('Secure account connection is not configured yet. Complete Supabase setup before saving real data.');updateAuthControls();return;}const {data,error}=await client.auth.getSession();if(error||!data.session){session=null;updateAuthControls();status('Please sign in before saving your profile. Use the Sign in / Create account link above.');return;}session=data.session;updateAuthControls();await loadMembership();const {data:profile,error:loadError}=await client.from('profiles').select('display_name,country,birth_date,profile_type,photo_path').eq('user_id',session.user.id).maybeSingle();if(loadError){status('Could not load profile: '+loadError.message);return;}if(profile){$('fullName').value=profile.display_name||'';$('country').value=profile.country||'';$('birthDate').value=profile.birth_date||'';$('passType').value=profile.profile_type||'Global Pass';update();if(profile.photo_path){const {data:photoData,error:photoError}=await client.storage.from('profile-photos').createSignedUrl(profile.photo_path,300);if(!photoError&&photoData?.signedUrl){const img=new Image();img.src=photoData.signedUrl;img.alt='Saved profile photo';$('portrait').replaceChildren(img);}}status('Signed in. Your saved profile is loaded.');}else{
