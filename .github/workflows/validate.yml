@@ -21,6 +21,53 @@ jobs:
           node-version: 22
       - name: Check JavaScript syntax
         run: node --check app.js
+      - name: Check account scripts and core product consistency
+        run: |
+          node --input-type=commonjs <<'NODE'
+          const fs = require('node:fs');
+          const requiredInlinePages = ['account/auth.html', 'account/index.html'];
+          for (const file of requiredInlinePages) {
+            if (!fs.existsSync(file)) throw new Error('Missing account page: ' + file);
+            const source = fs.readFileSync(file, 'utf8');
+            const scripts = [...source.matchAll(/<script\\b[^>]*>([\\s\\S]*?)<\\/script>/gi)]
+              .map(match => match[1].trim()).filter(Boolean);
+            if (!scripts.length) throw new Error('No inline JavaScript found in ' + file);
+            scripts.forEach((script, index) => {
+              try { new Function(script); }
+              catch (error) { throw new Error('Inline JavaScript syntax error in ' + file + ' script ' + (index + 1) + ': ' + error.message); }
+            });
+          }
+          const auth = fs.readFileSync('account/auth.html', 'utf8');
+          for (const id of ['google','azure','recoveryBox','saveNewPassword']) {
+            if (!auth.includes('id="' + id + '"')) throw new Error('Missing expected auth feature: ' + id);
+          }
+          const account = fs.readFileSync('account/index.html', 'utf8');
+          for (const id of ['authState','signOut','deleteProfile','exportBackup']) {
+            if (!account.includes('id="' + id + '"')) throw new Error('Missing expected account feature: ' + id);
+          }
+          for (const token of ["from('profiles').upsert", "from('profiles').delete", "profile-photos"]) {
+            if (!account.includes(token)) throw new Error('Missing account data operation: ' + token);
+          }
+          const integration = fs.readFileSync('integrations/index.html', 'utf8');
+          const candidateCount = (integration.match(/<article class="card">/g) || []).length;
+          if (candidateCount !== 20) throw new Error('Expected 20 integration candidates, found ' + candidateCount);
+          if (!fs.readFileSync('index.html', 'utf8').includes('Integration pilot · 20 providers')) {
+            throw new Error('Integration pilot is not linked from the homepage.');
+          }
+          const membership = fs.readFileSync('membership/index.html', 'utf8');
+          const planCount = (membership.match(/<article class="plan(?: featured)?">/g) || []).length;
+          if (planCount !== 6) throw new Error('Expected six membership display tiers, found ' + planCount);
+          for (const file of ['index.html','account/index.html','membership/index.html','app.js']) {
+            if (fs.readFileSync(file,'utf8').includes('€13.99')) throw new Error('Unapproved €13.99 price is displayed in ' + file);
+          }
+          if (fs.readFileSync('database/schema.sql','utf8').includes('1399')) {
+            throw new Error('Unapproved 1399-cent amount remains in database/schema.sql');
+          }
+          if (!fs.existsSync('supabase/migrations/20261011000000_profile_self_delete.sql')) {
+            throw new Error('Profile self-delete migration is missing.');
+          }
+          console.log('Account-script syntax, 20 integration candidates, six plan tiers, and approved price checks passed.');
+          NODE
       - name: Validate pages, assets, links, and required interface
         run: |
           node --input-type=commonjs <<'NODE'
