@@ -75,16 +75,37 @@ jobs:
           const membership = fs.readFileSync('membership/index.html', 'utf8');
           const planCount = (membership.match(/<article class="plan(?: featured)?">/g) || []).length;
           if (planCount !== 6) throw new Error('Expected six membership display tiers, found ' + planCount);
-          for (const file of ['index.html','account/index.html','membership/index.html','app.js']) {
-            if (fs.readFileSync(file,'utf8').includes('€13.99')) throw new Error('Unapproved €13.99 price is displayed in ' + file);
+          for (const amount of ['€4.99','€6.99','€8.99','€11.99','€13.99']) {
+            if (!membership.includes(amount)) throw new Error('Approved membership price is missing: ' + amount);
           }
-          if (fs.readFileSync('database/schema.sql','utf8').includes('1399')) {
-            throw new Error('Unapproved 1399-cent amount remains in database/schema.sql');
+          for (const file of ['index.html','account/index.html','membership/index.html','app.js','database/schema.sql']) {
+            if (fs.readFileSync(file,'utf8').includes('€15.99')) throw new Error('Unapproved €15.99 price is displayed in ' + file);
+          }
+          if (fs.readFileSync('database/schema.sql','utf8').includes('1599')) {
+            throw new Error('Unapproved 1599-cent amount remains in database/schema.sql');
+          }
+          const checkout = fs.readFileSync('api/stripe-checkout.js','utf8');
+          for (const priceKey of ['STRIPE_PRICE_499','STRIPE_PRICE_699','STRIPE_PRICE_899','STRIPE_PRICE_1199','STRIPE_PRICE_1399']) {
+            if (!checkout.includes(priceKey)) throw new Error('Checkout price mapping is missing: ' + priceKey);
+          }
+          if (!fs.existsSync('membership/success.html')) throw new Error('Checkout success page is missing.');
+          if (!fs.existsSync('supabase/migrations/20261010020000_stripe_webhook_idempotency.sql')) {
+            throw new Error('Stripe webhook event ledger migration is missing.');
           }
           if (!fs.existsSync('supabase/migrations/20261011000000_profile_self_delete.sql')) {
             throw new Error('Profile self-delete migration is missing.');
           }
-          console.log('Account-script syntax, 20 original candidates, 120 regional candidates, six plan tiers, and approved price checks passed.');
+          const membershipScripts = [...membership.matchAll(new RegExp('<script[^>]*>([\\s\\S]*?)</script>', 'gi'))].map(match => match[1].trim()).filter(Boolean);
+          membershipScripts.forEach((script, index) => {
+            try { new Function(script); }
+            catch (error) { throw new Error('Inline JavaScript syntax error in membership/index.html script ' + (index + 1) + ': ' + error.message); }
+          });
+          for (const file of ['api/stripe-checkout.js','api/stripe-webhook.js','api/health.js','api/requests.js']) {
+            const { execFileSync } = require('node:child_process');
+            try { execFileSync(process.execPath, ['--check', file], { stdio: 'pipe' }); }
+            catch (error) { throw new Error('JavaScript syntax error in ' + file + ': ' + error.stderr.toString()); }
+          }
+          console.log('Account and membership JavaScript syntax, API syntax, global directory, six plan tiers, and approved price checks passed.');
           NODE
       - name: Validate pages, assets, links, and required interface
         run: |
