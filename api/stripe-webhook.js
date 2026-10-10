@@ -98,6 +98,11 @@ function subscriptionStatus(status) {
 }
 
 async function saveMembership({ base, serviceKey, subscription, metadata, forcedStatus }) {
+  // Stripe can emit subscription.updated while a customer is still in Checkout.
+  // Do not create a database membership for an abandoned/unpaid incomplete sub.
+  if (subscription && ["incomplete", "incomplete_expired", "paused"].includes(subscription.status)) {
+    return;
+  }
   const userId = metadata && metadata.user_id;
   const planCode = metadata && metadata.plan_code;
   if (!uuidLike(userId)) throw new Error("Subscription is missing a valid account reference");
