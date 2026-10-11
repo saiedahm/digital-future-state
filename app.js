@@ -127,6 +127,19 @@
   $('#downloadPreview')?.addEventListener('click',()=>{if(!name.value.trim()){ $('#previewMessage').textContent='Enter your name first, then select “Preview my digital pass”.';return;}window.print();});
   $('#directorySearch')?.addEventListener('input',e=>{const q=e.target.value.toLowerCase().trim();let visible=0;$$('#directoryResults a').forEach(a=>{const show=(a.dataset.search+' '+a.innerText).toLowerCase().includes(q);a.hidden=!show;if(show)visible++;});let empty=$('#noDirectoryResults');if(!visible){if(!empty){empty=document.createElement('p');empty.id='noDirectoryResults';empty.className='inline-message';$('#directoryResults').appendChild(empty);}empty.textContent=(languagePacks[$('#languageSelect')?.value]||languagePacks.en).directoryEmpty||'No sample listings match that search.';}else empty?.remove();});
   $('#contactForm')?.addEventListener('submit',e=>{e.preventDefault();const form=e.currentTarget;if(!form.reportValidity())return;const subject='Digital Future State — '+$('#contactTopic').value;const body='Name: '+$('#contactName').value+'\nEmail: '+$('#contactEmail').value+'\nTopic: '+$('#contactTopic').value+'\n\nMessage:\n'+$('#contactMessage').value;const mailto='mailto:contact@digital-future.ai?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);$('#contactFeedback').dataset.state='prepared';$('#contactFeedback').textContent=(languagePacks[$('#languageSelect')?.value]||languagePacks.en).contactPrepared||languagePacks.en.contactPrepared;window.location.href=mailto;});
+
+  const siteLegalModal=$('#siteLegalModal');
+  const siteLegalContent=$('#siteLegalContent');
+  const closeSiteLegal=()=>{if(!siteLegalModal)return;siteLegalModal.hidden=true;document.body.classList.remove('legal-dialog-open');siteLegalContent.replaceChildren();};
+  async function openSiteLegal(url){
+    if(!siteLegalModal||!siteLegalContent){window.location.href=url;return;}
+    siteLegalContent.innerHTML='<p class="notice">Loading legal information…</p>';siteLegalModal.hidden=false;document.body.classList.add('legal-dialog-open');siteLegalContent.focus();
+    try{const response=await fetch(url,{headers:{Accept:'text/html'}});if(!response.ok)throw new Error('Could not load legal page');const markup=await response.text();const parsed=new DOMParser().parseFromString(markup,'text/html');const main=parsed.querySelector('.legal-main');if(!main)throw new Error('Legal page content is unavailable');siteLegalContent.replaceChildren(main.cloneNode(true));const title=siteLegalContent.querySelector('h1');if(title){title.id='siteLegalTitle';siteLegalModal.setAttribute('aria-labelledby','siteLegalTitle');}siteLegalContent.querySelectorAll('a').forEach(link=>{const href=link.getAttribute('href');if(href&&!href.startsWith('mailto:')&&!href.startsWith('tel:'))link.href=new URL(href,url,window.location.href).href;});}
+    catch(_){siteLegalContent.innerHTML='<p class="notice">Diese Seite konnte nicht eingeblendet werden. Bitte versuchen Sie es erneut.</p>';}
+  }
+  document.addEventListener('click',event=>{const link=event.target.closest('a[href]');if(!link)return;const url=new URL(link.href,window.location.href);if(url.origin===window.location.origin&&['/impressum.html','/datenschutz.html','/agb.html','/widerruf.html'].includes(url.pathname)){event.preventDefault();openSiteLegal(url.pathname+url.search);}});
+  $('#siteLegalClose')?.addEventListener('click',closeSiteLegal);siteLegalModal?.addEventListener('click',event=>{if(event.target===siteLegalModal)closeSiteLegal();});document.addEventListener('keydown',event=>{if(event.key==='Escape'&&siteLegalModal&&!siteLegalModal.hidden)closeSiteLegal();});
+
   const banner=$('#cookieBanner');
   const cookieNoticeKey='dfs-cookie-notice-dismissed-v1';
   const dismissCookieNotice=()=>{if(banner)banner.hidden=true;try{window.localStorage.setItem(cookieNoticeKey,'1');}catch(_){}};
