@@ -46,14 +46,16 @@ h1{font-size:clamp(28px,6vw,38px);line-height:1.1;margin:24px 0 8px}p,.muted{col
  }
  const {data,error}=await client.auth.oauth.getAuthorizationDetails(authorizationId);
  if(error||!data){status.textContent="Could not load the application's authorization request. Return to the application and try again.";return;}
- const details=data.authorization||data;
- $("clientName").textContent=details.client_name||details.client?.name||"Application requesting access";
- $("clientDescription").textContent="Requested permissions";
- const rawScope=details.scope||details.scopes||"email";
+ if(!("authorization_id" in data)) { if(data.redirect_url){ location.replace(data.redirect_url); return; } status.textContent="The authorization service returned an unexpected response."; return; }
+ const details=data;
+ $("clientName").textContent=details.client?.name||details.client_name||"Application requesting access";
+ $("clientDescription").textContent="This application requests the following permissions. Review them before continuing.";
+ const rawScope=details.scope||"email";
  const scopes=Array.isArray(rawScope)?rawScope:String(rawScope).split(/\s+/).filter(Boolean);
  const labels={openid:"Confirm your DIGITAL FUTURE STATE identity",email:"Share your email address",profile:"Share basic profile information",phone:"Share your phone number"};
  const list=$("scopeList");
  scopes.forEach(scope=>{const row=document.createElement("div");row.className="scope";row.textContent=labels[scope]||("Requested permission: "+scope);list.appendChild(row);});
+ if(details.redirect_uri){const redirectRow=document.createElement("p");redirectRow.className="muted";redirectRow.textContent="Return address: "+details.redirect_uri;list.appendChild(redirectRow);}
  $("approve").disabled=false;$("deny").disabled=false;
  async function decide(allow){
    $("approve").disabled=true;$("deny").disabled=true;status.textContent=allow?"Processing approval…":"Declining request…";
