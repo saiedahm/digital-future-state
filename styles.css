@@ -389,3 +389,105 @@
 
 /* Legal pages open in an in-page dialog on the home page. */
 .legal-modal{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(2,9,20,.92)}.legal-modal[hidden]{display:none}.site-legal-dialog{position:relative;width:min(1000px,100%);height:min(88vh,900px);overflow:auto;border:1px solid var(--gold,#d8b56b);border-radius:16px;background:#071426;box-shadow:0 24px 90px #000b;padding:28px 22px 22px}.site-legal-content{min-height:100%;color:#f7f4eb}.site-legal-content .legal-main{width:min(100%,900px);margin:0 auto;padding:0}.site-legal-content .legal-back,.site-legal-content .eyebrow{display:none}.site-legal-content h1{font-size:clamp(32px,5vw,54px);margin:12px 0 22px}.site-legal-content .legal-box{margin:0 auto;max-width:100%;padding:clamp(18px,4vw,36px);border:1px solid #29415c;border-radius:14px;background:#0b1c30}.site-legal-content .legal-footer,.site-legal-content header{display:none}.site-legal-content a{color:#d8b56b}.site-legal-dialog .legal-close{position:sticky;float:right;top:0;z-index:2;width:42px;height:42px;border-radius:50%;border:1px solid #d8b56b;background:#071426;color:#fff;font-size:26px;line-height:1;cursor:pointer}body.legal-dialog-open{overflow:hidden}@media(max-width:600px){.legal-modal{padding:7px}.site-legal-dialog{height:94vh;padding:16px 12px 14px}.site-legal-content .legal-box{padding:16px}}
+
+
+/* DIGITAL FUTURE STATE — refined navy-and-gold contact and legal surfaces */
+.contact-section .contact-form{
+  background:radial-gradient(ellipse at top right,rgba(217,182,107,.09),transparent 48%),linear-gradient(145deg,#0d2038 0%,#061326 100%)!important;
+  color:#f7f4eb!important;
+  border:1px solid rgba(217,182,107,.9)!important;
+  border-radius:18px!important;
+  box-shadow:inset 0 0 0 1px rgba(241,217,155,.08),0 22px 58px rgba(0,0,0,.28)!important;
+}
+.contact-section .contact-form .panel-title h3,
+.contact-section .contact-form label,
+.contact-section .contact-form .panel-title p{color:#f5e8c7!important}
+.contact-section .contact-form .number-pill{
+  border:1px solid rgba(217,182,107,.85)!important;
+  background:linear-gradient(145deg,#173957,#0b1b30)!important;
+  color:#f1d99b!important;
+}
+.contact-section .contact-form input,
+.contact-section .contact-form select,
+.contact-section .contact-form textarea{
+  width:100%;
+  color:#f7f4eb!important;
+  background:#071426!important;
+  border:1px solid rgba(217,182,107,.58)!important;
+  border-radius:10px!important;
+  box-shadow:inset 0 1px 4px rgba(0,0,0,.16);
+  transition:border-color .2s ease,box-shadow .2s ease,background .2s ease;
+}
+.contact-section .contact-form input::placeholder,
+.contact-section .contact-form textarea::placeholder{color:#aebed0!important}
+.contact-section .contact-form select option{background:#071426;color:#f7f4eb}
+.contact-section .contact-form input:focus,
+.contact-section .contact-form select:focus,
+.contact-section .contact-form textarea:focus{
+  outline:none!important;
+  border-color:#f1d99b!important;
+  box-shadow:0 0 0 3px rgba(217,182,107,.16),0 0 18px rgba(217,182,107,.08)!important;
+}
+.contact-section .contact-form textarea{min-height:190px;resize:vertical}
+.contact-section .contact-form .tiny-note,
+.contact-section .contact-form .optional{color:#b8c6d8!important}
+.contact-section .contact-form .btn-gold{box-shadow:0 8px 24px rgba(217,182,107,.14)}
+.contact-section .contact-form .inline-message,
+#contactFeedback{color:#f1d99b}
+.site-legal-dialog{
+  border:1px solid #d9b66b!important;
+  background:radial-gradient(ellipse at top right,rgba(40,88,127,.2),transparent 48%),linear-gradient(145deg,#0d2038 0%,#061326 100%)!important;
+  box-shadow:inset 0 0 0 1px rgba(241,217,155,.09),0 28px 100px rgba(0,0,0,.72)!important;
+  border-radius:20px!important;
+}
+.site-legal-content{font-family:Georgia,"Times New Roman",serif;color:#f7f4eb!important;line-height:1.8}
+.site-legal-content .legal-box{
+  border:1px solid rgba(217,182,107,.48)!important;
+  border-radius:14px!important;
+  background:rgba(5,17,34,.72)!important;
+}
+.site-legal-content h1,.site-legal-content h2,.site-legal-content h3{color:#f1d99b}
+.site-legal-dialog .legal-close{
+  display:grid;place-items:center;
+  width:44px;height:44px;
+  border:1px solid #f1d99b!important;
+  background:linear-gradient(145deg,#173957,#071426)!important;
+  color:#f1d99b!important;
+  font:400 30px/1 Arial,sans-serif!important;
+  box-shadow:0 4px 18px rgba(0,0,0,.3);
+  transition:transform .18s ease,background .18s ease;
+}
+.site-legal-dialog .legal-close:hover{transform:rotate(90deg);background:#203a55!important}
+#cookieBanner.cookie-banner{
+  position:fixed;right:22px;bottom:22px;z-index:10001;
+  display:flex;align-items:center;gap:14px;max-width:min(620px,calc(100vw - 28px));
+  padding:22px 58px 22px 22px;
+  border:1px solid #d9b66b;border-radius:16px;
+  color:#f7f4eb;
+  background:radial-gradient(ellipse at top right,rgba(40,88,127,.2),transparent 48%),linear-gradient(145deg,#0d2038,#061326);
+  box-shadow:0 20px 65px rgba(0,0,0,.48);
+}
+#cookieBanner[hidden]{display:none!important}
+#cookieBanner b{color:#f1d99b;font-family:Manrope,Arial,sans-serif}
+#cookieBanner p{color:#d2dce8;font-size:13px;line-height:1.65}
+#cookieBanner .cookie-close{
+  position:absolute;right:12px;top:12px;width:34px;height:34px;
+  border:1px solid rgba(217,182,107,.8);border-radius:50%;
+  background:#071426;color:#f1d99b;font-size:23px;cursor:pointer;
+}
+.legal-links a,.legal-links button{
+  border:1px solid rgba(217,182,107,.4);
+  border-radius:999px;
+  padding:8px 13px;
+  color:#f1d99b;
+  background:rgba(217,182,107,.045);
+  text-decoration:none;
+  transition:background .2s ease,border-color .2s ease,transform .2s ease;
+}
+.legal-links a:hover,.legal-links button:hover{
+  border-color:#f1d99b;background:rgba(217,182,107,.12);transform:translateY(-1px)
+}
+@media(max-width:760px){
+  #cookieBanner.cookie-banner{right:10px;bottom:10px;left:10px;max-width:none;align-items:flex-start;flex-wrap:wrap;padding:20px 48px 18px 18px}
+  #cookieBanner .btn{margin-top:4px}
+}
