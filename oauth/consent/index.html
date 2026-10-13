@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071426">
+<title>Authorize application | DIGITAL FUTURE STATE</title>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+<style>
+:root{color-scheme:dark;--bg:#061326;--panel:#0d2038;--line:rgba(201,220,242,.18);--gold:#d9b66b;--muted:#9aabc0;--white:#f4f5f7}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--bg);font:16px/1.55 "DM Sans",Arial,sans-serif;color:var(--white);display:grid;place-items:center;padding:20px}
+main{width:min(560px,100%);border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:clamp(20px,5vw,36px)}
+.brand{font-weight:800;letter-spacing:.08em;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:12px}.brand small{display:block;color:var(--gold);font-size:10px;letter-spacing:.18em}
+h1{font-size:clamp(28px,6vw,38px);line-height:1.1;margin:24px 0 8px}p,.muted{color:var(--muted)}.panel{border:1px solid var(--line);border-radius:10px;padding:14px;margin:18px 0;overflow-wrap:anywhere}.scope{padding:8px 0;border-bottom:1px solid var(--line)}.scope:last-child{border-bottom:0}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}button{padding:13px;border:1px solid var(--gold);border-radius:8px;background:var(--gold);color:#071426;font-weight:700;font:inherit;cursor:pointer}.secondary{background:transparent;color:var(--gold)}button:disabled{opacity:.55;cursor:wait}.status{min-height:26px;font-size:14px;overflow-wrap:anywhere}@media(max-width:420px){.actions{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main>
+<a class="brand" href="/"><img src="/dfs-gold-emblem.png" alt="" width="44" height="44"><span>DIGITAL FUTURE STATE<small>ONE ID · GLOBAL ACCESS</small></span></a>
+<h1>Authorize application</h1>
+<p>Review what this application is asking to access before you continue.</p>
+<section class="panel" aria-live="polite">
+<strong id="clientName">Loading application details…</strong>
+<p id="clientDescription" class="muted">Your approval is required before information is shared.</p>
+<div id="scopeList"></div>
+</section>
+<p class="muted">Only approve if you recognize this application. You can deny access at any time before approval.</p>
+<div class="actions"><button id="approve" disabled>Approve and continue</button><button id="deny" class="secondary" disabled>Deny request</button></div>
+<p id="status" class="status" role="status" aria-live="polite"></p>
+<p class="muted" style="font-size:12px">DIGITAL FUTURE STATE will not share your password with the application. <a href="/datenschutz.html">Privacy</a></p>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/supabase/config.js"></script><script src="/supabase/client.js"></script>
+<script>
+(async function(){
+ const $=id=>document.getElementById(id), status=$("status");
+ const params=new URLSearchParams(location.search), authorizationId=params.get("authorization_id");
+ const client=window.dfsSupabase;
+ if(!authorizationId||authorizationId.length>200){status.textContent="This authorization link is missing or invalid. Return to the application and try again.";return;}
+ if(!client){status.textContent="Secure account service is not configured. Please try again later.";return;}
+ const {data:sessionData,error:sessionError}=await client.auth.getSession();
+ if(sessionError||!sessionData.session){
+   const loginUrl=new URL("/account/auth.html",location.origin);
+   loginUrl.searchParams.set("oauth_consent",authorizationId);
+   location.replace(loginUrl.toString());return;
+ }
+ const {data,error}=await client.auth.oauth.getAuthorizationDetails(authorizationId);
+ if(error||!data){status.textContent="Could not load the application's authorization request. Return to the application and try again.";return;}
+ const details=data.authorization||data;
+ $("clientName").textContent=details.client_name||details.client?.name||"Application requesting access";
+ $("clientDescription").textContent="Requested permissions";
+ const rawScope=details.scope||details.scopes||"email";
+ const scopes=Array.isArray(rawScope)?rawScope:String(rawScope).split(/\s+/).filter(Boolean);
+ const labels={openid:"Confirm your DIGITAL FUTURE STATE identity",email:"Share your email address",profile:"Share basic profile information",phone:"Share your phone number"};
+ const list=$("scopeList");
+ scopes.forEach(scope=>{const row=document.createElement("div");row.className="scope";row.textContent=labels[scope]||("Requested permission: "+scope);list.appendChild(row);});
+ $("approve").disabled=false;$("deny").disabled=false;
+ async function decide(allow){
+   $("approve").disabled=true;$("deny").disabled=true;status.textContent=allow?"Processing approval…":"Declining request…";
+   try{
+     const result=allow?await client.auth.oauth.approveAuthorization(authorizationId):await client.auth.oauth.denyAuthorization(authorizationId);
+     if(result.error||!result.data||!result.data.redirect_url){status.textContent="The authorization service could not complete this request. Please return to the application.";return;}
+     location.assign(result.data.redirect_url);
+   }catch(e){status.textContent="Authorization could not be completed. Please try again later.";$("approve").disabled=false;$("deny").disabled=false;}
+ }
+ $("approve").addEventListener("click",()=>decide(true));
+ $("deny").addEventListener("click",()=>decide(false));
+})();
+</script></body></html>
